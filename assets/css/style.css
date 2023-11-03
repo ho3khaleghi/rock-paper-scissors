@@ -39,6 +39,65 @@ body {
     justify-content: space-evenly;
 }
 
+/* Added some styles from the https://codepen.io/HighFlyer/pen/WNXRZBv */
+button {
+    position: relative;
+    height: 100px;
+    padding: 25px;
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #081743;
+    color: #288cff;
+    font-weight: bold;
+    letter-spacing: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+@keyframes mymove {
+    50% {
+        box-shadow: none;
+    }
+}
+
+button:hover {
+    background: #288cff;
+    color: #081743;
+    box-shadow: 0 0 5px #288cff,
+        0 0 25px #288cff,
+        0 0 50px #288cff,
+        0 0 200px #288cff;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#paper {
+    color: rgb(97, 255, 83);
+}
+
+#paper:hover {
+    background: rgb(97, 255, 83);
+    color: #081743;
+    box-shadow: 0 0 5px rgb(97, 255, 83),
+        0 0 25px rgb(97, 255, 83),
+        0 0 50px rgb(97, 255, 83),
+        0 0 200px rgb(97, 255, 83);
+}
+
+#scissors {
+    color: rgb(253, 80, 80);
+}
+
+#scissors:hover {
+    background: rgb(253, 80, 80);
+    color: #081743;
+    box-shadow: 0 0 5px rgb(253, 80, 80),
+        0 0 25px rgb(253, 80, 80),
+        0 0 50px rgb(253, 80, 80),
+        0 0 200px rgb(253, 80, 80);
+}
+
 .result-container {
     display: flex;
     flex: row;
