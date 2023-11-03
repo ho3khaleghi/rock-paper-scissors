@@ -5,3 +5,48 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Raleway', sans-serif;
+    background: #242424;
+}
+
+.container {
+    height: 650px;
+    width: 480px;
+    background: linear-gradient(#0c2264, #081743, #081743);
+    border-radius: 20px;
+}
+
+.text-container {
+    margin-top: 20px;
+}
+
+.game-text {
+    color: azure;
+    position: relative;
+    padding: 30px 30px 30px 80px;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.result-container {
+    display: flex;
+    flex: row;
+    justify-content: space-evenly;
+    margin-top: 90px;
+}
+
+.game-result {
+    color: azure;
+    position: relative;
+}
