@@ -12,7 +12,7 @@ body {
     align-items: center;
     height: 100vh;
     font-family: 'Raleway', sans-serif;
-    background: #242424;
+    background: #242424 url("../images/background-image.webp") no-repeat center/cover;
 }
 
 .container {
@@ -22,6 +22,7 @@ body {
     border-radius: 20px;
 }
 
+/* Choices Part */
 .text-container {
     margin-top: 20px;
 }
@@ -34,6 +35,7 @@ body {
     font-size: 20px;
 }
 
+/* Buttons Part */
 .btn-container {
     display: flex;
     justify-content: space-evenly;
@@ -98,6 +100,11 @@ button:hover {
         0 0 200px rgb(253, 80, 80);
 }
 
+.btn-container i {
+    font-size: 4em;
+}
+
+/* Result Part */
 .result-container {
     display: flex;
     flex: row;
@@ -108,4 +115,16 @@ button:hover {
 .game-result {
     color: azure;
     position: relative;
+}
+
+.correct {
+    color: rgb(0, 255, 0);
+}
+
+.incorrect {
+    color: red;
+}
+
+.round {
+    color: rgb(210, 150, 30);
 }
