@@ -72,12 +72,16 @@ function checkWinner() {
 
     switch (matchResult) {
         case "win":
+            correctScore();
+            roundCounter();
             return thumbsUp;
         case "lose":
+            incorrectScore();
+            roundCounter();
             return thumbsDown;
         case "draw":
+            roundCounter();
             return handShake;
-
     }
 }
 
