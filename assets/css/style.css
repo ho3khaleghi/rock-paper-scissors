@@ -35,6 +35,18 @@ body {
     font-size: 20px;
 }
 
+.fa-thumbs-up {
+    color: rgb(10, 251, 10);
+}
+
+.fa-thumbs-down {
+    color: red;
+}
+
+.fa-handshake {
+    color: rgb(255, 183, 0);
+}
+
 /* Buttons Part */
 .btn-container {
     display: flex;
