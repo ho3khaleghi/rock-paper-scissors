@@ -68,7 +68,7 @@ function checkWinner() {
     } else if (computerValue == "paper") {
         matchResult = (playerValue == "scissors") ? "win" : "lose";
     } else if (computerValue == "scissors") {
-        matchResult = (player == "rock") ? "win" : "lose";
+        matchResult = (playerValue == "rock") ? "win" : "lose";
     }
 
     switch (matchResult) {
