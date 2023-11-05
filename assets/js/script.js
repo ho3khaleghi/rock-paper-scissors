@@ -5,6 +5,7 @@ let btns = document.querySelectorAll(".choice-btn");
 let userScore = document.getElementById("user-score");
 let computerScore = document.getElementById("computer-score");
 let roundScore = document.getElementById("round-score");
+let container = document.getElementById("container");
 let player;
 let computer;
 
@@ -72,14 +73,17 @@ function checkWinner() {
 
     switch (matchResult) {
         case "win":
+            container.style.boxShadow = "0 0 50px 20px rgb(10, 251, 10)";
             correctScore();
             roundCounter();
             return thumbsUp;
         case "lose":
+            container.style.boxShadow = "0 0 50px 20px red";
             incorrectScore();
             roundCounter();
             return thumbsDown;
         case "draw":
+            container.style.boxShadow = "0 0 50px 20px rgb(255, 183, 0)";
             roundCounter();
             return handShake;
     }
