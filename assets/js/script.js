@@ -2,6 +2,9 @@ let playerText = document.getElementById("player-text");
 let computerText = document.getElementById("computer-text");
 let resultText = document.getElementById("result-text");
 let btns = document.querySelectorAll(".choice-btn");
+let userScore = document.getElementById("user-score");
+let computerScore = document.getElementById("computer-score");
+let roundScore = document.getElementById("round-score");
 let player;
 let computer;
 
@@ -80,13 +83,16 @@ function checkWinner() {
 
 // Result part
 function correctScore() {
-
+    let oldScore = parseInt(userScore.innerHTML);
+    userScore.innerHTML = ++oldScore;
 }
 
 function incorrectScore() {
-
+    let oldScore = parseInt(computerScore.innerHTML);
+    computerScore.innerHTML = ++oldScore;
 }
 
 function roundCounter() {
-
+    let oldScore = parseInt(roundScore.innerHTML);
+    roundScore.innerHTML = ++oldScore;
 }

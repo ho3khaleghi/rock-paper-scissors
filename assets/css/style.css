@@ -47,6 +47,10 @@ body {
     color: rgb(255, 183, 0);
 }
 
+.text-container span {
+    padding-left: 20px;
+}
+
 /* Buttons Part */
 .btn-container {
     display: flex;
