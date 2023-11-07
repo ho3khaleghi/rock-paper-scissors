@@ -91,11 +91,13 @@ body {
 
 /* Start Button */
 :root {
-    --glow-color: hsl(186 100% 69%);
+    --glow-color: rgb(249, 154, 52);
 }
 
 .glowing-btn {
     position: relative;
+    left: 85px;
+    margin-top: 185px;
     color: var(--glow-color);
     cursor: pointer;
     padding: 0.35em 1em;
@@ -373,7 +375,7 @@ body {
     }
 }
 
-button:hover {
+.btn-container button:hover {
     background: #288cff;
     color: #081743;
     box-shadow: 0 0 5px #288cff,
