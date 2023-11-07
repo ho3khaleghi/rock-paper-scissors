@@ -30,7 +30,7 @@ body {
 #username {
     width: 100%;
     padding: 20px;
-    margin: 60px 40px;
+    margin: 35px 40px;
     border-radius: 30px;
     border: none;
     outline: none;
@@ -48,9 +48,10 @@ body {
 #bo3,
 #bo5 {
     padding: 0;
+    margin: 0;
     width: 80px;
     height: 80px;
-    background: linear-gradient(#091a4e, #091a4b, #091948)
+    background: linear-gradient(#0a1d55, #0a1c52, #0a1c50);
 }
 
 #bo1:hover {
@@ -89,6 +90,18 @@ body {
         0 0 200px rgb(253, 80, 80);
 }
 
+/* Rules */
+.rules-container {
+    color: #ffba00;
+    display: block;
+    margin: 40px;
+    border: 1px outset #ffa600;
+    border-radius: 20px;
+    background: #191919;
+    padding: 15px 35px;
+    opacity: 0.7;
+}
+
 /* Start Button */
 :root {
     --glow-color: rgb(249, 154, 52);
@@ -97,7 +110,7 @@ body {
 .glowing-btn {
     position: relative;
     left: 85px;
-    margin-top: 185px;
+    /* margin-top: 300px; */
     color: var(--glow-color);
     cursor: pointer;
     padding: 0.35em 1em;
