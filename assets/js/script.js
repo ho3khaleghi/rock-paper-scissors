@@ -104,3 +104,32 @@ function roundCounter() {
     let oldScore = parseInt(roundScore.innerHTML);
     roundScore.innerHTML = ++oldScore;
 }
+
+startingView = document.createElement("div");
+startingView.id = "starting-view";
+container.appendChild(startingView);
+userName = document.createElement("input");
+userName.type = "text";
+userName.name = "user-name";
+userName.id = "username";
+userName.placeholder = "Enter your name...";
+startingView.appendChild(userName);
+optionButtonContainer = document.createElement("div");
+optionButtonContainer.className = "btn-container";
+container.appendChild(optionButtonContainer);
+bestOfOne = document.createElement("button");
+bestOfThree = document.createElement("button");
+bestOfFive = document.createElement("button");
+bestOfOne.innerHTML = `<i class="fa-solid fa-dice-one"></i>`;
+bestOfOne.id = "bo1";
+bestOfThree.innerHTML = `<i class="fa-solid fa-dice-three"></i>`;
+bestOfThree.id = "bo3";
+bestOfFive.innerHTML = `<i class="fa-solid fa-dice-five"></i>`;
+bestOfFive.id = "bo5";
+optionButtonContainer.appendChild(bestOfOne);
+optionButtonContainer.appendChild(bestOfThree);
+optionButtonContainer.appendChild(bestOfFive);
+startButton = document.createElement("button");
+startButton.className = "glowing-btn";
+startButton.innerHTML = `<span class='glowing-txt'>S<span class='faulty-letter'>T</span>ART</span>`
+container.appendChild(startButton);
