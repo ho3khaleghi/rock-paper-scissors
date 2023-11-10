@@ -8,6 +8,7 @@ let roundScore = document.getElementById("round-score");
 let container = document.getElementById("container");
 let player;
 let computer;
+let userNameSpan = document.getElementById("username-input");
 
 // Making a variable for the icons to have less complicated code
 let rockIcon = `<i class="fa-solid fa-hand-back-fist fa-2xl"></i>`;
@@ -105,49 +106,75 @@ function roundCounter() {
     roundScore.innerHTML = ++oldScore;
 }
 
+// Building the landing page
 startingView = document.createElement("div");
 startingView.id = "starting-view";
 container.appendChild(startingView);
-userName = document.createElement("input");
+
+// Input of the landing page
+let userName = document.createElement("input");
 userName.type = "text";
 userName.name = "user-name";
 userName.id = "username";
 userName.placeholder = "Enter your name...";
+userName.required = true;
+userName.maxLength = "10";
+let userNameValue = userName.value;
+userNameSpan.innerHTML = userNameValue;
 startingView.appendChild(userName);
-optionButtonContainer = document.createElement("div");
+
+// Match option buttons in landing page
+let optionButtonContainer = document.createElement("div");
 optionButtonContainer.className = "btn-container";
 container.appendChild(optionButtonContainer);
-bestOfOne = document.createElement("button");
-bestOfThree = document.createElement("button");
-bestOfFive = document.createElement("button");
+let bestOfOne = document.createElement("button");
+let bestOfThree = document.createElement("button");
+let bestOfFive = document.createElement("button");
 bestOfOne.innerHTML = `<i class="fa-solid fa-dice-one"></i>`;
 bestOfOne.id = "bo1";
+bestOfOne.value = "1";
 bestOfThree.innerHTML = `<i class="fa-solid fa-dice-three"></i>`;
 bestOfThree.id = "bo3";
+bestOfThree.value = "3"
 bestOfFive.innerHTML = `<i class="fa-solid fa-dice-five"></i>`;
 bestOfFive.id = "bo5";
+bestOfFive.value = "5";
 optionButtonContainer.appendChild(bestOfOne);
 optionButtonContainer.appendChild(bestOfThree);
 optionButtonContainer.appendChild(bestOfFive);
-rulesContainer = document.createElement("div");
-rulesContainer.className = "rules-container"
+
+// Rules part in landing page
+let rulesContainer = document.createElement("div");
+rulesContainer.className = "rules-container";
 container.appendChild(rulesContainer);
-rulesTitle = document.createElement("h4");
+let rulesTitle = document.createElement("h4");
 rulesTitle.textContent = "Rules:";
 rulesContainer.appendChild(rulesTitle);
-rulesList = document.createElement("ul");
+let rulesList = document.createElement("ul");
 rulesContainer.appendChild(rulesList);
-rulesItem1 = document.createElement("li");
-rulesItem1.textContent = "You have 3 choices (Rock, Paper, Scissors)"
+let rulesItem1 = document.createElement("li");
+rulesItem1.textContent = "You have 3 choices (Rock, Paper, Scissors)";
 rulesList.appendChild(rulesItem1);
-rulesItem2 = document.createElement("li");
+let rulesItem2 = document.createElement("li");
 rulesItem2.textContent = "You have 3 option (Bo1, Bo3, Bo5). Bo1 is only 1 round match. Bo3 is 3 rounds match if your score reach 2 you are the winner. Bo5 is similar to Bo3 but if your score reach 3 you will be winner.";
 rulesList.appendChild(rulesItem2);
-rulesItem3 = document.createElement("li");
+let rulesItem3 = document.createElement("li");
 rulesItem3.textContent = "Just remember 1. Rock beats Scissors. 2. Paper beats Rock. 3. Scissors beats Paper.";
 rulesList.appendChild(rulesItem3);
-startButton = document.createElement("button");
+
+// Start Button in landing page
+let startButton = document.createElement("button");
 startButton.className = "glowing-btn";
-startButton.innerHTML = `<span class='glowing-txt'>S<span class='faulty-letter'>T</span>ART</span>`
+startButton.innerHTML = `<span class='glowing-txt'>S<span class='faulty-letter'>T</span>ART</span>`;
 container.appendChild(startButton);
 
+// buttons handleclick to store their value
+let matchOption;
+function handleMatchOption(e) {
+    matchOption = e.target.value;
+    console.log(matchOption);
+}
+
+bestOfOne.addEventListener("click", handleMatchOption);
+bestOfThree.addEventListener("click", handleMatchOption);
+bestOfFive.addEventListener("click", handleMatchOption);
