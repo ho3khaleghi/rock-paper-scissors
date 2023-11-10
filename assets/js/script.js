@@ -6,8 +6,10 @@ let userScore = document.getElementById("user-score");
 let computerScore = document.getElementById("computer-score");
 let roundScore = document.getElementById("round-score");
 let container = document.getElementById("container");
+let starting = document.getElementById("starting");
 let player;
 let computer;
+let matchEnd;
 let userNameSpan = document.getElementById("username-input");
 
 // Making a variable for the icons to have less complicated code
@@ -26,6 +28,7 @@ function handleClickButton(button) {
     playerText.innerHTML = player;
     computerText.innerHTML = computer;
     resultText.innerHTML = checkWinner();
+    roundLimit();
 }
 
 function addClickListener(button) {
@@ -77,15 +80,17 @@ function checkWinner() {
             container.style.boxShadow = "0 0 50px 20px rgb(10, 251, 10)";
             correctScore();
             roundCounter();
+
             return thumbsUp;
         case "lose":
             container.style.boxShadow = "0 0 50px 20px red";
             incorrectScore();
             roundCounter();
+
             return thumbsDown;
         case "draw":
             container.style.boxShadow = "0 0 50px 20px rgb(255, 183, 0)";
-            roundCounter();
+            // roundCounter();
             return handShake;
     }
 }
@@ -109,7 +114,7 @@ function roundCounter() {
 // Building the landing page
 startingView = document.createElement("div");
 startingView.id = "starting-view";
-container.appendChild(startingView);
+starting.appendChild(startingView);
 
 // Input of the landing page
 let userName = document.createElement("input");
@@ -126,11 +131,12 @@ startingView.appendChild(userName);
 // Match option buttons in landing page
 let optionButtonContainer = document.createElement("div");
 optionButtonContainer.className = "btn-container";
-container.appendChild(optionButtonContainer);
+starting.appendChild(optionButtonContainer);
 let bestOfOne = document.createElement("button");
 let bestOfThree = document.createElement("button");
 let bestOfFive = document.createElement("button");
-bestOfOne.innerHTML = `<i class="fa-solid fa-dice-one"></i>`;
+bestOfOne.innerHTML = `<i class="fa-solid fa-dice-one" id="ibo1" value="1"></i>`;
+let iBo1Btn = document.getElementById("ibo1");
 bestOfOne.id = "bo1";
 bestOfOne.value = "1";
 bestOfThree.innerHTML = `<i class="fa-solid fa-dice-three"></i>`;
@@ -146,7 +152,7 @@ optionButtonContainer.appendChild(bestOfFive);
 // Rules part in landing page
 let rulesContainer = document.createElement("div");
 rulesContainer.className = "rules-container";
-container.appendChild(rulesContainer);
+starting.appendChild(rulesContainer);
 let rulesTitle = document.createElement("h4");
 rulesTitle.textContent = "Rules:";
 rulesContainer.appendChild(rulesTitle);
@@ -166,7 +172,7 @@ rulesList.appendChild(rulesItem3);
 let startButton = document.createElement("button");
 startButton.className = "glowing-btn";
 startButton.innerHTML = `<span class='glowing-txt'>S<span class='faulty-letter'>T</span>ART</span>`;
-container.appendChild(startButton);
+starting.appendChild(startButton);
 
 // buttons handleclick to store their value
 let matchOption;
@@ -178,3 +184,23 @@ function handleMatchOption(e) {
 bestOfOne.addEventListener("click", handleMatchOption);
 bestOfThree.addEventListener("click", handleMatchOption);
 bestOfFive.addEventListener("click", handleMatchOption);
+iBo1Btn.addEventListener("click", handleMatchOption);
+
+
+// Setting round limit
+function roundLimit() {
+    if (matchOption == "1") {
+        if (userScore == "1" || computerScore == "1") {
+            matchEnd = "end";
+        }
+    } else if (matchOption == "3") {
+        if (userScore == "2" || computerScore == "2") {
+            matchEnd = "end";
+        }
+    } else if (matchOption == "5") {
+        if (userScore == "3" || computerScore == "3") {
+            matchEnd = "end";
+        }
+    }
+}
+

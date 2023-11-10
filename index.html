@@ -26,38 +26,45 @@
   </head>
   <body>
     <div class="container" id="container">
-      <div class="text-container" id="text-container">
-        <p class="game-text"><span id="username-input"></span> Choice: <span id="player-text"></span></p>
-        <p class="game-text">
-          Computer's Choice: <span id="computer-text"></span>
-        </p>
-        <p class="game-text">Result: <span id="result-text"></span></p>
+      <div class="starting" id="starting"></div>
+      <div class="matching">
+        <div class="text-container" id="text-container">
+          <p class="game-text">
+            <span id="username-input"></span> Choice:
+            <span id="player-text"></span>
+          </p>
+          <p class="game-text">
+            Computer's Choice: <span id="computer-text"></span>
+          </p>
+          <p class="game-text">Result: <span id="result-text"></span></p>
+        </div>
+        <div class="btn-container" id="btn-container">
+          <button class="choice-btn" id="rock">
+            <i class="fa-solid fa-hand-back-fist fa-2xl"></i>
+          </button>
+          <button class="choice-btn" id="paper">
+            <i class="fa-solid fa-hand fa-2xl"></i>
+          </button>
+          <button class="choice-btn" id="scissors">
+            <i class="fa-solid fa-hand-scissors fa-rotate-90 fa-2xl"></i>
+          </button>
+        </div>
+        <div class="result-container" id="result-container">
+          <p class="game-result">
+            <i class="fa-solid fa-circle-check correct"></i> Your Score:
+            <span id="user-score">0</span>
+          </p>
+          <p class="game-result">
+            <i class="fa-solid fa-circle-xmark incorrect"></i> Computer's Score:
+            <span id="computer-score">0</span>
+          </p>
+          <p class="game-result">
+            <i class="fa-solid fa-circle-exclamation round"></i> Round:
+            <span id="round-score">0</span>
+          </p>
+        </div>
       </div>
-      <div class="btn-container" id="btn-container">
-        <button class="choice-btn" id="rock">
-          <i class="fa-solid fa-hand-back-fist fa-2xl"></i>
-        </button>
-        <button class="choice-btn" id="paper">
-          <i class="fa-solid fa-hand fa-2xl"></i>
-        </button>
-        <button class="choice-btn" id="scissors">
-          <i class="fa-solid fa-hand-scissors fa-rotate-90 fa-2xl"></i>
-        </button>
-      </div>
-      <div class="result-container" id="result-container">
-        <p class="game-result">
-          <i class="fa-solid fa-circle-check correct"></i> Your Score:
-          <span id="user-score">0</span>
-        </p>
-        <p class="game-result">
-          <i class="fa-solid fa-circle-xmark incorrect"></i> Computer's Score:
-          <span id="computer-score">0</span>
-        </p>
-        <p class="game-result">
-          <i class="fa-solid fa-circle-exclamation round"></i> Round:
-          <span id="round-score">0</span>
-        </p>
-      </div>
+      <div class="end"></div>
     </div>
     <script src="./assets/js/script.js"></script>
     <script
