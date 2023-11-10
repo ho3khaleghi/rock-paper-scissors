@@ -26,8 +26,27 @@
   </head>
   <body>
     <div class="container" id="container">
-      <div class="starting" id="starting"></div>
-      <div class="matching">
+        <div class="starting" id="starting" style="display: block;">
+          <div id="starting-view">
+            <input type="text" name="user-name" id="username" placeholder="Enter your name..." required="" maxlength="10">
+          </div>
+          <div class="btn-container">
+            <button id="bo1" value="1"><i class="fa-solid fa-dice-one" id="ibo1" value="1"></i></button>
+            <button id="bo3" value="3"><i class="fa-solid fa-dice-three"></i></button>
+            <button id="bo5" value="5"><i class="fa-solid fa-dice-five"></i></button>
+          </div>
+          <div class="rules-container">
+            <h4>Rules:</h4>
+            <ul>
+              <li>You have 3 choices (Rock, Paper, Scissors)</li>
+              <li>You have 3 option (Bo1, Bo3, Bo5). Bo1 is only 1 round match. Bo3 is 3 rounds match if your score reach 2 you
+                are the winner. Bo5 is similar to Bo3 but if your score reach 3 you will be the winner.</li>
+              <li>Just remember 1. Rock beats Scissors. 2. Paper beats Rock. 3. Scissors beats Paper.</li>
+            </ul>
+          </div>
+          <button class="glowing-btn" id="start-button"><span class="glowing-txt">S<span class="faulty-letter">T</span>ART</span></button>
+      </div>
+      <div class="matching" id="matching" style="display: none">
         <div class="text-container" id="text-container">
           <p class="game-text">
             <span id="username-input"></span> Choice:
@@ -64,7 +83,7 @@
           </p>
         </div>
       </div>
-      <div class="end"></div>
+      <div class="end" id="end" style="display: none">Salam</div>
     </div>
     <script src="./assets/js/script.js"></script>
     <script

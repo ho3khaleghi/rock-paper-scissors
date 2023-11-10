@@ -328,7 +328,7 @@ body {
 }
 
 #text-container {
-    display: none;
+    /* display: none; */
 }
 
 .game-text {
@@ -362,7 +362,7 @@ body {
 }
 
 #btn-container {
-    display: none;
+    /* display: none; */
 }
 
 /* Added some styles from the https://codepen.io/HighFlyer/pen/WNXRZBv */
@@ -437,7 +437,7 @@ body {
 }
 
 #result-container {
-    display: none;
+    /* display: none; */
 }
 
 .game-result {
