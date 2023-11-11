@@ -28,7 +28,7 @@
     <div class="container" id="container">
         <div class="starting" id="starting" style="display: block;">
           <div id="starting-view">
-            <input type="text" name="user-name" id="username" placeholder="Enter your name..." required="" maxlength="10">
+            <input type="text" name="user-name" id="username" placeholder="Enter your name..." required maxlength="10">
           </div>
           <div class="btn-container">
             <button id="bo1" value="1"><i class="fa-solid fa-dice-one" id="ibo1" value="1"></i></button>
@@ -83,7 +83,20 @@
           </p>
         </div>
       </div>
-      <div class="end" id="end" style="display: none">Salam</div>
+      <div class="end" id="end" style="display: none">
+        <div id="end-message">
+          <p class="tnx-message">Thank you for playing!</p>
+            <br>
+          <p class="tnx-message">We hope you have enjoyed the game.</p>
+        </div>
+        <div id="gameresult">
+          <p id="game-result-message">You Won!</p>
+        </div>
+        <div id="end-btns" class="btn-container">
+          <button id="rematch"><i class="fa-solid fa-rotate-left"></i></button>
+          <button id="main-menu"><i class="fa-solid fa-house"></i></button>
+        </div>
+      </div>
     </div>
     <script src="./assets/js/script.js"></script>
     <script
