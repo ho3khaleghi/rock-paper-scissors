@@ -549,6 +549,11 @@ body {
     transition: opacity 100ms linear;
 }
 
+#defeat {
+    display: none;
+    font-size: 30px;
+}
+
 
 
 @keyframes faulty-flicker {

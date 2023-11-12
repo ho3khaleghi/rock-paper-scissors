@@ -20,6 +20,11 @@ let computer;
 let pageStatus = "starting";
 let userNameSpan = document.getElementById("username-input");
 let userName = document.getElementById("username");
+let glowingColor = document.querySelector(":root");
+let glowingVictory = document.getElementById("victory");
+let glowingDefeat = document.getElementById("defeat");
+let rematch = document.getElementById("rematch");
+let mainMenu = document.getElementById("main-menu");
 
 // Making a variable for the icons to have less complicated code
 let rockIcon = `<i class="fa-solid fa-hand-back-fist fa-2xl"></i>`;
@@ -28,6 +33,7 @@ let scissorsIcon = `<i class="fa-solid fa-hand-scissors fa-rotate-90 fa-2xl"></i
 let thumbsUp = `<i class="fa-solid fa-thumbs-up fa-2xl"></i>`;
 let thumbsDown = `<i class="fa-solid fa-thumbs-down fa-2xl"></i>`;
 let handShake = `<i class="fa-solid fa-handshake fa-2xl"></i>`;
+
 
 // Starting view of the application
 let matchOption;
@@ -44,16 +50,25 @@ bestOfFive.addEventListener("click", handleMatchOption);
 // Setting round limit
 function roundLimit() {
     if (matchOption == "1") {
-        if (userScore === 1 || computerScore === 1) {
+        if (userScore === 1) {
             pageStatus = "end";
+        } else if (computerScore === 1) {
+            pageStatus = "end";
+            endingLoser();
         }
     } else if (matchOption == "3") {
-        if (userScore === 2 || computerScore === 2) {
+        if (userScore === 2) {
             pageStatus = "end";
+        } else if (computerScore === 2) {
+            pageStatus = "end";
+            endingLoser();
         }
     } else if (matchOption == "5") {
-        if (userScore === 3 || computerScore === 3) {
+        if (userScore === 3) {
             pageStatus = "end";
+        } else if (computerScore === 3) {
+            pageStatus = "end";
+            endingLoser();
         }
     }
 }
@@ -182,7 +197,26 @@ function roundCounter() {
     roundScore.innerHTML = ++oldScore;
 }
 
-// Ending view of the application
+function endingLoser() {
+    glowingColor.style.setProperty("--glow-color-p", "red");
+    glowingVictory.style.display = "none";
+    glowingDefeat.style.display = "block";
+}
 
+// Ending view of the application
+function handleRematch() {
+    starting.style.display = "none";
+    end.style.display = "none";
+    matching.style.display = "block";
+    userScoreElement.innerHTML = 0;
+    computerScoreElement.innerHTML = 0;
+    roundScore.innerHTML = 0;
+    container.style.boxShadow = "none";
+    resultText.innerHTML = "";
+    playerText.innerHTML = "";
+    computerText.innerHTML = "";
+}
+
+rematch.addEventListener("click", handleRematch);
 
 checkStatus();
