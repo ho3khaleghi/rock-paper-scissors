@@ -31,9 +31,9 @@
             <input type="text" name="user-name" id="username" placeholder="Enter your name..." maxlength="10" required>
           </div>
           <div class="btn-container">
-            <button id="bo1" value="1"><i class="fa-solid fa-dice-one" id="ibo1" value="1"></i></button>
-            <button id="bo3" value="3"><i class="fa-solid fa-dice-three"></i></button>
-            <button id="bo5" value="5"><i class="fa-solid fa-dice-five"></i></button>
+            <button id="bo1"><i class="fa-solid fa-dice-one"></i></button>
+            <button id="bo3"><i class="fa-solid fa-dice-three"></i></button>
+            <button id="bo5"><i class="fa-solid fa-dice-five"></i></button>
           </div>
           <div class="rules-container">
             <h4>Rules:</h4>
@@ -49,13 +49,20 @@
       <div class="matching" id="matching" style="display: none">
         <div class="text-container" id="text-container">
           <p class="game-text">
-            <span id="username-input"></span>'s Choice:
+            <span id="username-input" class="label"></span>
             <span id="player-text"></span>
           </p>
+          <div class="hr"></div>
           <p class="game-text">
-            Computer's Choice: <span id="computer-text"></span>
+            <span class="label">Computer:</span>
+            <span id="computer-text"></span>
           </p>
-          <p class="game-text">Result: <span id="result-text"></span></p>
+        <div class="hr"></div>
+          <p class="game-text">
+            <span class="label">Result:</span>
+            <span id="result-text"></span>
+        </p>
+        <div class="hr"></div>
         </div>
         <div class="btn-container" id="btn-container">
           <button class="choice-btn" id="rock">

@@ -36,14 +36,21 @@ let handShake = `<i class="fa-solid fa-handshake fa-2xl"></i>`;
 
 
 // Starting view of the application
-let matchOption;
-function handleMatchOption(e) {
-    matchOption = e.target.value;
+let matchOption = "";
+function handleMatchOption(value) {
+    matchOption = value;
 }
 
-bestOfOne.addEventListener("click", handleMatchOption);
-bestOfThree.addEventListener("click", handleMatchOption);
-bestOfFive.addEventListener("click", handleMatchOption);
+bestOfOne.addEventListener("click", function() {
+    handleMatchOption(1);
+});
+bestOfThree.addEventListener("click", function() {
+    handleMatchOption(3);
+});
+bestOfFive.addEventListener("click", function() {
+    handleMatchOption(5);
+});
+
 
 
 
@@ -75,8 +82,14 @@ function roundLimit() {
 
 // Start button
 function handleStartClick() {
+    if ( userName.value == "" &&  matchOption == "" ) {
+        // show alert message
+        alert("hello");
+        return;
+    }
+
     pageStatus = "matching";
-    userNameSpan.textContent = userName.value;
+    userNameSpan.textContent = userName.value + ":";
     checkStatus();
 }
 
@@ -183,6 +196,36 @@ function checkWinner() {
 }
 
 // Result part
+function resetUser() {
+    userScore = 0;
+    userScoreElement.innerHTML = 0;
+}
+
+function resetComputer() {
+    computerScore = 0;
+    computerScoreElement.innerHTML = 0;
+}
+
+function resetRound() {
+    oldScore = 0;
+    roundScore.innerHTML = 0;
+}
+
+function resetChoices() {
+    resultText.innerHTML = "";
+    playerText.innerHTML = "";
+    computerText.innerHTML = "";
+}
+
+function resetGame() {
+    resetRound();
+    resetChoices();
+    resetComputer();
+    resetUser();
+    container.style.boxShadow = "none";
+    matching.className = matching.className.replace(" disabledbutton", "");
+}
+
 function correctScore() {
     userScore++;
     userScoreElement.innerHTML = userScore;
@@ -205,33 +248,22 @@ function endingLoser() {
 }
 
 // Ending view of the application
+
+
 function handleRematch() {
-    starting.style.display = "none";
-    end.style.display = "none";
-    matching.style.display = "block";
-    userScoreElement.innerHTML = 0;
-    computerScoreElement.innerHTML = 0;
-    roundScore.innerHTML = 0;
-    container.style.boxShadow = "none";
-    resultText.innerHTML = "";
-    playerText.innerHTML = "";
-    computerText.innerHTML = "";
+    resetGame();
+    pageStatus = "matching";
+    checkStatus();
 }
 
 rematch.addEventListener("click", handleRematch);
 
 function handleMainMenu() {
-    matching.style.display = "none";
-    end.style.display = "none";
-    starting.style.display = "block";
-    userScoreElement.innerHTML = 0;
-    computerScoreElement.innerHTML = 0;
-    roundScore.innerHTML = 0;
-    container.style.boxShadow = "none";
-    resultText.innerHTML = "";
-    playerText.innerHTML = "";
-    computerText.innerHTML = "";
+    resetGame();
+    pageStatus = "starting";
+    checkStatus();
     userName.value = "";
+    matchOption = "";
 }
 
 mainMenu.addEventListener("click", handleMainMenu);

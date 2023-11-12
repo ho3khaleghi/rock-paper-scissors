@@ -335,9 +335,20 @@ body {
 .game-text {
     color: azure;
     position: relative;
-    padding: 30px 30px 30px 80px;
-    margin-bottom: 30px;
+    padding: 30px 30px 30px 55px;
     font-size: 20px;
+}
+
+.hr {
+    height: 2px;
+    background: linear-gradient(45deg, #001b6c, #014afc, #00195c);
+}
+
+.label {
+    width: 155px;
+    display: inline-block;
+    color: rgb(249, 154, 52);
+    font-weight: 900;
 }
 
 .fa-thumbs-up {
