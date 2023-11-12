@@ -113,7 +113,8 @@ function handleClickButton(button) {
     resultText.innerHTML = checkWinner();
     roundLimit();
     if (pageStatus == "end") {
-        checkStatus();
+        matching.className += " disabledbutton";
+        setTimeout(checkStatus, 3000);
     }
 }
 
@@ -218,5 +219,21 @@ function handleRematch() {
 }
 
 rematch.addEventListener("click", handleRematch);
+
+function handleMainMenu() {
+    matching.style.display = "none";
+    end.style.display = "none";
+    starting.style.display = "block";
+    userScoreElement.innerHTML = 0;
+    computerScoreElement.innerHTML = 0;
+    roundScore.innerHTML = 0;
+    container.style.boxShadow = "none";
+    resultText.innerHTML = "";
+    playerText.innerHTML = "";
+    computerText.innerHTML = "";
+    userName.value = "";
+}
+
+mainMenu.addEventListener("click", handleMainMenu);
 
 checkStatus();

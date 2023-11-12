@@ -425,6 +425,12 @@ body {
     font-size: 4em;
 }
 
+/* Disable buttons */
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
 /* Result Part */
 .result-container {
     display: flex;
