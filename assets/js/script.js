@@ -25,6 +25,8 @@ let glowingVictory = document.getElementById("victory");
 let glowingDefeat = document.getElementById("defeat");
 let rematch = document.getElementById("rematch");
 let mainMenu = document.getElementById("main-menu");
+let alertMsg = document.getElementById("alert-msg");
+let topicText = document.getElementById("topic-text");
 
 // Making a variable for the icons to have less complicated code
 let rockIcon = `<i class="fa-solid fa-hand-back-fist fa-2xl"></i>`;
@@ -33,6 +35,9 @@ let scissorsIcon = `<i class="fa-solid fa-hand-scissors fa-rotate-90 fa-2xl"></i
 let thumbsUp = `<i class="fa-solid fa-thumbs-up fa-2xl"></i>`;
 let thumbsDown = `<i class="fa-solid fa-thumbs-down fa-2xl"></i>`;
 let handShake = `<i class="fa-solid fa-handshake fa-2xl"></i>`;
+let bo1Icon = `<i class="fa-solid fa-dice-one dice"></i>`
+let bo3Icon = `<i class="fa-solid fa-dice-three dice"></i>`
+let bo5Icon = `<i class="fa-solid fa-dice-five dice"></i>`
 
 
 // Starting view of the application
@@ -42,12 +47,15 @@ function handleMatchOption(value) {
 }
 
 bestOfOne.addEventListener("click", function() {
+    topicText.innerHTML = bo1Icon + " Best of One " + bo1Icon;
     handleMatchOption(1);
 });
 bestOfThree.addEventListener("click", function() {
+    topicText.innerHTML = bo3Icon + " Best of Three " + bo3Icon;
     handleMatchOption(3);
 });
 bestOfFive.addEventListener("click", function() {
+    topicText.innerHTML = bo5Icon + " Best of Five " + bo5Icon;
     handleMatchOption(5);
 });
 
@@ -84,7 +92,7 @@ function roundLimit() {
 function handleStartClick() {
     if ( userName.value == "" &&  matchOption == "" ) {
         // show alert message
-        alert("hello");
+        alertMsg.style.display = "block";
         return;
     }
 
@@ -223,6 +231,7 @@ function resetGame() {
     resetComputer();
     resetUser();
     container.style.boxShadow = "none";
+    alertMsg.style.display = "none";
     matching.className = matching.className.replace(" disabledbutton", "");
 }
 

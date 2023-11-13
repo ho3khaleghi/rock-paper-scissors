@@ -54,6 +54,20 @@ body {
     background: linear-gradient(#0a1d55, #0a1c52, #0a1c50);
 }
 
+.dice {
+    animation: infiniteColor 6s infinite;
+}
+
+@keyframes infiniteColor {
+    0% { color: red; }
+    16.666% { color: orange; }
+    33.333% { color: yellow; }
+    50% { color: green; }
+    66.666% { color: blue; }
+    83.333% { color: indigo; }
+    100% { color: violet; }
+}
+
 #bo1:hover {
     background: #288cff;
     color: #081743;
@@ -94,12 +108,20 @@ body {
 .rules-container {
     color: #ffba00;
     display: block;
-    margin: 40px;
+    margin: 30px 40px;
     border: 1px outset #ffa600;
     border-radius: 20px;
     background: #191919;
     padding: 15px 35px;
     opacity: 0.7;
+}
+
+/* Alert msg */
+#alert-msg {
+    color: red;
+    font-size: 10px;
+    padding: 10px 100px 14px;
+    display: none;
 }
 
 /* Start Button */
@@ -322,14 +344,18 @@ body {
     }
 }
 
-/* Game has started */
+/* Start button */
 /* Choices Part */
-.text-container {
-    margin-top: 20px;
+#topic {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0;
 }
 
-#text-container {
-    /* display: none; */
+#topic-text {
+    color: #b9f2ff;
+    font-weight: 700;
+    font-size: 24px;
 }
 
 .game-text {
@@ -367,6 +393,7 @@ body {
 .btn-container {
     display: flex;
     justify-content: space-evenly;
+    padding-top: 20px;
 }
 
 #btn-container {
@@ -445,9 +472,8 @@ body {
 /* Result Part */
 .result-container {
     display: flex;
-    flex: row;
     justify-content: space-evenly;
-    margin-top: 90px;
+    margin-top: 110px;
 }
 
 #result-container {
@@ -695,6 +721,7 @@ body {
 
 #end-btns {
     margin-top: 90px;
+    padding: 0;
 }
 
 #rematch {
