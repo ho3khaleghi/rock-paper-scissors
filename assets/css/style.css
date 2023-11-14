@@ -72,7 +72,7 @@ body {
     100% { color: violet; }
 }
 
-#bo1:hover {
+#bo1:focus {
     background: #288cff;
     color: #081743;
     box-shadow: 0 0 5px #288cff,
@@ -86,7 +86,7 @@ body {
     color: rgb(97, 255, 83);
 }
 
-#bo3:hover {
+#bo3:focus {
     background: rgb(97, 255, 83);
     color: #081743;
     box-shadow: 0 0 5px rgb(97, 255, 83),
@@ -99,7 +99,7 @@ body {
     color: rgb(253, 80, 80);
 }
 
-#bo5:hover {
+#bo5:focus {
     background: rgb(253, 80, 80);
     color: #081743;
     box-shadow: 0 0 5px rgb(253, 80, 80),
@@ -435,7 +435,7 @@ body {
     }
 }
 
-.btn-container button:hover {
+.btn-container button:focus {
     background: #288cff;
     color: #081743;
     box-shadow: 0 0 5px #288cff,
@@ -449,7 +449,7 @@ body {
     color: rgb(97, 255, 83);
 }
 
-#paper:hover {
+#paper:focus {
     background: rgb(97, 255, 83);
     color: #081743;
     box-shadow: 0 0 5px rgb(97, 255, 83),
@@ -462,7 +462,7 @@ body {
     color: rgb(253, 80, 80);
 }
 
-#scissors:hover {
+#scissors:focus {
     background: rgb(253, 80, 80);
     color: #081743;
     box-shadow: 0 0 5px rgb(253, 80, 80),
