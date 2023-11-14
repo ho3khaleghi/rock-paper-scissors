@@ -90,7 +90,7 @@ function roundLimit() {
 
 // Start button
 function handleStartClick() {
-    if ( userName.value == "" &&  matchOption == "" ) {
+    if ( userName.value == "" ||  matchOption == "" ) {
         // show alert message
         alertMsg.style.display = "block";
         return;

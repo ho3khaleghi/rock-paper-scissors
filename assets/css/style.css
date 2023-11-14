@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;900&family=Zen+Dots&display=swap');
 
 * {
     margin: 0;
@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Zen Dots', sans-serif;
     background: #242424 url("../images/background-image.webp") no-repeat center/cover;
 }
 
@@ -37,10 +37,14 @@ body {
     background: rgb(144 190 255);
     color: #0b205e;
     font-size: 20px;
+    font-family: 'Zen Dots',
+            sans-serif;
 }
 
 #username::placeholder {
     color: #0b205e;
+    /* font-family: 'Zen Dots',
+        sans-serif; */
 }
 
 /* Option buttons */
@@ -108,19 +112,24 @@ body {
 .rules-container {
     color: #ffba00;
     display: block;
-    margin: 30px 40px;
+    margin: 19px 40px;
     border: 1px outset #ffa600;
     border-radius: 20px;
     background: #191919;
     padding: 15px 35px;
     opacity: 0.7;
+    font-size: 13px;
 }
 
 /* Alert msg */
+.alert-msg-container {
+    height: 40px;
+}
+
 #alert-msg {
     color: red;
     font-size: 10px;
-    padding: 10px 100px 14px;
+    padding: 10px 55px 14px;
     display: none;
 }
 
@@ -356,6 +365,12 @@ body {
     color: #b9f2ff;
     font-weight: 700;
     font-size: 24px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(90deg, #0a1e58, #012385, #3eafcc, #012385, #0a1e58);
+    padding-bottom: 10px;
+    padding-top: 10px
 }
 
 .game-text {
@@ -393,7 +408,6 @@ body {
 .btn-container {
     display: flex;
     justify-content: space-evenly;
-    padding-top: 20px;
 }
 
 #btn-container {
@@ -483,6 +497,7 @@ body {
 .game-result {
     color: azure;
     position: relative;
+    font-size: 14px;
 }
 
 .correct {
@@ -505,10 +520,10 @@ body {
 }
 
 .tnx-message {
-    font-size: 34px;
+    font-size: 29px;
     text-align: center;
     color: #ffba00;
-    padding: 15px 0;
+    padding: 15px 10px;
 }
 
 #gameresult {
