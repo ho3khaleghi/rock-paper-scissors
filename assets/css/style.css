@@ -358,12 +358,11 @@ body {
 #topic {
     display: flex;
     justify-content: center;
-    padding: 25px 0;
+    padding-top: 25px;
 }
 
 #topic-text {
     color: #b9f2ff;
-    font-weight: 700;
     font-size: 24px;
     display: inline-block;
     width: 100%;
@@ -389,7 +388,6 @@ body {
     width: 155px;
     display: inline-block;
     color: rgb(249, 154, 52);
-    font-weight: 900;
 }
 
 .fa-thumbs-up {
@@ -411,7 +409,7 @@ body {
 }
 
 #btn-container {
-    /* display: none; */
+    margin-top: 60px;
 }
 
 /* Added some styles from the https://codepen.io/HighFlyer/pen/WNXRZBv */
@@ -487,7 +485,10 @@ body {
 .result-container {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 110px;
+    margin-top: 50px;
+    background: linear-gradient(90deg, #081743, #012385, #247488, #012385, #081743);
+    height: 48px;
+    align-items: center;
 }
 
 #result-container {
@@ -497,7 +498,7 @@ body {
 .game-result {
     color: azure;
     position: relative;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .correct {
