@@ -262,6 +262,9 @@ function endingLoser() {
 function handleRematch() {
     resetGame();
     pageStatus = "matching";
+    glowingColor.style.setProperty("--glow-color-p", "rgb(97, 255, 83)");
+    glowingVictory.style.display = "block";
+    glowingDefeat.style.display = "none";
     checkStatus();
 }
 
