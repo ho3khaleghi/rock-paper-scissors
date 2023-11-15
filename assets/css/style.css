@@ -347,12 +347,6 @@ body {
     }
 }
 
-@media only screen and (max-width: 600px) {
-    .glowing-btn {
-        font-size: 1em;
-    }
-}
-
 /* Start button */
 /* Choices Part */
 #topic {
@@ -729,12 +723,6 @@ body {
     }
 }
 
-@media only screen and (max-width: 600px) {
-    .glowing-btn-p {
-        font-size: 1em;
-    }
-}
-
 #end-btns {
     margin-top: 90px;
     padding: 0;
@@ -762,3 +750,78 @@ body {
         0 0 200px #288cff;
 }
 
+@media only screen and (max-width: 480px) {
+    /* General styles */
+    .container {
+        width: 320px;
+    }
+
+    /* Starting view */
+    /* Input */
+    #username {
+        padding: 20px;
+        margin: 20px 30px;
+        font-size: 12px;
+    }
+
+    /* Option buttons */
+    .btn-container i {
+        font-size: 3em;
+    }
+
+    #bo1,
+    #bo3,
+    #bo5 {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(#0b1f5c, #0a1e59, #0a1d57);
+    }
+
+    /* Rules */
+    .rules-container {
+        font-size: 12px;
+        margin: 25px 40px;
+    }
+
+    /* Alert msg */
+    #alert-msg {
+        font-size: 10px;
+        padding: 0 30px 0 30px;
+    }
+
+    /* Start button */
+    .glowing-btn {
+        font-size: 22px;
+        left: 56px;
+    }
+
+
+
+    /* Matching view */
+    .btn-container button {
+        margin: 0;
+    }
+
+    .result-container {
+        margin-top: 85px;
+    }
+
+    .game-result {
+        font-size: 9px;
+    }
+
+
+    /* Ending view */
+    /* Game result */
+    .glowing-btn-p {
+        font-size: 1em;
+    }
+
+    #victory {
+        font-size: 20px;
+    }
+
+    #defeat {
+        font-size: 22px;
+    }
+}
