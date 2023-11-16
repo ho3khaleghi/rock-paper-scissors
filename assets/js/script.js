@@ -230,6 +230,9 @@ function resetGame() {
     resetChoices();
     resetComputer();
     resetUser();
+    glowingColor.style.setProperty("--glow-color-p", "rgb(97, 255, 83)");
+    glowingVictory.style.display = "block";
+    glowingDefeat.style.display = "none";
     container.style.boxShadow = "none";
     alertMsg.style.display = "none";
     matching.className = matching.className.replace(" disabledbutton", "");
