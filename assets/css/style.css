@@ -43,8 +43,6 @@ body {
 
 #username::placeholder {
     color: #0b205e;
-    /* font-family: 'Zen Dots',
-        sans-serif; */
 }
 
 /* Option buttons */
@@ -142,7 +140,6 @@ body {
 .glowing-btn {
     position: relative;
     left: 85px;
-    /* margin-top: 300px; */
     color: var(--glow-color);
     cursor: pointer;
     padding: 0.35em 1em;
@@ -483,10 +480,6 @@ body {
     background: linear-gradient(90deg, #081743, #012385, #247488, #012385, #081743);
     height: 48px;
     align-items: center;
-}
-
-#result-container {
-    /* display: none; */
 }
 
 .game-result {
