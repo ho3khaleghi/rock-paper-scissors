@@ -26,32 +26,57 @@
   </head>
   <body>
     <div class="container" id="container">
-        <div class="starting" id="starting" style="display: block;">
-          <div id="starting-view">
-            <input type="text" name="user-name" id="username" placeholder="Enter your name..." maxlength="10" required>
-          </div>
-          <div class="btn-container">
-            <button name ="bo1" id="bo1"><i class="fa-solid fa-dice-one"></i></button>
-            <button name ="bo3" id="bo3"><i class="fa-solid fa-dice-three"></i></button>
-            <button name ="bo5" id="bo5"><i class="fa-solid fa-dice-five"></i></button>
-          </div>
-          <div class="rules-container">
-            <h4>Rules:</h4>
-            <ul>
-              <li>You have 3 choices (Rock, Paper, Scissors)</li>
-              <li>You have 3 option (Bo1, Bo3, Bo5). Bo1 is only 1 round match. Bo3 is 3 rounds match if your score reach 2 you
-                are the winner. Bo5 is similar to Bo3 but if your score reach 3 you will be the winner.</li>
-              <li>Just remember 1. Rock beats Scissors. 2. Paper beats Rock. 3. Scissors beats Paper.</li>
-            </ul>
-          </div>
-          <div class="alert-msg-container">
-              <p id="alert-msg">
-                <i class="fa-solid fa-circle-exclamation round"></i>
-                Enter your name and select one of the options please!
-              </p>
-          </div>
-          <button class="glowing-btn" id="start-button"><span class="glowing-txt">S<span class="faulty-letter">T</span>ART</span></button>
+      <!-- Starting view -->
+      <div class="starting" id="starting" style="display: block">
+        <div id="starting-view">
+          <input
+            type="text"
+            name="user-name"
+            id="username"
+            placeholder="Enter your name..."
+            maxlength="10"
+            required
+          />
+        </div>
+        <div class="btn-container">
+          <button name="bo1" id="bo1">
+            <i class="fa-solid fa-dice-one"></i>
+          </button>
+          <button name="bo3" id="bo3">
+            <i class="fa-solid fa-dice-three"></i>
+          </button>
+          <button name="bo5" id="bo5">
+            <i class="fa-solid fa-dice-five"></i>
+          </button>
+        </div>
+        <div class="rules-container">
+          <h4>Rules:</h4>
+          <ul>
+            <li>You have 3 choices (Rock, Paper, Scissors)</li>
+            <li>
+              You have 3 option (Bo1, Bo3, Bo5). Bo1 is only 1 round match. Bo3
+              is 3 rounds match if your score reach 2 you are the winner. Bo5 is
+              similar to Bo3 but if your score reach 3 you will be the winner.
+            </li>
+            <li>
+              Just remember 1. Rock beats Scissors. 2. Paper beats Rock. 3.
+              Scissors beats Paper.
+            </li>
+          </ul>
+        </div>
+        <div class="alert-msg-container">
+          <p id="alert-msg">
+            <i class="fa-solid fa-circle-exclamation round"></i>
+            Enter your name and select one of the options please!
+          </p>
+        </div>
+        <button class="glowing-btn" id="start-button">
+          <span class="glowing-txt"
+            >S<span class="faulty-letter">T</span>ART</span
+          >
+        </button>
       </div>
+      <!-- Matching view -->
       <div class="matching" id="matching" style="display: none">
         <div id="topic">
           <span id="topic-text"></span>
@@ -66,12 +91,12 @@
             <span class="label">Computer:</span>
             <span id="computer-text"></span>
           </p>
-        <div class="hr"></div>
+          <div class="hr"></div>
           <p class="game-text">
             <span class="label">Result:</span>
             <span id="result-text"></span>
-        </p>
-        <div class="hr"></div>
+          </p>
+          <div class="hr"></div>
         </div>
         <div class="btn-container" id="btn-container">
           <button class="choice-btn" id="rock">
@@ -99,15 +124,24 @@
           </p>
         </div>
       </div>
+      <!-- Ending view -->
       <div class="end" id="end" style="display: none">
         <div id="end-message">
           <p class="tnx-message">Thank you for playing!</p>
-            <br>
+          <br />
           <p class="tnx-message">We hope you have enjoyed the game.</p>
         </div>
         <div id="gameresult">
-        <p class='glowing-p' id="victory"><span class='glowing-txt-p'>VI<span class='faulty-letter-p'>CT</span>ORY</span></p>
-        <p class='glowing-p' id="defeat"><span class='glowing-txt-p'>DE<span class='faulty-letter-p'>FE</span>AT</span></p>
+          <p class="glowing-p" id="victory">
+            <span class="glowing-txt-p"
+              >VI<span class="faulty-letter-p">CT</span>ORY</span
+            >
+          </p>
+          <p class="glowing-p" id="defeat">
+            <span class="glowing-txt-p"
+              >DE<span class="faulty-letter-p">FE</span>AT</span
+            >
+          </p>
         </div>
         <div id="end-btns" class="btn-container">
           <button id="rematch"><i class="fa-solid fa-rotate-left"></i></button>
