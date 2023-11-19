@@ -122,6 +122,14 @@ body {
     font-size: 13px;
 }
 
+.ol-title {
+    font-weight: bold;
+}
+
+ol li {
+    margin-left: 15px;
+}
+
 /* Alert msg */
 .alert-msg-container {
     height: 40px;
@@ -822,5 +830,11 @@ body {
 
     #defeat {
         font-size: 22px;
+    }
+}
+
+@media only screen and (max-device-width: 768px) and (orientation: landscape) {
+    body {
+        height: 100%;
     }
 }
