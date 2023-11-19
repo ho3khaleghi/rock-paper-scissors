@@ -122,12 +122,18 @@ body {
     font-size: 13px;
 }
 
+h4 {
+    color: red;
+}
+
 .ol-title {
     font-weight: bold;
+    color: red;
 }
 
 ol li {
     margin-left: 15px;
+    color: #ffba00;
 }
 
 /* Alert msg */
@@ -496,6 +502,7 @@ ol li {
     margin: 0;
 }
 
+/* gets the code from https://codepen.io/yochans/pen/wvJXvOg */
 #next-round-text {
     font-style: italic;
     font-weight: 900;
@@ -844,18 +851,6 @@ ol li {
     .rules-container {
         font-size: 12px;
         margin: 25px 40px;
-    }
-
-    h4 {
-        color: red;
-    }
-
-    .ol-title {
-        color: red;
-    }
-
-    ol li {
-        color: #ffba00;
     }
 
     /* Alert msg */
