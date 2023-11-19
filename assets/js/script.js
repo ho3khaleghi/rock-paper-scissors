@@ -30,6 +30,7 @@ let rematch = document.getElementById("rematch");
 let mainMenu = document.getElementById("main-menu");
 let alertMsg = document.getElementById("alert-msg");
 let topicText = document.getElementById("topic-text");
+let nextRound = document.getElementById("next-round");
 
 // Making a variable for the icons to have less complicated code
 let rockIcon = `<i class="fa-solid fa-hand-back-fist fa-2xl"></i>`;
@@ -66,6 +67,16 @@ bestOfFive.addEventListener("click", function() {
 
 
 // Setting round limit
+function showNextRound() {
+    matching.style.opacity = "0.4";
+    nextRound.style.display = "block";
+}
+
+function goNextRound() {
+    nextRound.style.display = "none";
+    matching.style.opacity = "1";
+}
+
 function roundLimit() {
     if (matchOption == "1") {
         if (userScore === 1) {
@@ -88,6 +99,10 @@ function roundLimit() {
             pageStatus = "end";
             endingLoser();
         }
+    }
+    if (pageStatus != "end") {
+        showNextRound();
+        setTimeout(goNextRound, 1500);
     }
 }
 

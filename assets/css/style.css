@@ -481,9 +481,65 @@ ol li {
 }
 
 /* Disable buttons */
+#next-round {
+    position: absolute;
+    display: none;
+    left: 12%;
+    top: 94px;
+    z-index: 900;
+    color: red;
+    height: 80%;
+    width: 76%;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    margin: 0;
+}
+
+#next-round-text {
+    font-style: italic;
+    font-weight: 900;
+    color: #ffba00;
+	font-size: 60px;
+	text-align: center;
+	padding: 190px 0 0 0;
+	margin: 0;
+	margin-left: 50%;
+	transform: translateX(-200%);
+	opacity: 0;
+	animation: slide-in-anim 1.5s ease-out forwards;
+}
+
+@keyframes slide-in-anim {
+	10% {
+		opacity: 0.1;
+	}
+	30% {
+		transform: translateX(-45%);
+	}
+	45% {
+		transform: translateX(-52%);
+	}
+	50% {
+		opacity: 1;
+		transform: translateX(-50%);
+	}
+	55% {
+		transform: translateX(-52%);
+	}
+	70% {
+		transform: translateX(0%);
+        opacity: 0.1;
+	}
+	100% {
+		transform: translateX(30%);
+	}
+}
+
+
 .disabledbutton {
     pointer-events: none;
-    opacity: 0.4;
+    opacity: 0.4 !important;
 }
 
 /* Result Part */
@@ -790,6 +846,18 @@ ol li {
         margin: 25px 40px;
     }
 
+    h4 {
+        color: red;
+    }
+
+    .ol-title {
+        color: red;
+    }
+
+    ol li {
+        color: #ffba00;
+    }
+
     /* Alert msg */
     #alert-msg {
         font-size: 10px;
@@ -817,6 +885,9 @@ ol li {
         font-size: 9px;
     }
 
+    #next-round-text {
+        font-size: 35px;
+    }
 
     /* Ending view */
     /* Game result */
