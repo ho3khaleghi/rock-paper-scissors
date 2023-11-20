@@ -70,7 +70,16 @@ body {
     100% { color: violet; }
 }
 
-#bo1:focus,
+.bo1-clicked {
+    background: #288cff !important;
+    color: #081743 !important;
+    box-shadow: 0 0 5px #288cff,
+        0 0 25px #288cff,
+        0 0 50px #288cff,
+        0 0 200px #288cff !important;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
 #bo1:hover {
     background: #288cff;
     color: #081743;
@@ -85,7 +94,15 @@ body {
     color: rgb(97, 255, 83);
 }
 
-#bo3:focus,
+.bo3-clicked {
+    background: rgb(97, 255, 83) !important;
+    color: #081743 !important;
+    box-shadow: 0 0 5px rgb(97, 255, 83),
+        0 0 25px rgb(97, 255, 83),
+        0 0 50px rgb(97, 255, 83),
+        0 0 200px rgb(97, 255, 83) !important;
+}
+
 #bo3:hover {
     background: rgb(97, 255, 83);
     color: #081743;
@@ -99,7 +116,15 @@ body {
     color: rgb(253, 80, 80);
 }
 
-#bo5:focus,
+.bo5-clicked {
+    background: rgb(253, 80, 80) !important;
+    color: #081743 !important;
+    box-shadow: 0 0 5px rgb(253, 80, 80),
+        0 0 25px rgb(253, 80, 80),
+        0 0 50px rgb(253, 80, 80),
+        0 0 200px rgb(253, 80, 80) !important;
+}
+
 #bo5:hover {
     background: rgb(253, 80, 80);
     color: #081743;
@@ -443,7 +468,8 @@ ol li {
     }
 }
 
-.btn-container button:focus,
+.btn-container #rock:focus,
+.btn-container #main-menu:focus,
 .btn-container button:hover {
     background: #288cff;
     color: #081743;
@@ -496,10 +522,9 @@ ol li {
     color: red;
     height: 80%;
     width: 76%;
-    align-content: center;
     text-align: center;
-    justify-content: center;
     margin: 0;
+    align-items: center;
 }
 
 /* gets the code from https://codepen.io/yochans/pen/wvJXvOg */
@@ -509,7 +534,6 @@ ol li {
     color: #ffba00;
 	font-size: 60px;
 	text-align: center;
-	padding-top: 275px;
 	margin: 0;
 	margin-left: 50%;
 	transform: translateX(-200%);
@@ -882,7 +906,6 @@ ol li {
 
     #next-round-text {
         font-size: 35px;
-        padding-top: 190px;
     }
 
     /* Ending view */

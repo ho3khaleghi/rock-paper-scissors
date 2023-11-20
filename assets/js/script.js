@@ -31,6 +31,7 @@ let mainMenu = document.getElementById("main-menu");
 let alertMsg = document.getElementById("alert-msg");
 let topicText = document.getElementById("topic-text");
 let nextRound = document.getElementById("next-round");
+let nextRoundText = document.getElementById("next-round-text");
 
 // Making a variable for the icons to have less complicated code
 let rockIcon = `<i class="fa-solid fa-hand-back-fist fa-2xl"></i>`;
@@ -50,15 +51,27 @@ function handleMatchOption(value) {
     matchOption = value;
 }
 
+function resetButtonClicked() {
+    bestOfOne.className = bestOfOne.className.replace("bo1-clicked", "");
+    bestOfThree.className = bestOfThree.className.replace("bo3-clicked", "");
+    bestOfFive.className = bestOfFive.className.replace("bo5-clicked", "");
+}
+
 bestOfOne.addEventListener("click", function() {
+    resetButtonClicked();
+    bestOfOne.className = "bo1-clicked";
     topicText.innerHTML = bo1Icon + " Best of One " + bo1Icon;
     handleMatchOption(1);
 });
 bestOfThree.addEventListener("click", function() {
+    resetButtonClicked();
+    bestOfThree.className = "bo3-clicked";
     topicText.innerHTML = bo3Icon + " Best of Three " + bo3Icon;
     handleMatchOption(3);
 });
 bestOfFive.addEventListener("click", function() {
+    resetButtonClicked();
+    bestOfFive.className = "bo5-clicked";
     topicText.innerHTML = bo5Icon + " Best of Five " + bo5Icon;
     handleMatchOption(5);
 });
@@ -69,7 +82,7 @@ bestOfFive.addEventListener("click", function() {
 // Setting round limit
 function showNextRound() {
     matching.style.opacity = "0.4";
-    nextRound.style.display = "block";
+    nextRound.style.display = "flex";
 }
 
 function goNextRound() {
@@ -204,17 +217,20 @@ function checkWinner() {
     switch (matchResult) {
         case "win":
             container.style.boxShadow = "0 0 50px 20px rgb(10, 251, 10)";
+            nextRoundText.style.color = "rgb(10, 251, 10)";
             correctScore();
             roundCounter();
 
             return thumbsUp;
         case "lose":
             container.style.boxShadow = "0 0 50px 20px red";
+            nextRoundText.style.color = "red";
             incorrectScore();
             roundCounter();
 
             return thumbsDown;
         case "draw":
+            nextRoundText.style.color = "rgb(255, 183, 0)";
             container.style.boxShadow = "0 0 50px 20px rgb(255, 183, 0)";
             // roundCounter();
             return handShake;
@@ -244,6 +260,7 @@ function resetChoices() {
 }
 
 function resetGame() {
+    resetButtonClicked();
     resetRound();
     resetChoices();
     resetComputer();
