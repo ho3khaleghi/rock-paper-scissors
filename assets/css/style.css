@@ -509,7 +509,7 @@ ol li {
     color: #ffba00;
 	font-size: 60px;
 	text-align: center;
-	padding: 190px 0 0 0;
+	padding-top: 275px;
 	margin: 0;
 	margin-left: 50%;
 	transform: translateX(-200%);
@@ -882,6 +882,7 @@ ol li {
 
     #next-round-text {
         font-size: 35px;
+        padding-top: 190px;
     }
 
     /* Ending view */
