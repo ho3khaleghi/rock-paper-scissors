@@ -40,9 +40,9 @@ let scissorsIcon = `<i class="fa-solid fa-hand-scissors fa-rotate-90 fa-2xl"></i
 let thumbsUp = `<i class="fa-solid fa-thumbs-up fa-2xl"></i>`;
 let thumbsDown = `<i class="fa-solid fa-thumbs-down fa-2xl"></i>`;
 let handShake = `<i class="fa-solid fa-handshake fa-2xl"></i>`;
-let bo1Icon = `<i class="fa-solid fa-dice-one dice"></i>`
-let bo3Icon = `<i class="fa-solid fa-dice-three dice"></i>`
-let bo5Icon = `<i class="fa-solid fa-dice-five dice"></i>`
+let bo1Icon = `<i class="fa-solid fa-dice-one dice"></i>`;
+let bo3Icon = `<i class="fa-solid fa-dice-three dice"></i>`;
+let bo5Icon = `<i class="fa-solid fa-dice-five dice"></i>`;
 
 
 // Starting view of the application
