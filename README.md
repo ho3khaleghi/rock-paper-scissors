@@ -102,18 +102,18 @@ The live link can be found here - https://ho3khaleghi.github.io/rock-paper-sciss
 
 ## Credits
 
-  - The codes for the match option buttons and choice buttons are from https://codepen.io/HighFlyer/pen/WNXRZBv with some customization respective to the need of the project.
+  - The codes for the match option buttons and choice buttons are from [Codepen](https://codepen.io/HighFlyer/pen/WNXRZBv) with some customization respective to the need of the project.
 
-  - The codes for the Start button and the result announcer in the ending view  are also from https://codepen.io/Ks145/pen/MWGxbYr with some customization respective to the need of the project.
+  - The codes for the Start button and the result announcer in the ending view  are also from [Codepen](https://codepen.io/Ks145/pen/MWGxbYr) with some customization respective to the need of the project.
 
-  - The next round announcer with is a slide in text is from https://codepen.io/yochans/pen/wvJXvOg with some changes respective to the need of the project.
+  - The next round announcer with is a slide in text is from [Codepen](https://codepen.io/yochans/pen/wvJXvOg) with some changes respective to the need of the project.
 
 ### Media
 
-  - The favicon is form flaticon. https://www.flaticon.com/free-icon/rock-paper-scissors_6729598?k=1697965150472&log-in=google
+  - The favicon is form [Flaticon](https://www.flaticon.com/free-icon/rock-paper-scissors_6729598?k=1697965150472&log-in=google).
 
-  - With Pixelied I converted the png file to webp. https://pixelied.com/convert/png-converter/png-to-webp
+  - With Pixelied I converted the png file to webp. [Pixelied](https://pixelied.com/convert/png-converter/png-to-webp)
 
-  - The background image is from Vecteezy. https://www.vecteezy.com/vector-art/7207818-futuristic-technological-grid-background-digital-futurist-cyber-space-design-cyberpunk-technology-virtual-reality-science-fiction-matrix-science-light-perspective-wallpaper-vector-illustration
+  - The background image is from [Vecteezy](https://www.vecteezy.com/vector-art/7207818-futuristic-technological-grid-background-digital-futurist-cyber-space-design-cyberpunk-technology-virtual-reality-science-fiction-matrix-science-light-perspective-wallpaper-vector-illustration).
 
-  - The dice icons and the choice buttons icons are from https://fontawesome.com/
+  - The dice icons and the choice buttons icons are from [Fontawesome](https://fontawesome.com/).
