@@ -46,6 +46,7 @@ body {
 }
 
 /* Option buttons */
+/* Icons on this code is from fontawesome */
 #bo1,
 #bo3,
 #bo5 {
@@ -56,6 +57,7 @@ body {
     background: linear-gradient(#0a1d55, #0a1c52, #0a1c50);
 }
 
+/* Color changes learned by experience and https://www.w3schools.com/css/css3_animations.asp */
 .dice {
     animation: infiniteColor 6s infinite;
 }
@@ -174,6 +176,7 @@ ol li {
 }
 
 /* Start Button */
+/* get the codes from https://codepen.io/Ks145/pen/MWGxbYr and change them respecting to the project needs*/
 :root {
     --glow-color: rgb(249, 154, 52);
     --glow-color-p: rgb(97, 255, 83);
@@ -630,6 +633,7 @@ ol li {
     color: #081743;
 }
 
+/* get the code from https://codepen.io/Ks145/pen/MWGxbYr and customize it respecting to the project needs. */
 .glowing-p {
     position: relative;
     color: var(--glow-color-p);
@@ -822,6 +826,7 @@ ol li {
     padding: 0;
 }
 
+/* get the codes from https://codepen.io/HighFlyer/pen/WNXRZBv and customize it respecting to the project needs. */
 #rematch {
     color: #ffba00;
 }
