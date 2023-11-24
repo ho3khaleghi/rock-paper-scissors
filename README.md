@@ -81,9 +81,9 @@ Ending view, announces that you have won or lost the game and gives you two opti
 - JavaScript
   - No errors were found when passing through the official [Jshint validator](https://jshint.com/)
     - The following metrics were returned:
-    - There are 23 functions in this file.
+    - There are 26 functions in this file.
     - Function with the largest signature take 1 arguments, while the median is 0.
-    - Largest function has 13 statements in it, while the median is 2.
+    - Largest function has 16 statements in it, while the median is 2.5.
     - The most complex function has a cyclomatic complexity value of 11 while the median is 1.
   
 
