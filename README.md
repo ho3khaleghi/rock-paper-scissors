@@ -70,7 +70,7 @@ Ending view, announces that you have won or lost the game and gives you two opti
 
 ## Testing
 
-
+  - The project is completely responsive to all devices. In testing there were some errors (rotation screen in mobile size, the height of the container in the mobile screen) but with some searching in [Stackoverflow](https://stackoverflow.com/) fixed all of the errors.
 
 ### Validator Testing
 
@@ -89,17 +89,31 @@ Ending view, announces that you have won or lost the game and gives you two opti
 
 ### Unfixed Bugs
 
-
+  - Happily there are no bugs or errors in the project.
 
 ## Deployment
 
+  - The site was deployed to GitHub pages. The steps to deploy are as follows: 
+    - In the GitHub repository, navigate to the Settings tab 
+    - From the source section drop-down menu, select the Master Branch
+    - Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
+
+The live link can be found here - https://ho3khaleghi.github.io/rock-paper-scissors/
 
 ## Credits
 
+  - The codes for the match option buttons and choice buttons are from https://codepen.io/HighFlyer/pen/WNXRZBv with some customization respective to the need of the project.
 
+  - The codes for the Start button and the result announcer in the ending view  are also from https://codepen.io/Ks145/pen/MWGxbYr with some customization respective to the need of the project.
 
-### Content
-
-
+  - The next round announcer with is a slide in text is from https://codepen.io/yochans/pen/wvJXvOg with some changes respective to the need of the project.
 
 ### Media
+
+  - The favicon is form flaticon. https://www.flaticon.com/free-icon/rock-paper-scissors_6729598?k=1697965150472&log-in=google
+
+  - With Pixelied I converted the png file to webp. https://pixelied.com/convert/png-converter/png-to-webp
+
+  - The background image is from Vecteezy. https://www.vecteezy.com/vector-art/7207818-futuristic-technological-grid-background-digital-futurist-cyber-space-design-cyberpunk-technology-virtual-reality-science-fiction-matrix-science-light-perspective-wallpaper-vector-illustration
+
+  - The dice icons and the choice buttons icons are from https://fontawesome.com/
