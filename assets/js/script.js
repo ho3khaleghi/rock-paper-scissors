@@ -1,3 +1,5 @@
+// jshint esversion: 6
+
 let playerText = document.getElementById("player-text");
 let computerText = document.getElementById("computer-text");
 let resultText = document.getElementById("result-text");
