@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ApplicationInfrastructure\Core\Kernel\Kernel.csproj" />
     <ProjectReference Include="..\Model\RockPaperScissors.Model.csproj" />
   </ItemGroup>
 
