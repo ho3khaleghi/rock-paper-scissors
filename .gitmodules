@@ -1,3 +1,3 @@
 [submodule "Dependencies/ApplicationInfrastructure"]
 	path = Dependencies/ApplicationInfrastructure
-	url = git@github.com:Sisemen/ApplicationInfrastructure.git
+	url = https://github.com/Sisemen/ApplicationInfrastructure.git
