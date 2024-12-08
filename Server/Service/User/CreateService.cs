@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RockPaperScissors.Repository;
+using RockPaperScissors.Repository.Dtos;
 
 namespace RockPaperScissors.Service.User
 {
-    internal class CreateService
+    public class CreateService(IUserRepository userRepository) : ICreateService
     {
+        public async Task<UserDto?> HandleAsync(UserDto? userDto)
+        {
+            if (userDto == null) return null;
+
+            return await userRepository.Create(userDto);
+        }
     }
 }

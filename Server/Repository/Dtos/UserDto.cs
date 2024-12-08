@@ -1,4 +1,5 @@
-﻿using RockPaperScissors.Model;
+﻿using Core.Kernel.Service;
+using RockPaperScissors.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissors.Repository.Dtos
 {
-    public class UserDto
+    public class UserDto : IDto
     {
         public int Id { get; set; }
         public string? UserName { get; set; }
