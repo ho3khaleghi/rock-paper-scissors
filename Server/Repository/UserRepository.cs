@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 namespace RockPaperScissors.Repository
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly IRepository _repository;
 
@@ -42,19 +42,5 @@ namespace RockPaperScissors.Repository
         }
 
         public async Task<bool> CheckUserName(string username) => await _repository.ToQueryable<User>().AnyAsync(u => u.UserName == username);
-
-        //TODO: this should be a service!!!
-        public async Task<bool> Login(string userName, byte[] password)
-        {
-            var user = await _repository.ToQueryable<User>().FirstOrDefaultAsync(u => u.UserName!.Equals(userName));
-            
-            if (user == null) return false;
-
-            if (!CryptographicOperations.FixedTimeEquals(password, user.Password)) return false;
-
-            user.LastLoginDateTime = DateTime.UtcNow;
-
-            return await _repository.UpdateAsync(user);
-        }
     }
 }
