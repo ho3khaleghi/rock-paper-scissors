@@ -21,6 +21,9 @@ namespace RockPaperScissors.Service.User
 
             await userRepository.UpdateAsync(user);
 
+            //TODO: User Session sould be created.
+            //TODO: Login token should be created.
+
             return user;
         }
     }

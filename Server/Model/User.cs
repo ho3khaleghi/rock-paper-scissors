@@ -9,6 +9,7 @@ namespace RockPaperScissors.Model
         public byte[]? Password { get; set; }
         public DateTime? LastLoginDateTime { get; set; }
         public DateTime? CreationDateTime { get; set; }
+        public bool Deleted { get; set; }
         
         public override Action<ModelBuilder> OnConfiguringEntity => ConfigureEntity;
         
