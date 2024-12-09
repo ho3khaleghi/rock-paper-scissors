@@ -1,8 +1,9 @@
-﻿using RockPaperScissors.Repository.Dtos;
+﻿using Core.Kernel.Dependency;
+using RockPaperScissors.Repository.Dtos;
 
 namespace RockPaperScissors.Repository
 {
-    public interface IUserRepository
+    public interface IUserRepository : IPerLifetimeScopeDependencyInjection
     {
         Task<UserDto?> Get(int id);
         Task<UserDto?> Get(string userName);

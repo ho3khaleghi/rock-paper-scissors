@@ -14,6 +14,7 @@ namespace RockPaperScissors.Api.Controllers
             _userService = userService;
         }
 
+        [HttpPost(Name = "Create")]
         public async Task<ActionResult> Create(UserDto user)
         {
             await _userService.CreateAsync(user);
