@@ -11,7 +11,7 @@ namespace RockPaperScissors.Repository.Dtos
 {
     public class UserDto : IDto
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string? UserName { get; set; }
         public byte[]? Password { get; set; }
         public DateTime? LastLoginDateTime { get; set; }

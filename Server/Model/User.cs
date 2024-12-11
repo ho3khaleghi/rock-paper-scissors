@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RockPaperScissors.Model
 {
-    public class User : IntBasedEntity
+    public class User : LongBasedEntity
     {
         public string? UserName { get; set; }
         public byte[]? Password { get; set; }

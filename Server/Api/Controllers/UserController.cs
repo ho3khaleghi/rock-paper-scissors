@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Core.Kernel.Helper;
+using Microsoft.AspNetCore.Mvc;
+using RockPaperScissors.Api.Models;
 using RockPaperScissors.Repository.Dtos;
 using RockPaperScissors.Service.User;
 using RockPaperScissorsApi.Controllers;
@@ -14,9 +16,18 @@ namespace RockPaperScissors.Api.Controllers
             _userService = userService;
         }
 
-        public async Task<ActionResult> Create(UserDto user)
+        [HttpPost(Name = "Create")]
+        public async Task<ActionResult> Create(UserModel user)
         {
-            await _userService.CreateAsync(user);
+            await _userService.CreateAsync(user.ToDto());
+
+            return Ok(user);
+        }
+
+        [HttpPost(Name = "Login")]
+        public async Task<ActionResult> Login(UserModel user)
+        {
+            await _userService.LoginAsync(user.UserName, user.Password.Decode());
 
             return Ok(user);
         }
