@@ -1,9 +1,9 @@
-﻿using Core.Kernel.Service;
+﻿using Core.Kernel.Dependency;
 using RockPaperScissors.Repository.Dtos;
 
 namespace RockPaperScissors.Service.User
 {
-    public interface IUserServiceWrapper : IServiceWrapper
+    public interface IUserServiceWrapper : IPerLifetimeScopeDependencyInjection
     {
         Task<UserDto> GetAsync(int id);
         Task<UserDto> GetAsync(string userName);
