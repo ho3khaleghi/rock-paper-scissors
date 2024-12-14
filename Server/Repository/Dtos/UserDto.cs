@@ -1,12 +1,8 @@
 ﻿using Core.Kernel.Service;
 using RockPaperScissors.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
+[assembly: InternalsVisibleTo("RockPaperScissors.Service")]
 namespace RockPaperScissors.Repository.Dtos
 {
     public class UserDto : IDto
@@ -14,6 +10,7 @@ namespace RockPaperScissors.Repository.Dtos
         public long Id { get; set; }
         public string? UserName { get; set; }
         public byte[]? Password { get; set; }
+        internal byte[]? Salt { get; set; }
         public DateTime? LastLoginDateTime { get; set; }
         public DateTime? CreationDateTime { get; set; }
     }
@@ -28,6 +25,7 @@ namespace RockPaperScissors.Repository.Dtos
                 Id = user.Id,
                 UserName = user.UserName,
                 Password = user.Password,
+                Salt = user.Salt,
                 LastLoginDateTime = user.LastLoginDateTime,
                 CreationDateTime = user.CreationDateTime
             };

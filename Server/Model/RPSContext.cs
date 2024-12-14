@@ -17,8 +17,6 @@ namespace RockPaperScissors.Model
             _logger = logger;
             _contextHelper = contextHelper;
             
-            _logger.LogInformation("3rd Const");
-
             base.Database.AutoTransactionBehavior = AutoTransactionBehavior.Always;
         }
 
@@ -42,6 +40,9 @@ namespace RockPaperScissors.Model
                 case IntBasedEntity intBasedEntity:
                     intBasedEntity.TemporaryId = base.Entry(intBasedEntity).Property(p => p.Id).CurrentValue;
                     break;
+                case LongBasedEntity longBasedEntity:
+                    longBasedEntity.TemporaryId = base.Entry(longBasedEntity).Property(p => p.Id).CurrentValue;
+                    break;
                 default:
                     _logger.LogError("Unsupported entity type. EntityName: {entityName}.", typeof(T).Name);
 
@@ -64,6 +65,9 @@ namespace RockPaperScissors.Model
             {
                 case IntBasedEntity intBasedEntity:
                     id = base.Entry(intBasedEntity).Property(p => p.Id).CurrentValue;
+                    break;
+                case LongBasedEntity longBasedEntity:
+                    id = base.Entry(longBasedEntity).Property(p => p.Id).CurrentValue;
                     break;
                 default:
                     _logger.LogError($"Unsupported entity type. EntityName: {nameof(T)}.");
@@ -141,6 +145,11 @@ namespace RockPaperScissors.Model
         public async Task ApplyChangesAsync()
         {
             await base.SaveChangesAsync();
+        }
+
+        public void Rollback()
+        {
+            base.ChangeTracker.Entries().ToList().ForEach(e => e.State = EntityState.Unchanged);
         }
 
         public new void Dispose()

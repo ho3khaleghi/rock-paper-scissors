@@ -1,15 +1,34 @@
-﻿using RockPaperScissors.Repository;
+﻿using Core.Kernel.Utils;
+using RockPaperScissors.Repository;
 using RockPaperScissors.Repository.Dtos;
+using System.Security.Cryptography;
 
 namespace RockPaperScissors.Service.User
 {
     public class CreateService(IUserRepository userRepository) : ICreateService
     {
-        public async Task<UserDto?> HandleAsync(UserDto? userDto)
+        public async Task<UserDto?> HandleAsync(UserDto? user)
         {
-            if (userDto == null) return null;
+            if (user == null) return null;
 
-            return await userRepository.Create(userDto);
+            if (!Validate(user)) return null;
+
+            var salt = RandomNumberGenerator.GetBytes(32);
+
+            user.Password = HashUtil.CalculatePasswordHash(user.Password!, salt);
+            user.Salt = salt;
+            user.CreationDateTime = DateTime.UtcNow;
+
+            return await userRepository.Create(user);
+        }
+
+        private bool Validate(UserDto user)
+        {
+            if (user.Password == null) return false;
+
+            if (string.IsNullOrWhiteSpace(user.UserName)) return false;
+
+            return true;
         }
     }
 }

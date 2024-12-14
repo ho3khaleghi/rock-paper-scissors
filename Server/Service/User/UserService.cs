@@ -1,19 +1,18 @@
-﻿using RockPaperScissors.Repository.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Kernel.Service;
+using RockPaperScissors.Repository.Dtos;
 
 namespace RockPaperScissors.Service.User
 {
-    public class UserService : IUserServiceWrapper
+    public class UserService : ServiceWrapper, IUserServiceWrapper
     {
         private readonly ICreateService _createService;
         private readonly ILoginService _loginService;
         private readonly ILogoutService _logoutService;
 
-        public UserService(ICreateService createService, ILoginService loginService, ILogoutService logoutService)
+        public UserService(IServiceHandler serviceHandler,
+                           ICreateService createService,
+                           ILoginService loginService,
+                           ILogoutService logoutService) : base(serviceHandler)
         {
             _createService = createService;
             _loginService = loginService;
@@ -22,7 +21,8 @@ namespace RockPaperScissors.Service.User
 
         public Task<bool> CheckUserNameAsync(string userName) => throw new NotImplementedException();
 
-        public async Task<UserDto?> CreateAsync(UserDto? userDto) => await _createService.HandleAsync(userDto);
+        public async Task<UserDto?> CreateAsync(UserDto? userDto) =>
+            (UserDto?)await ServiceHandler.HandleAsync<UserDto>(async () => await _createService.HandleAsync(userDto));
 
         public Task<UserDto> DeleteAsync(int id) => throw new NotImplementedException();
 
