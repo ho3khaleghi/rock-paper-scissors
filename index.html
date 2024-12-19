@@ -1,170 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Meta tags for search engines -->
-    <meta name="description" content="Rock Paper Scissors, Play and have some fun..." />
-    <meta name="keywords" content="rock paper scissors, game, fun" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="rock paper scissors icon"
-      href="./assets/favicon/rock-paper-scissors.png"
-      sizes="180x180"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="assets/favicon/32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="assets/favicon/16x16.png"
-    />
-    <title>Rock Paper Scissors</title>
-  </head>
-  <body>
-    <!-- Next round announcer -->
-    <div id="next-round" class="next-round">
-      <p id="next-round-text">Next Round!</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Meta tags for search engines -->
+  <meta name="description" content="Rock Paper Scissors, Play and have some fun..." />
+  <meta name="keywords" content="rock paper scissors, game, fun" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="rock paper scissors icon" href="./assets/favicon/rock-paper-scissors.png" sizes="180x180" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/16x16.png" />
+  <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+  <!-- Next round announcer -->
+  <div id="next-round" class="next-round">
+    <p id="next-round-text">Next Round!</p>
+  </div>
+  <div class="container" id="container">
+    <!-- Login view -->
+    <div class="login" id="login" style="display: block;">
+      <p class="login-title">
+        <i class="fa-solid fa-dice-five dice"></i>
+        Rock Paper Scissors
+        <i class="fa-solid fa-dice-five dice"></i>
+      </p>
+      <p class="login-p">Fill your username and password to be able to play the game</p>
+      <div class="starting-view">
+        <input type="text" name="user-name" class="username user-pass" id="username-signup"
+          placeholder="Enter your username..." maxlength="10" spellcheck="false" required />
+      </div>
+      <div class="starting-view">
+        <input type="password" name="password" class="password user-pass" id="password"
+          placeholder="Enter your password..." maxlength="20" spellcheck="false" required />
+      </div>
+      <button class="glowing-btn glowing-p login-btn" id="start-button">
+        <span class="glowing-txt-p">LO<span class="faulty-letter-p">G</span>IN</span>
+      </button>
+      <p class="signup-p">Click on the sign up button if you dont have any account.</p>
+      <button class="glowing-btn glowing-btn-signup signup-btn" id="start-button">
+        <span class="glowing-txt-signup">SI<span class="faulty-letter-signup">G</span>NUP</span>
+      </button>
     </div>
-    <div class="container" id="container">
-      <!-- Starting view -->
-      <div class="starting" id="starting" style="display: block">
-        <div id="starting-view">
-          <input
-            type="text"
-            name="user-name"
-            id="username"
-            placeholder="Enter your name..."
-            maxlength="10"
-            spellcheck="false"
-            required
-          />
-        </div>
-        <div class="btn-container">
-          <button name="bo1" id="bo1">
-            <i class="fa-solid fa-dice-one"></i>
-          </button>
-          <button name="bo3" id="bo3">
-            <i class="fa-solid fa-dice-three"></i>
-          </button>
-          <button name="bo5" id="bo5">
-            <i class="fa-solid fa-dice-five"></i>
-          </button>
-        </div>
-        <div class="rules-container">
-          <h4>Rules:</h4>
-          <ul>
-            <li>You have 3 choices (Rock, Paper, Scissors)</li>
-            <li>
-              You have 3 option (Bo1, Bo3, Bo5). Bo1 is only 1 round match. Bo3
-              is 3 rounds match if your score reach 2 you are the winner. Bo5 is
-              similar to Bo3 but if your score reach 3 you will be the winner.
-            </li>
-            <li class="ol-title">
-              Just remember:
-              <ol>
-                <li>Rock beats Scissors.</li>
-                <li>Paper beats Rock.</li>
-                <li>Scissors beats Paper.</li>
-              </ol>              
-            </li>
-          </ul>
-        </div>
-        <div class="alert-msg-container">
-          <p id="alert-msg">
-            <i class="fa-solid fa-circle-exclamation round"></i>
-            Enter your name and select one of the options please!
-          </p>
-        </div>
-        <button class="glowing-btn" id="start-button">
-          <span class="glowing-txt"
-            >S<span class="faulty-letter">T</span>ART</span
-          >
+    <!-- Sign up view -->
+    <div class="signup" id="signup" style="display: none;">
+      <p class="login-title">
+        <i class="fa-solid fa-dice-five dice"></i>
+        Rock Paper Scissors
+        <i class="fa-solid fa-dice-five dice"></i>
+      </p>
+      <p class="signup-view-p">Please enter your username (not more than <span class="signup-rules">10</span>
+        character)</span>, and password (not more than <span class="signup-rules">20</span> character)</span></p>
+      <div class="starting-view">
+        <input type="text" name="user-name" class="username user-pass" id="username-signup"
+          placeholder="Enter your username..." maxlength="10" spellcheck="false" required />
+      </div>
+      <div class="starting-view">
+        <input type="password" name="password" class="password user-pass" id="password"
+          placeholder="Enter your password..." maxlength="20" spellcheck="false" required />
+      </div>
+      <div class="starting-view">
+        <input type="password" name="password" class="password user-pass" id="confirmPassword"
+          placeholder="Re-enter your password..." maxlength="20" spellcheck="false" required />
+      </div>
+      <div class="gap-filler"></div>
+      <button class="glowing-btn glowing-btn-signup signup-btn" id="start-button">
+        <span class="glowing-txt-signup">SI<span class="faulty-letter-signup">G</span>NUP</span>
+      </button>
+    </div>
+    <!-- Starting view -->
+    <div class="starting" id="starting" style="display: none">
+      <div class="starting-view" id="starting-view">
+        <input type="text" name="user-name" class="username" id="username" placeholder="Enter your name..."
+          maxlength="10" spellcheck="false" required />
+      </div>
+      <div class="btn-container">
+        <button name="bo1" id="bo1">
+          <i class="fa-solid fa-dice-one"></i>
+        </button>
+        <button name="bo3" id="bo3">
+          <i class="fa-solid fa-dice-three"></i>
+        </button>
+        <button name="bo5" id="bo5">
+          <i class="fa-solid fa-dice-five"></i>
         </button>
       </div>
-      <!-- Matching view -->
-      <div class="matching" id="matching" style="display: none">
-        <div id="topic">
-          <span id="topic-text"></span>
-        </div>
-        <div class="text-container" id="text-container">
-          <p class="game-text">
-            <span id="username-input" class="label"></span>
-            <span id="player-text"></span>
-          </p>
-          <div class="hr"></div>
-          <p class="game-text">
-            <span class="label">Computer:</span>
-            <span id="computer-text"></span>
-          </p>
-          <div class="hr"></div>
-          <p class="game-text">
-            <span class="label">Result:</span>
-            <span id="result-text"></span>
-          </p>
-          <div class="hr"></div>
-        </div>
-        <div class="btn-container" id="btn-container">
-          <button class="choice-btn" id="rock">
-            <i class="fa-solid fa-hand-back-fist fa-2xl"></i>
-          </button>
-          <button class="choice-btn" id="paper">
-            <i class="fa-solid fa-hand fa-2xl"></i>
-          </button>
-          <button class="choice-btn" id="scissors">
-            <i class="fa-solid fa-hand-scissors fa-rotate-90 fa-2xl"></i>
-          </button>
-        </div>
-        <div class="result-container" id="result-container">
-          <p class="game-result">
-            <i class="fa-solid fa-circle-check correct"></i> Your Score:
-            <span id="user-score">0</span>
-          </p>
-          <p class="game-result">
-            <i class="fa-solid fa-circle-xmark incorrect"></i> Computer's Score:
-            <span id="computer-score">0</span>
-          </p>
-          <p class="game-result">
-            <i class="fa-solid fa-circle-exclamation round"></i> Round:
-            <span id="round-score">0</span>
-          </p>
-        </div>
+      <div class="rules-container">
+        <h4>Rules:</h4>
+        <ul>
+          <li>You have 3 choices (Rock, Paper, Scissors)</li>
+          <li>
+            You have 3 option (Bo1, Bo3, Bo5). Bo1 is only 1 round match. Bo3
+            is 3 rounds match if your score reach 2 you are the winner. Bo5 is
+            similar to Bo3 but if your score reach 3 you will be the winner.
+          </li>
+          <li class="ol-title">
+            Just remember:
+            <ol>
+              <li>Rock beats Scissors.</li>
+              <li>Paper beats Rock.</li>
+              <li>Scissors beats Paper.</li>
+            </ol>
+          </li>
+        </ul>
       </div>
-      <!-- Ending view -->
-      <div class="end" id="end" style="display: none">
-        <div id="end-message">
-          <p class="tnx-message">Thank you for playing!</p>
-          <br />
-          <p class="tnx-message">We hope you have enjoyed the game.</p>
-        </div>
-        <div id="gameresult">
-          <p class="glowing-p" id="victory">
-            <span class="glowing-txt-p"
-              >VI<span class="faulty-letter-p">CT</span>ORY</span
-            >
-          </p>
-          <p class="glowing-p" id="defeat">
-            <span class="glowing-txt-p"
-              >DE<span class="faulty-letter-p">FE</span>AT</span
-            >
-          </p>
-        </div>
-        <div id="end-btns" class="btn-container">
-          <button id="rematch"><i class="fa-solid fa-rotate-left"></i></button>
-          <button id="main-menu"><i class="fa-solid fa-house"></i></button>
-        </div>
+      <div class="alert-msg-container">
+        <p id="alert-msg">
+          <i class="fa-solid fa-circle-exclamation round"></i>
+          Enter your username and select one of the options please!
+        </p>
+      </div>
+      <button class="glowing-btn" id="start-button">
+        <span class="glowing-txt">S<span class="faulty-letter">T</span>ART</span>
+      </button>
+    </div>
+    <!-- Matching view -->
+    <div class="matching" id="matching" style="display: none">
+      <div id="topic">
+        <span id="topic-text"></span>
+      </div>
+      <div class="text-container" id="text-container">
+        <p class="game-text">
+          <span id="username-input" class="label"></span>
+          <span id="player-text"></span>
+        </p>
+        <div class="hr"></div>
+        <p class="game-text">
+          <span class="label">Computer:</span>
+          <span id="computer-text"></span>
+        </p>
+        <div class="hr"></div>
+        <p class="game-text">
+          <span class="label">Result:</span>
+          <span id="result-text"></span>
+        </p>
+        <div class="hr"></div>
+      </div>
+      <div class="btn-container" id="btn-container">
+        <button class="choice-btn" id="rock">
+          <i class="fa-solid fa-hand-back-fist fa-2xl"></i>
+        </button>
+        <button class="choice-btn" id="paper">
+          <i class="fa-solid fa-hand fa-2xl"></i>
+        </button>
+        <button class="choice-btn" id="scissors">
+          <i class="fa-solid fa-hand-scissors fa-rotate-90 fa-2xl"></i>
+        </button>
+      </div>
+      <div class="result-container" id="result-container">
+        <p class="game-result">
+          <i class="fa-solid fa-circle-check correct"></i> Your Score:
+          <span id="user-score">0</span>
+        </p>
+        <p class="game-result">
+          <i class="fa-solid fa-circle-xmark incorrect"></i> Computer's Score:
+          <span id="computer-score">0</span>
+        </p>
+        <p class="game-result">
+          <i class="fa-solid fa-circle-exclamation round"></i> Round:
+          <span id="round-score">0</span>
+        </p>
       </div>
     </div>
-    <script src="./assets/js/script.js"></script>
-    <script
-      src="https://kit.fontawesome.com/3b20d96fa9.js"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <!-- Ending view -->
+    <div class="end" id="end" style="display: none">
+      <div id="end-message">
+        <p class="tnx-message">Thank you for playing!</p>
+        <br />
+        <p class="tnx-message">We hope you have enjoyed the game.</p>
+      </div>
+      <div id="gameresult">
+        <p class="glowing-p" id="victory">
+          <span class="glowing-txt-p">VI<span class="faulty-letter-p">CT</span>ORY</span>
+        </p>
+        <p class="glowing-p" id="defeat">
+          <span class="glowing-txt-p">DE<span class="faulty-letter-p">FE</span>AT</span>
+        </p>
+      </div>
+      <div id="end-btns" class="btn-container">
+        <button id="rematch"><i class="fa-solid fa-rotate-left"></i></button>
+        <button id="main-menu"><i class="fa-solid fa-house"></i></button>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/js/script.js"></script>
+  <script src="https://kit.fontawesome.com/3b20d96fa9.js" crossorigin="anonymous"></script>
+</body>
+
 </html>

@@ -22,12 +22,69 @@ body {
     border-radius: 20px;
 }
 
+/* Login and Signup page */
+#login {
+    display: flex;
+}
+
+#signup { 
+    display: flex;
+}
+
+.login-title {
+    color: rgb(83 241 255);
+    text-align: center;
+    padding: 10px 0;
+}
+
+.user-pass {
+    margin: 20px 40px !important;
+}
+
+.login-btn {
+    margin-top: 10px;
+    margin-bottom: 80px;
+    left: 115px !important;
+}
+
+.signup-btn {
+    align-self: center;
+    left: 100px !important;
+    font-size: 1.5em !important;
+}
+
+.login-p {
+    padding: 10px 40px 0px;
+    color: #ffba00;
+}
+
+.signup-p {
+    padding: 0 40px 30px;
+    color: #ffba00;
+}
+
+.signup-view-p {
+    padding: 15px 40px 30px;
+    color: #ffba00;
+}
+
+.signup-rules {
+    color: rgb(241, 71, 71);
+}
+
+.gap-filler {
+    margin: 60px 0 0 0;
+}
+
 /* Start page */
+.starting-view,
 #starting-view {
     display: flex;
 }
 
-#username {
+.username, 
+#username,
+.password {
     width: 100%;
     padding: 20px;
     margin: 35px 40px;
@@ -180,6 +237,7 @@ ol li {
 :root {
     --glow-color: rgb(249, 154, 52);
     --glow-color-p: rgb(97, 255, 83);
+    --glow-color-p-signup: rgb(83 241 255);
 }
 
 .glowing-btn {
@@ -274,6 +332,98 @@ ol li {
 .glowing-btn:hover:after {
     opacity: 1;
 }
+
+/* SIGN UP BUTTON */
+
+.glowing-btn-signup {
+    position: relative;
+    color: var(--glow-color-p-signup);
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--glow-color-p-signup);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 1em;
+
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt-signup {
+    float: left;
+    margin-right: -0.8em;
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color-p-signup);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color-p-signup);
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color-p-signup);
+    animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter-signup {
+    opacity: 0.5;
+    animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn-signup::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    filter: blur(1em);
+    transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+    background: var(--glow-color-p-signup);
+    pointer-events: none;
+}
+
+.glowing-btn-signup::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -1;
+    background-color: var(--glow-color-p-signup);
+    box-shadow: 0 0 2em 0.2em var(--glow-color-p-signup);
+    transition: opacity 100ms linear;
+}
+
+/* .glowing-btn-signup {
+    position: relative;
+    left:120px;
+    color: var(--glow-color-p-signup);
+    cursor: pointer;
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--glow-color-p-signup);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 1.5em;
+    font-weight: 900;
+    letter-spacing: 1em;
+
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    animation: border-flicker 2s linear infinite;
+} */
 
 @keyframes faulty-flicker {
     0% {

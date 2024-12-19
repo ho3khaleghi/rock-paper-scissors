@@ -136,25 +136,25 @@ function handleStartClick() {
 
 startButton.addEventListener("click", handleStartClick);
 
-function checkStatus() {
-    switch (pageStatus) {
-        case "starting":
-            matching.style.display = "none";
-            end.style.display = "none";
-            starting.style.display = "block";
-            break;
-        case "matching":
-            starting.style.display = "none";
-            end.style.display = "none";
-            matching.style.display = "block";
-            break;
-        case "end":
-            starting.style.display = "none";
-            matching.style.display = "none";
-            end.style.display = "block";
-            break;
-    }
-}
+// function checkStatus() {
+//     switch (pageStatus) {
+//         case "starting":
+//             matching.style.display = "none";
+//             end.style.display = "none";
+//             starting.style.display = "block";
+//             break;
+//         case "matching":
+//             starting.style.display = "none";
+//             end.style.display = "none";
+//             matching.style.display = "block";
+//             break;
+//         case "end":
+//             starting.style.display = "none";
+//             matching.style.display = "none";
+//             end.style.display = "block";
+//             break;
+//     }
+// }
 
 // Matching view of the application
 // Game Run
