@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 
 namespace RockPaperScissors.Service.User
 {
-    public class CreateService(IUserRepository userRepository) : ICreateService
+    public class UserSignupService(IUserRepository userRepository) : IUserSignupService
     {
         public async Task<UserDto?> HandleAsync(UserDto? user)
         {
