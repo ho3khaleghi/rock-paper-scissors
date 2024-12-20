@@ -3,7 +3,7 @@ using RockPaperScissors.Repository.Dtos;
 
 namespace RockPaperScissors.Service.User
 {
-    public interface ICreateService : IService<UserDto?, UserDto?>
+    public interface IUserSignupService : IService<UserDto?, UserDto?>
     {
     }
 }

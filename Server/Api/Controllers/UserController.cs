@@ -17,12 +17,12 @@ namespace RockPaperScissors.Api.Controllers
             _userService = userService;
         }
 
-        [HttpPost("Create")]
-        public async Task<ActionResult> Create(UserModel user)
+        [HttpPost("Signup")]
+        public async Task<ActionResult> Signup(UserModel user)
         {
-            await _userService.CreateAsync(user.ToDto());
+            var result = await _userService.SignupAsync(user.ToDto());
 
-            return Ok(user);
+            return Ok(result);
         }
 
         [HttpPost("Login")]
