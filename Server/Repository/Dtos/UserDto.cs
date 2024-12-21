@@ -5,9 +5,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("RockPaperScissors.Service")]
 namespace RockPaperScissors.Repository.Dtos
 {
-    public class UserDto : IDto
+    public class UserDto : DtoBase<long>
     {
-        public long Id { get; set; }
         public string? UserName { get; set; }
         public byte[]? Password { get; set; }
         internal byte[]? Salt { get; set; }
@@ -22,7 +21,7 @@ namespace RockPaperScissors.Repository.Dtos
             ? null
             : new User
             {
-                Id = user.Id,
+                Key = user.Key,
                 UserName = user.UserName,
                 Password = user.Password,
                 Salt = user.Salt,
@@ -35,7 +34,7 @@ namespace RockPaperScissors.Repository.Dtos
             ? null
             : new UserDto
             {
-                Id = user.Id,
+                Key = user.Key,
                 UserName = user.UserName,
                 Password = user.Password,
                 LastLoginDateTime = user.LastLoginDateTime,
