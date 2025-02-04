@@ -1,0 +1,8 @@
+**/.git
+**/.gitignore
+**/bin
+**/obj
+**/Properties
+**/*.md
+**/*.sln.cache
+**/.env

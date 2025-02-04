@@ -60,15 +60,18 @@ namespace RockPaperScissors.Model
 
             entityType.HasOne(p => p.Player1)
                 .WithMany()
-                .HasForeignKey(p => p.Player1Id);
+                .HasForeignKey(p => p.Player1Id)
+                .OnDelete(DeleteBehavior.NoAction);
 
             entityType.HasOne(p => p.Player2)
                 .WithMany()
-                .HasForeignKey(p => p.Player2Id);
+                .HasForeignKey(p => p.Player2Id)
+                .OnDelete(DeleteBehavior.NoAction);
 
             entityType.HasOne(p => p.Winner)
                 .WithMany()
-                .HasForeignKey(p => p.WinnerId);
+                .HasForeignKey(p => p.WinnerId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
