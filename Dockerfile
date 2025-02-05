@@ -20,6 +20,10 @@ RUN dotnet restore Server/RockPaperScissorsServer.sln
 # Copy the rest of the application code
 COPY . .
 
+# Run EF Core Migrations
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="$PATH:/root/.dotnet/tools"
+
 # Build the application
 RUN dotnet publish Server/Api/RockPaperScissors.Api.csproj -c Release -o /app/publish
 
