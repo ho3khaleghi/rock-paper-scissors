@@ -1,6 +1,7 @@
-version: '3.8'
 services:
   api-gateway:
+    container_name: rps-api-gateway
+    image: rps-api-gateway-image
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,10 +10,10 @@ services:
     depends_on:
       - sql-server
     environment:
-      - ConnectionStrings__RockPaperScissors=Server=sql-server,1433;Database=RockPaperScissors;User Id=sa;Password=${SA_PASSWORD}
+      - ConnectionStrings__RockPaperScissors=Server=sql-server,1433;Database=RockPaperScissors;User Id=sa;Password=${SA_PASSWORD};Encrypt=False;TrustServerCertificate=True
     networks:
       - app-network
-    entrypoint: ["sh", "-c", "dotnet ef database update && dotnet RockPaperScissors.Api.dll"]
+    entrypoint: ["sh", "-c", "dotnet RockPaperScissors.Api.dll && dotnet ef database update"]
 
   sql-server:
     image: mcr.microsoft.com/mssql/server:2019-latest
