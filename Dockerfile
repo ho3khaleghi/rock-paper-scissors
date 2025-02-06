@@ -20,12 +20,12 @@ RUN dotnet restore Server/RockPaperScissorsServer.sln
 # Copy the rest of the application code
 COPY . .
 
-# Run EF Core Migrations
-RUN dotnet tool install --global dotnet-ef
-ENV PATH="$PATH:/root/.dotnet/tools"
-
 # Build the application
 RUN dotnet publish Server/Api/RockPaperScissors.Api.csproj -c Release -o /app/publish
+
+# Install EF Core tools in the build container
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Use the official ASP.NET runtime image for runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
@@ -36,8 +36,13 @@ WORKDIR /app
 # Copy the built application from the build stage
 COPY --from=build /app/publish .
 
+# Copy the EF Core tools from the build stage
+COPY --from=build /root/.dotnet /root/.dotnet
+COPY --from=build /root/.nuget /root/.nuget
+ENV PATH="$PATH:/root/.dotnet/tools"
+
 # Expose the port the app runs on
 EXPOSE 80
 
 # Set the entry point for the app
-ENTRYPOINT ["dotnet", "RockPaperScissors.Api.dll"]
+ENTRYPOINT ["sh", "-c", "dotnet ef database update && dotnet RockPaperScissors.Api.dll"]

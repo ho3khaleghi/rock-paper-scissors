@@ -1,9 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Autofac.Extras.CommonServiceLocator;
-using CommonServiceLocator;
 using Core.Kernel.Bootstrap;
-using Core.Kernel.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using RockPaperScissors.Model;
 using Serilog;
@@ -22,7 +19,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSerilog();
 
 builder.Services.AddDbContext<RPSContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RockPaperScissors")));
-//builder.Services.AddDbContext<Context>();
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterDependencies());
@@ -30,8 +26,15 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerB
 
 var app = builder.Build();
 
-//builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterDependencies(app.Services.GetAutofacRoot()));
 app.Services.GetAutofacRoot().SetServiceLocator();
+
+// Apply migrations at startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<RPSContext>();
+    dbContext.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
