@@ -1,6 +1,7 @@
 # Use the official .NET SDK image for build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
+
 # Set the working directory
 WORKDIR /src
 
@@ -28,7 +29,7 @@ RUN dotnet tool install --global dotnet-ef
 ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Use the official ASP.NET runtime image for runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy AS runtime
 
 # Set the working directory
 WORKDIR /app
@@ -44,5 +45,8 @@ ENV PATH="$PATH:/root/.dotnet/tools"
 # Expose the port the app runs on
 EXPOSE 80
 
+# Install debugging tools
+RUN apt-get update && apt-get install -y procps iproute2 curl net-tools lsof
+
 # Set the entry point for the app
-ENTRYPOINT ["sh", "-c", "dotnet ef database update && dotnet RockPaperScissors.Api.dll"]
+ENTRYPOINT ["sh", "-c", "dotnet RockPaperScissors.Api.dll"]
