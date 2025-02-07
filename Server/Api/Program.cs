@@ -7,6 +7,25 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
+{
+    var certPath = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Path");
+    var certPassword = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Password");
+
+    Console.WriteLine($"Using certificate at {certPath} with password: {certPassword}");
+
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        options.ListenAnyIP(8080); // HTTP inside Docker
+        options.ListenAnyIP(8443, listenOptions =>
+        {
+            listenOptions.UseHttps(certPath!, certPassword); // Load SSL cert
+        });
+    });
+
+    builder.WebHost.UseUrls("http://*:8080", "https://*:8443");
+}
+
 Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration)
                                                .CreateLogger();
 
@@ -22,7 +41,6 @@ builder.Services.AddDbContext<RPSContext>(options => options.UseSqlServer(builde
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterDependencies());
-
 
 var app = builder.Build();
 

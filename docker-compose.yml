@@ -6,14 +6,39 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "5000:80"
+      - "5000:8080"
+    depends_on:
+      - api-service
+    volumes:
+      - ./https-certificate.pfx:/https/https-certificate.pfx  # Mount SSL cert
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASSWORD}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/https-certificate.pfx
+      - ConnectionStrings__RockPaperScissors=Server=sql-server,1433;Database=RockPaperScissors;User Id=sa;Password=${SA_PASSWORD};Encrypt=False;TrustServerCertificate=True
+      - API_SERVICE_URL=https://rps-api-service:8080
+    networks:
+      - app-network
+
+  api-service:
+    container_name: rps-api-service
+    image: rps-api-service-image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:8080"
+      - "5002:8443"
     depends_on:
       - sql-server
+    volumes:
+      - ./https-certificate.pfx:/https/https-certificate.pfx  # Mount SSL cert
     environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${CERT_PASSWORD}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/https-certificate.pfx
       - ConnectionStrings__RockPaperScissors=Server=sql-server,1433;Database=RockPaperScissors;User Id=sa;Password=${SA_PASSWORD};Encrypt=False;TrustServerCertificate=True
     networks:
       - app-network
-    entrypoint: ["sh", "-c", "dotnet RockPaperScissors.Api.dll && dotnet ef database update"]
+    entrypoint: ["sh", "-c", "dotnet RockPaperScissors.Api.dll"]
 
   sql-server:
     image: mcr.microsoft.com/mssql/server:2019-latest
