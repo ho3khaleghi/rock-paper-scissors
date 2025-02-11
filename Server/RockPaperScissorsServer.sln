@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Repositor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel", "..\Dependencies\ApplicationInfrastructure\Core\Kernel\Kernel.csproj", "{66F5DED3-A24A-48E7-86D4-D4A4B6F06C10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{334CBD4C-48B9-47C2-8B6E-3F68596A5752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTService", "JWTService\JWTService.csproj", "{FAD9508E-7CD6-4109-A5CF-2AD3C056F43B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{66F5DED3-A24A-48E7-86D4-D4A4B6F06C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66F5DED3-A24A-48E7-86D4-D4A4B6F06C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66F5DED3-A24A-48E7-86D4-D4A4B6F06C10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334CBD4C-48B9-47C2-8B6E-3F68596A5752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334CBD4C-48B9-47C2-8B6E-3F68596A5752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334CBD4C-48B9-47C2-8B6E-3F68596A5752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{334CBD4C-48B9-47C2-8B6E-3F68596A5752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD9508E-7CD6-4109-A5CF-2AD3C056F43B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD9508E-7CD6-4109-A5CF-2AD3C056F43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD9508E-7CD6-4109-A5CF-2AD3C056F43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD9508E-7CD6-4109-A5CF-2AD3C056F43B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
