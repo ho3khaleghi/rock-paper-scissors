@@ -8,6 +8,7 @@ namespace RockPaperScissors.Api.Models
         public long Id { get; set; }
         public string? UserName { get; set; }
         public string? Password { get; set; }
+        public string? Email { get; set; }
     }
 
     public static class UserModelMapper
@@ -19,7 +20,8 @@ namespace RockPaperScissors.Api.Models
             {
                 Id = user.Id,
                 UserName = user.UserName,
-                Password = user.Password.Decode()
+                Password = user.Password.Decode(),
+                Email = user.Email
             };
 
         public static UserModel? ToModel(this UserDto? user) =>
@@ -28,7 +30,8 @@ namespace RockPaperScissors.Api.Models
             : new UserModel
             {
                 Id = user.Id,
-                UserName = user.UserName
+                UserName = user.UserName,
+                Email = user.Email
             };
     }
 }

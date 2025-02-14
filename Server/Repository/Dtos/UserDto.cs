@@ -9,6 +9,7 @@ namespace RockPaperScissors.Repository.Dtos
     {
         public string? UserName { get; set; }
         public byte[]? Password { get; set; }
+        public string? Email { get; set; }
         internal byte[]? Salt { get; set; }
         public DateTime? LastLoginDateTime { get; set; }
         public DateTime? CreationDateTime { get; set; }
@@ -24,6 +25,7 @@ namespace RockPaperScissors.Repository.Dtos
                 Key = user.Key,
                 UserName = user.UserName,
                 Password = user.Password,
+                Email = user.Email,
                 Salt = user.Salt,
                 LastLoginDateTime = user.LastLoginDateTime,
                 CreationDateTime = user.CreationDateTime
@@ -37,6 +39,7 @@ namespace RockPaperScissors.Repository.Dtos
                 Key = user.Key,
                 UserName = user.UserName,
                 Password = user.Password,
+                Email = user.Email,
                 LastLoginDateTime = user.LastLoginDateTime,
                 CreationDateTime = user.CreationDateTime
             };
