@@ -13,19 +13,17 @@ namespace JWTService
 {
     public class UserTokenManager
     {
-        private readonly TokenKeyManager _tokenKeyManager;
         private readonly ILogger<UserTokenManager> _logger;
 
-        public UserTokenManager(TokenKeyManager tokenKeyManager, ILogger<UserTokenManager> logger)
+        public UserTokenManager(ILogger<UserTokenManager> logger)
         {
-            _tokenKeyManager = tokenKeyManager;
             _logger = logger;
         }
 
         public string GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_tokenKeyManager.CurrentActiveKey.SecretKey);
+            var key = Encoding.ASCII.GetBytes(JwtSecretKeyManager.CurrentActiveSecretKey.SecretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(
@@ -44,7 +42,7 @@ namespace JWTService
         public ClaimsPrincipal? GetPrincipal(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_tokenKeyManager.CurrentActiveKey.SecretKey);
+            var key = Encoding.ASCII.GetBytes(JwtSecretKeyManager.CurrentActiveSecretKey.SecretKey);
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
