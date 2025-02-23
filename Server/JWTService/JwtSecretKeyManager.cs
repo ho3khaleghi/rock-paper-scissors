@@ -1,26 +1,24 @@
 ﻿using Common;
-using Core.Kernel.Dependency;
 using JWTService.Model;
-using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
 namespace JWTService
 {
-    public class JwtSecretKeyManager(ILogger<JwtSecretKeyManager> logger) : ISingletonDependencyInjection
+    public class JwtSecretKeyManager : IJwtSecretKeyManager
     {
         private readonly static string _filePath = $"{AppContext.BaseDirectory}\\settings.json";
 
-        private static JwtSetting? _jwtSettings;
         private static JwtSecretKey? _oldSecretKey;
-        private static JwtSecretKey? _currentActiveSecretKey;
+        private static JwtSecretKey? _currentActiveJwtKey;
 
-        public static JwtSecretKey CurrentActiveSecretKey
+        public static JwtSecretKey CurrentActiveJwtKey
         {
             get
             {
-                if (_currentActiveSecretKey == null) InitializeCurrentSecretKey();
+                if (_currentActiveJwtKey == null) InitializeCurrentSecretKey();
+                if (_currentActiveJwtKey?.ExpiresAt < DateTime.UtcNow) RotateSecretKey();
 
-                return _currentActiveSecretKey ?? throw new Exception("Current active secret key is null!!!");
+                return _currentActiveJwtKey ?? throw new Exception("Current active secret key is null!!!");
             }
         }
 
@@ -43,11 +41,7 @@ namespace JWTService
 
         private static JwtSetting? RetrieveJwtSettings()
         {
-            if (!File.Exists(_filePath))
-            {
-                //logger.LogWarning($"{_filePath} file not found.");
-                return null;
-            }
+            if (!File.Exists(_filePath)) return null;
 
             var json = File.ReadAllText(_filePath);
 
@@ -56,24 +50,42 @@ namespace JWTService
 
         private static void InitializeCurrentSecretKey()
         {
-            _jwtSettings = RetrieveJwtSettings();
+            var jwtSettings = RetrieveJwtSettings();
 
-            if (_jwtSettings == null || _jwtSettings.ActiveSecretKey == null)
+            if (jwtSettings == null || jwtSettings.ActiveSecretKey == null)
             {
                 lock (_filePath)
                 {
-                    _jwtSettings = RetrieveJwtSettings();
+                    jwtSettings = RetrieveJwtSettings();
 
-                    if (_jwtSettings == null || _jwtSettings.ActiveSecretKey == null)
+                    if (jwtSettings == null || jwtSettings.ActiveSecretKey == null)
                     {
-                        _currentActiveSecretKey = CreateSecretKey();
+                        _currentActiveJwtKey = CreateSecretKey();
 
                         return;
                     }
                 }
             }
 
-            _currentActiveSecretKey = _jwtSettings.ActiveSecretKey;
+            _currentActiveJwtKey = jwtSettings.ActiveSecretKey;
+        }
+
+        private static void RotateSecretKey()
+        {
+            lock (_filePath)
+            {
+                if(_currentActiveJwtKey?.ExpiresAt > DateTime.UtcNow) return;
+
+                _oldSecretKey = new JwtSecretKey
+                {
+                    KeyId = _currentActiveJwtKey!.KeyId,
+                    SecretKey = _currentActiveJwtKey.SecretKey,
+                    CreatedAt = _currentActiveJwtKey.CreatedAt,
+                    ExpiresAt = _currentActiveJwtKey.ExpiresAt,
+                    IsActive = false
+                };
+                _currentActiveJwtKey = CreateSecretKey();
+            }
         }
     }
 }

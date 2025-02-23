@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using JWTService.Model;
+﻿using JWTService.Model;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace JWTService
 {
-    public class UserTokenManager
+    public class UserTokenManager : IUserTokenManager
     {
         private readonly ILogger<UserTokenManager> _logger;
 
@@ -23,7 +19,8 @@ namespace JWTService
         public string GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(JwtSecretKeyManager.CurrentActiveSecretKey.SecretKey);
+            var jwtKey = JwtSecretKeyManager.CurrentActiveJwtKey;
+            var key = Encoding.ASCII.GetBytes(jwtKey.SecretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(
@@ -34,7 +31,10 @@ namespace JWTService
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
+            
+            var token = tokenHandler.CreateJwtSecurityToken(tokenDescriptor);
+
+            token.Header.Add("kid", jwtKey.KeyId.ToString());
 
             return tokenHandler.WriteToken(token);
         }
@@ -42,7 +42,8 @@ namespace JWTService
         public ClaimsPrincipal? GetPrincipal(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(JwtSecretKeyManager.CurrentActiveSecretKey.SecretKey);
+            var jwtKey = JwtSecretKeyManager.CurrentActiveJwtKey;
+            var key = Encoding.ASCII.GetBytes(jwtKey.SecretKey);
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
@@ -59,6 +60,13 @@ namespace JWTService
 
                 if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
                 {
+                    throw new SecurityTokenException("Invalid token");
+                }
+
+                if (jwtSecurityToken.Header.Kid != jwtKey.KeyId.ToString())
+                {
+                    // Token was signed with a different key
+                    // TODO: Implement key rotation
                     throw new SecurityTokenException("Invalid token");
                 }
 
