@@ -5,10 +5,10 @@ namespace RockPaperScissors.Repository
 {
     public interface IUserRepository : IPerLifetimeScopeDependencyInjection
     {
-        Task<UserDto?> Get(int id);
-        Task<UserDto?> Get(string userName);
-        Task<UserDto?> Create(UserDto user);
+        Task<UserDto?> GetAsync(long id);
+        Task<UserDto?> GetAsync(string userName);
+        Task<UserDto?> CreateAsync(UserDto user);
         Task<UserDto> UpdateAsync(UserDto user);
-        Task<bool> CheckUserName(string username);
+        Task<bool> CheckUserNameAsync(string username);
     }
 }

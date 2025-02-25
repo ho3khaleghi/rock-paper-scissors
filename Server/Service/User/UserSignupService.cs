@@ -19,7 +19,7 @@ namespace RockPaperScissors.Service.User
             user.Salt = salt;
             user.CreationDateTime = DateTime.UtcNow;
 
-            return await userRepository.Create(user);
+            return await userRepository.CreateAsync(user);
         }
 
         private bool Validate(UserDto user)

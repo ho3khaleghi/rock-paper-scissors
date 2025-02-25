@@ -1,5 +1,4 @@
 ﻿using Core.Kernel.Helper;
-using Core.Kernel.Service;
 using Microsoft.AspNetCore.Mvc;
 using RockPaperScissors.Api.Models;
 using RockPaperScissors.Repository.Dtos;
@@ -27,6 +26,14 @@ namespace RockPaperScissors.Api.Controllers
 
         [HttpPost("Login")]
         public async Task<ActionResult> Login(UserModel user)
+        {
+            await _userService.LoginAsync(user.UserName, user.Password.Decode());
+
+            return Ok(user);
+        }
+
+        [HttpPost("Update")]
+        public async Task<ActionResult> Update(UserModel user)
         {
             await _userService.LoginAsync(user.UserName, user.Password.Decode());
 

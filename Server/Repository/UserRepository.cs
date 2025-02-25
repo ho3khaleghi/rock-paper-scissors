@@ -7,7 +7,7 @@ namespace RockPaperScissors.Repository
 {
     public class UserRepository(IRepository repository) : IUserRepository
     {
-        public async Task<UserDto?> Create(UserDto user)
+        public async Task<UserDto?> CreateAsync(UserDto user)
         {
             var entity = user.ToEntity() ?? throw new Exception("User cannot be null.");
 
@@ -18,9 +18,9 @@ namespace RockPaperScissors.Repository
             return user;
         }
 
-        public async Task<UserDto?> Get(int id) => (await repository.GetAsync<User>(id)).ToDto();
+        public async Task<UserDto?> GetAsync(long id) => (await repository.GetAsync<User>(id)).ToDto();
 
-        public async Task<UserDto?> Get(string userName) => (await repository.ToQueryable<User>().FirstOrDefaultAsync(u => u.UserName!.Equals(userName))).ToDto();
+        public async Task<UserDto?> GetAsync(string userName) => (await repository.ToQueryable<User>().FirstOrDefaultAsync(u => u.UserName!.Equals(userName))).ToDto();
 
         public async Task<UserDto> UpdateAsync(UserDto user)
         {
@@ -34,6 +34,6 @@ namespace RockPaperScissors.Repository
             return entity.ToDto()!;
         }
 
-        public async Task<bool> CheckUserName(string username) => await repository.ToQueryable<User>().AnyAsync(u => u.UserName == username);
+        public async Task<bool> CheckUserNameAsync(string username) => await repository.ToQueryable<User>().AnyAsync(u => u.UserName == username);
     }
 }

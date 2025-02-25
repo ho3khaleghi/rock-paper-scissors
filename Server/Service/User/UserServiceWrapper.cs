@@ -1,17 +1,15 @@
 ﻿using Core.Kernel.Service;
 using RockPaperScissors.Repository.Dtos;
-using System.Linq.Expressions;
-using System.Net.Http.Headers;
 
 namespace RockPaperScissors.Service.User
 {
-    public class UserService : ServiceWrapper, IUserServiceWrapper
+    public class UserServiceWrapper : ServiceWrapper, IUserServiceWrapper
     {
         private readonly IUserSignupService _signupService;
         private readonly ILoginService _loginService;
         private readonly ILogoutService _logoutService;
 
-        public UserService(IServiceHandler serviceHandler,
+        public UserServiceWrapper(IServiceHandler serviceHandler,
                            IUserSignupService signupService,
                            ILoginService loginService,
                            ILogoutService logoutService) : base(serviceHandler)

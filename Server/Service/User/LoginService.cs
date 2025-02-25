@@ -12,7 +12,7 @@ namespace RockPaperScissors.Service.User
             //TODO: this should be checked in separate if-clauses and return specific message based on the condition.
             if (userDto == null || string.IsNullOrWhiteSpace(userDto.UserName) || userDto.Password is null) return null;
 
-            var user = await userRepository.Get(userDto.UserName);
+            var user = await userRepository.GetAsync(userDto.UserName);
 
             if (user == null) return user;
 

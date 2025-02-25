@@ -7,7 +7,6 @@ namespace RockPaperScissors.Model
     {
         public string? UserName { get; set; }
         public byte[]? Password { get; set; }
-        public string? Email { get; set; }
         public byte[]? Salt { get; set; }
         public DateTime? LastLoginDateTime { get; set; }
         public DateTime? CreationDateTime { get; set; }
@@ -29,10 +28,6 @@ namespace RockPaperScissors.Model
             entityType.Property(p => p.Password)
                 .IsRequired()
                 .HasMaxLength(32);
-
-            entityType.Property(p => p.Email)
-                .IsRequired()
-                .HasMaxLength(254);
 
             entityType.Property(p => p.CreationDateTime)
                 .IsRequired();
