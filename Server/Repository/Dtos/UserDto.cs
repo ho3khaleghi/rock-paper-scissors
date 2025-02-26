@@ -38,6 +38,7 @@ namespace RockPaperScissors.Repository.Dtos
                 Key = user.Key,
                 UserName = user.UserName,
                 Password = user.Password,
+                Salt = user.Salt,
                 LastLoginDateTime = user.LastLoginDateTime,
                 CreationDateTime = user.CreationDateTime
             };

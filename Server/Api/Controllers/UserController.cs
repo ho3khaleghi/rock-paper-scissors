@@ -27,9 +27,11 @@ namespace RockPaperScissors.Api.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult> Login(UserModel user)
         {
-            await _userService.LoginAsync(user.UserName, user.Password.Decode());
+            var result = await _userService.LoginAsync(user.UserName, user.Password.Decode());
 
-            return Ok(user);
+            if (result.Data is null) return Unauthorized("Invalid username or password.");
+
+            return Ok(result);
         }
 
         [HttpPost("Update")]

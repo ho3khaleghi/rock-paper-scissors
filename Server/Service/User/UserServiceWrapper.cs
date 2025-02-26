@@ -39,7 +39,17 @@ namespace RockPaperScissors.Service.User
 
         public Task<UserDto> GetAsync(string userName) => throw new NotImplementedException();
 
-        public async Task<UserDto?> LoginAsync(string? userName, byte[]? password) => await _loginService.HandleAsync(new UserDto { UserName = userName, Password = password });
+        public async Task<ServiceResponse<UserDto>> LoginAsync(string? userName, byte[]? password)
+        {
+            var result = await ServiceHandler.HandleAsync<UserDto>(async () => await _loginService.HandleAsync(new UserDto { UserName = userName, Password = password }));
+
+            return new ServiceResponse<UserDto>
+            {
+                Data = (UserDto?)result.Data,
+                Message = result.Message,
+                StatusCode = result.StatusCode
+            };
+        }
 
         public async Task<UserDto> LogoutAsync(UserDto userDto) => await _logoutService.HandleAsync(userDto);
 

@@ -10,6 +10,8 @@ namespace RockPaperScissors.Repository.Dtos
         public string? Email { get; set; }
         public string? AlternateEmail { get; set; } = null;
         public string? PhoneNumber { get; set; }
+
+        public UserDto User { get; set; } = null!;
     }
 
     public static class ProfileMapper
@@ -24,7 +26,8 @@ namespace RockPaperScissors.Repository.Dtos
                 LastName = profileDto.LastName,
                 Email = profileDto.Email,
                 AlternateEmail = profileDto.AlternateEmail,
-                PhoneNumber = profileDto.PhoneNumber
+                PhoneNumber = profileDto.PhoneNumber,
+                User = profileDto.User.ToEntity()!
             };
 
         public static ProfileDto? ToDto(this Profile? profile) =>
@@ -37,7 +40,8 @@ namespace RockPaperScissors.Repository.Dtos
                 LastName = profile.LastName,
                 Email = profile.Email,
                 AlternateEmail = profile.AlternateEmail,
-                PhoneNumber = profile.PhoneNumber
+                PhoneNumber = profile.PhoneNumber,
+                User = profile.User.ToDto()!
             };
     }
 }

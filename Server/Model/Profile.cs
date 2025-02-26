@@ -41,6 +41,10 @@ namespace RockPaperScissors.Model
             entityType.HasOne(p => p.User)
                 .WithOne()
                 .HasForeignKey<Profile>(p => p.Id);
+
+            entityType.Property(p => p.Version)
+                .HasColumnType("timestamp")
+                .IsRowVersion();
         }
     }
 }

@@ -1,22 +1,25 @@
-﻿using JWTService;
+﻿using System.Security.Cryptography;
+using Core.Kernel.Utils;
+using JWTService;
 using RockPaperScissors.Repository;
 using RockPaperScissors.Repository.Dtos;
-using System.Security.Cryptography;
 
 namespace RockPaperScissors.Service.User
 {
     public class LoginService(IUserRepository userRepository, IUserTokenManager userTokenManager) : ILoginService
     {
-        public async Task<UserDto?> HandleAsync(UserDto? userDto)
+        public async Task<UserDto?> HandleAsync(UserDto? requestDto)
         {
             //TODO: this should be checked in separate if-clauses and return specific message based on the condition.
-            if (userDto == null || string.IsNullOrWhiteSpace(userDto.UserName) || userDto.Password is null) return null;
+            if (requestDto == null || string.IsNullOrWhiteSpace(requestDto.UserName) || requestDto.Password is null) return null;
 
-            var user = await userRepository.GetAsync(userDto.UserName);
+            var user = await userRepository.GetAsync(requestDto.UserName);
 
             if (user == null) return user;
 
-            if (!CryptographicOperations.FixedTimeEquals(userDto.Password, user.Password)) return user;
+            var hashedPassword = HashUtil.CalculatePasswordHash(requestDto.Password, user.Salt!);
+
+            if (!CryptographicOperations.FixedTimeEquals(hashedPassword, user.Password)) return null;
 
             user.LastLoginDateTime = DateTime.UtcNow;
 
@@ -32,7 +35,7 @@ namespace RockPaperScissors.Service.User
 
             user.AccessToken = token;
 
-            //TODO: User Session sould be created.
+            //TODO: User Session should be created.
             //TODO: Login token should be created.
 
             return user;

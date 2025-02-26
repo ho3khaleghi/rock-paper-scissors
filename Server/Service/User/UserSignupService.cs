@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 
 namespace RockPaperScissors.Service.User
 {
-    public class UserSignupService(IUserRepository userRepository) : IUserSignupService
+    public class UserSignupService(IProfileRepository profileRepository) : IUserSignupService
     {
         public async Task<UserDto?> HandleAsync(UserDto? user)
         {
@@ -19,7 +19,16 @@ namespace RockPaperScissors.Service.User
             user.Salt = salt;
             user.CreationDateTime = DateTime.UtcNow;
 
-            return await userRepository.CreateAsync(user);
+            var profile = new ProfileDto
+            {
+                Key = user.Key,
+                Email = string.Empty,
+                User = user
+            };
+
+            await profileRepository.CreateAsync(profile);
+
+            return profile.User;
         }
 
         private bool Validate(UserDto user)

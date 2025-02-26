@@ -13,7 +13,7 @@ namespace RockPaperScissors.Repository
 
             await repository.CreateAsync(entity);
 
-            user.Id = entity?.Id ?? throw new Exception("User entity cannot be null.");
+            //user.Id = entity?.Id ?? throw new Exception("User entity cannot be null.");
 
             return user;
         }

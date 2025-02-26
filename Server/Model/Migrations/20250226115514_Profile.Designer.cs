@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RockPaperScissors.Model;
 
@@ -11,9 +12,11 @@ using RockPaperScissors.Model;
 namespace RockPaperScissors.Model.Migrations
 {
     [DbContext(typeof(RPSContext))]
-    partial class RPSContextModelSnapshot : ModelSnapshot
+    [Migration("20250226115514_Profile")]
+    partial class Profile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

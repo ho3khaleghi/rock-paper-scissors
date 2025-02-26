@@ -13,7 +13,7 @@ namespace RockPaperScissors.Repository
 
             await repository.CreateAsync(entity);
 
-            profile.Id = entity.Id;
+            //profile.Id = entity.Id;
 
             return profile;
         }
