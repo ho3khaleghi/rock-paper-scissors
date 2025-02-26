@@ -12,6 +12,7 @@ namespace RockPaperScissors.Repository.Dtos
         internal byte[]? Salt { get; set; }
         public DateTime? LastLoginDateTime { get; set; }
         public DateTime? CreationDateTime { get; set; }
+        public string? AccessToken { get; set; }
     }
 
     public static class UserMapper
@@ -37,6 +38,7 @@ namespace RockPaperScissors.Repository.Dtos
                 Key = user.Key,
                 UserName = user.UserName,
                 Password = user.Password,
+                Salt = user.Salt,
                 LastLoginDateTime = user.LastLoginDateTime,
                 CreationDateTime = user.CreationDateTime
             };

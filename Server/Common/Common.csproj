@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\JWTService\JWTService.csproj" />
-    <ProjectReference Include="..\Repository\RockPaperScissors.Repository.csproj" />
-  </ItemGroup>
-
 </Project>

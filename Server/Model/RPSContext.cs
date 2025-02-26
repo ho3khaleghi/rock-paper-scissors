@@ -29,7 +29,7 @@ namespace RockPaperScissors.Model
                        : base.Set<T>().AsQueryable();
         }
 
-        public async Task<T> GetAsync<T>(object id) where T : class, IEntity => await base.Set<T>().FindAsync(id);
+        public async Task<T> GetAsync<T>(object id) where T : class, IEntity => (await base.Set<T>().FindAsync(id))!;
 
         public async Task<T> InsertAsync<T>(T entity) where T : class, IEntity
         {
