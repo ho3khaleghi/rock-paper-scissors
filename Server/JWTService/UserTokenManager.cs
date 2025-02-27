@@ -25,13 +25,15 @@ namespace JWTService
             {
                 Subject = new ClaimsIdentity(
                 [
-                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Name, user.Username!),
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
                 ]),
-                Expires = DateTime.UtcNow.AddHours(1),
+                Issuer = JwtSecretKeyManager.JwtSetting.Issuer,
+                Audience = JwtSecretKeyManager.JwtSetting.Audience,
+                Expires = DateTime.UtcNow.AddMinutes(JwtSecretKeyManager.JwtSetting.AccessTokenExpiration),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-            
+
             var token = tokenHandler.CreateJwtSecurityToken(tokenDescriptor);
 
             token.Header.Add("kid", jwtKey.KeyId.ToString());

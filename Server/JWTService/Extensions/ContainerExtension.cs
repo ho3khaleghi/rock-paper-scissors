@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Core.Kernel.Helper;
 
-namespace JWTService
+namespace JWTService.Extensions
 {
     public static class ContainerExtension
     {

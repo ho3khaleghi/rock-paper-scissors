@@ -1,4 +1,5 @@
 ﻿using JWTService.Model;
+using Microsoft.Extensions.Configuration;
 
 namespace JWTService
 {
