@@ -1,3 +1,6 @@
+using System.Security.Authentication;
+using Core.Kernel.Helper;
+using Core.Kernel.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RockPaperScissorsApi.Controllers
@@ -16,9 +19,12 @@ namespace RockPaperScissorsApi.Controllers
         [HttpGet(Name = "Get")]
         public string Get()
         {
+            var pass = HashUtil.CreateHash(HashAlgorithmType.Sha256, "Havijbastani".Decode()!);
+
+
             _logger.LogInformation("You were here!");
             _logger.LogWarning("Someone was here!");
-            return "You are here!";
+            return "You are here!" + pass.Encode();
         }
 
         //[HttpGet(Name = "GetWeatherForecast")]

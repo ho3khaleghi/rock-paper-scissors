@@ -1,7 +1,11 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Core.Kernel.Bootstrap;
+using JWTService.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using RockPaperScissors.Api.Extensions;
 using RockPaperScissors.Model;
 using Serilog;
 
@@ -29,6 +33,7 @@ if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
 Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration)
                                                .CreateLogger();
 
+builder.Configuration.ReadJwtConfiguration();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -39,8 +44,12 @@ builder.Services.AddSerilog();
 
 builder.Services.AddDbContext<RPSContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RockPaperScissors")));
 
+builder.Services.AddJwtToServices();
+
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterDependencies());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterKernelDependencies()
+                                                                                      .RegisterJWTServiceDependencies()
+                                                                                      .RegisterRPSDependencies());
 
 var app = builder.Build();
 
@@ -62,6 +71,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

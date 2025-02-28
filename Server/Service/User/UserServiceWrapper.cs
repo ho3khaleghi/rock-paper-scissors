@@ -1,17 +1,15 @@
 ﻿using Core.Kernel.Service;
 using RockPaperScissors.Repository.Dtos;
-using System.Linq.Expressions;
-using System.Net.Http.Headers;
 
 namespace RockPaperScissors.Service.User
 {
-    public class UserService : ServiceWrapper, IUserServiceWrapper
+    public class UserServiceWrapper : ServiceWrapper, IUserServiceWrapper
     {
         private readonly IUserSignupService _signupService;
         private readonly ILoginService _loginService;
         private readonly ILogoutService _logoutService;
 
-        public UserService(IServiceHandler serviceHandler,
+        public UserServiceWrapper(IServiceHandler serviceHandler,
                            IUserSignupService signupService,
                            ILoginService loginService,
                            ILogoutService logoutService) : base(serviceHandler)
@@ -41,7 +39,17 @@ namespace RockPaperScissors.Service.User
 
         public Task<UserDto> GetAsync(string userName) => throw new NotImplementedException();
 
-        public async Task<UserDto?> LoginAsync(string? userName, byte[]? password) => await _loginService.HandleAsync(new UserDto { UserName = userName, Password = password });
+        public async Task<ServiceResponse<UserDto>> LoginAsync(string? userName, byte[]? password)
+        {
+            var result = await ServiceHandler.HandleAsync<UserDto>(async () => await _loginService.HandleAsync(new UserDto { UserName = userName, Password = password }));
+
+            return new ServiceResponse<UserDto>
+            {
+                Data = (UserDto?)result.Data,
+                Message = result.Message,
+                StatusCode = result.StatusCode
+            };
+        }
 
         public async Task<UserDto> LogoutAsync(UserDto userDto) => await _logoutService.HandleAsync(userDto);
 
