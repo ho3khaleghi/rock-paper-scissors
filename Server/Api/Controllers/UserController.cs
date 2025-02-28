@@ -22,7 +22,7 @@ namespace RockPaperScissors.Api.Controllers
         {
             var result = await _userService.SignupAsync(user.ToDto());
 
-            return Ok(result);
+            return Ok(result.Data.ToModel());
         }
 
         [HttpPost("Login")]
