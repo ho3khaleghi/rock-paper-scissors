@@ -1,5 +1,6 @@
 ﻿using Common;
 using JWTService.Model;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
 namespace JWTService
@@ -11,6 +12,8 @@ namespace JWTService
         private static JwtSecretKey? _oldSecretKey;
         private static JwtSecretKey? _currentActiveJwtKey;
 
+        internal static JwtSetting JwtSetting { get; private set; } = null!;
+
         public static JwtSecretKey CurrentActiveJwtKey
         {
             get
@@ -20,6 +23,19 @@ namespace JWTService
 
                 return _currentActiveJwtKey ?? throw new Exception("Current active secret key is null!!!");
             }
+        }
+
+        internal static void InitializeManager(IConfiguration configuration)
+        {
+            var settings = configuration.GetSection("JwtSettings");
+
+            JwtSetting = new()
+            {
+                Audience = settings.GetValue<string>("Audience") ?? string.Empty,
+                Issuer = settings.GetValue<string>("Issuer") ?? string.Empty,
+                AccessTokenExpiration = settings.GetValue<int>("AccessTokenExpiration"),
+                RefreshTokenExpiration = settings.GetValue<int>("RefreshTokenExpiration")
+            };
         }
 
         private static JwtSecretKey? CreateSecretKey()
