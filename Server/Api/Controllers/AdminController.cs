@@ -19,12 +19,9 @@ namespace RockPaperScissorsApi.Controllers
         [HttpGet(Name = "Get")]
         public string Get()
         {
-            var pass = HashUtil.CreateHash(HashAlgorithmType.Sha256, "Havijbastani".Decode()!);
-
-
             _logger.LogInformation("You were here!");
             _logger.LogWarning("Someone was here!");
-            return "You are here!" + pass.Encode();
+            return "You are here!";
         }
 
         //[HttpGet(Name = "GetWeatherForecast")]
