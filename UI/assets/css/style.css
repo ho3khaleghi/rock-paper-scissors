@@ -1,0 +1,1084 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;900&family=Zen+Dots&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Zen Dots', sans-serif;
+    background: #242424 url("../images/background-image.webp") no-repeat center/cover;
+}
+
+.container {
+    height: 650px;
+    width: 480px;
+    background: linear-gradient(#0c2264, #081743, #081743);
+    border-radius: 20px;
+}
+
+/* Login and Signup page */
+#login {
+    display: block;
+}
+
+#signup { 
+    display: block;
+}
+
+.login-title {
+    color: rgb(83 241 255);
+    text-align: center;
+    padding: 10px 0;
+}
+
+.user-pass {
+    margin: 20px 40px 0px 40px !important;
+}
+
+.login-btn {
+    margin-top: 10px;
+    margin-bottom: 80px;
+    left: 115px !important;
+}
+
+.signup-btn {
+    align-self: center;
+    left: 100px !important;
+    font-size: 1.5em !important;
+}
+
+.login-p {
+    padding: 10px 40px 0px;
+    color: #ffba00;
+}
+
+.signup-p {
+    padding: 0 40px 30px;
+    color: #ffba00;
+}
+
+.signup-view-p {
+    padding: 15px 40px 0px;
+    color: #ffba00;
+}
+
+.signup-rules {
+    color: rgb(241, 71, 71);
+}
+
+.gap-filler {
+    margin: 60px 0 0 0;
+}
+
+/* Start page */
+.starting-view,
+#starting-view {
+    display: flex;
+}
+
+.username, 
+#username,
+.password {
+    width: 100%;
+    padding: 20px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    background: rgb(144 190 255);
+    color: #0b205e;
+    font-size: 20px;
+    font-family: 'Zen Dots',
+            sans-serif;
+}
+
+#username::placeholder {
+    color: #0b205e;
+}
+
+/* Option buttons */
+/* Icons on this code is from fontawesome */
+#bo1,
+#bo3,
+#bo5 {
+    padding: 0;
+    margin: 0;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(#0a1d55, #0a1c52, #0a1c50);
+}
+
+/* Color changes learned by experience and https://www.w3schools.com/css/css3_animations.asp */
+.dice {
+    animation: infiniteColor 6s infinite;
+}
+
+@keyframes infiniteColor {
+    0% { color: red; }
+    16.666% { color: orange; }
+    33.333% { color: yellow; }
+    50% { color: green; }
+    66.666% { color: blue; }
+    83.333% { color: indigo; }
+    100% { color: violet; }
+}
+
+.bo1-clicked {
+    background: #288cff !important;
+    color: #081743 !important;
+    box-shadow: 0 0 5px #288cff,
+        0 0 25px #288cff,
+        0 0 50px #288cff,
+        0 0 200px #288cff !important;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#bo1:hover {
+    background: #288cff;
+    color: #081743;
+    box-shadow: 0 0 5px #288cff,
+        0 0 25px #288cff,
+        0 0 50px #288cff,
+        0 0 200px #288cff;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#bo3 {
+    color: rgb(97, 255, 83);
+}
+
+.bo3-clicked {
+    background: rgb(97, 255, 83) !important;
+    color: #081743 !important;
+    box-shadow: 0 0 5px rgb(97, 255, 83),
+        0 0 25px rgb(97, 255, 83),
+        0 0 50px rgb(97, 255, 83),
+        0 0 200px rgb(97, 255, 83) !important;
+}
+
+#bo3:hover {
+    background: rgb(97, 255, 83);
+    color: #081743;
+    box-shadow: 0 0 5px rgb(97, 255, 83),
+        0 0 25px rgb(97, 255, 83),
+        0 0 50px rgb(97, 255, 83),
+        0 0 200px rgb(97, 255, 83);
+}
+
+#bo5 {
+    color: rgb(253, 80, 80);
+}
+
+.bo5-clicked {
+    background: rgb(253, 80, 80) !important;
+    color: #081743 !important;
+    box-shadow: 0 0 5px rgb(253, 80, 80),
+        0 0 25px rgb(253, 80, 80),
+        0 0 50px rgb(253, 80, 80),
+        0 0 200px rgb(253, 80, 80) !important;
+}
+
+#bo5:hover {
+    background: rgb(253, 80, 80);
+    color: #081743;
+    box-shadow: 0 0 5px rgb(253, 80, 80),
+        0 0 25px rgb(253, 80, 80),
+        0 0 50px rgb(253, 80, 80),
+        0 0 200px rgb(253, 80, 80);
+}
+
+/* Rules */
+.rules-container {
+    color: #ffba00;
+    display: block;
+    margin: 19px 40px;
+    border: 1px outset #ffa600;
+    border-radius: 20px;
+    background: #191919;
+    padding: 15px 35px;
+    opacity: 0.7;
+    font-size: 13px;
+}
+
+h4 {
+    color: red;
+}
+
+.ol-title {
+    font-weight: bold;
+    color: red;
+}
+
+ol li {
+    margin-left: 15px;
+    color: #ffba00;
+}
+
+/* Alert msg */
+.alert-msg-container {
+    height: 40px;
+}
+
+#alert-msg {
+    color: red;
+    font-size: 10px;
+    padding: 10px 55px 14px;
+    display: none;
+}
+
+/* Start Button */
+/* get the codes from https://codepen.io/Ks145/pen/MWGxbYr and change them respecting to the project needs*/
+:root {
+    --glow-color: rgb(249, 154, 52);
+    --glow-color-p: rgb(97, 255, 83);
+    --glow-color-p-signup: rgb(83 241 255);
+}
+
+.glowing-btn {
+    position: relative;
+    left: 85px;
+    color: var(--glow-color);
+    cursor: pointer;
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--glow-color);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 2em;
+    font-weight: 900;
+    letter-spacing: 1em;
+
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+    animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt {
+    float: left;
+    margin-right: -0.8em;
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color);
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+    animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter {
+    opacity: 0.5;
+    animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    filter: blur(1em);
+    transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+    background: var(--glow-color);
+    pointer-events: none;
+}
+
+.glowing-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -1;
+    background-color: var(--glow-color);
+    box-shadow: 0 0 2em 0.2em var(--glow-color);
+    transition: opacity 100ms linear;
+}
+
+.glowing-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+    text-shadow: none;
+    animation: none;
+}
+
+.glowing-btn:hover .glowing-txt {
+    animation: none;
+}
+
+.glowing-btn:hover .faulty-letter {
+    animation: none;
+    text-shadow: none;
+    opacity: 1;
+}
+
+.glowing-btn:hover:before {
+    filter: blur(1.5em);
+    opacity: 1;
+}
+
+.glowing-btn:hover:after {
+    opacity: 1;
+}
+
+/* SIGN UP BUTTON */
+
+.glowing-btn-signup {
+    position: relative;
+    color: var(--glow-color-p-signup);
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--glow-color-p-signup);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 1em;
+
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt-signup {
+    float: left;
+    margin-right: -0.8em;
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color-p-signup);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color-p-signup);
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color-p-signup);
+    animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter-signup {
+    opacity: 0.5;
+    animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn-signup::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    filter: blur(1em);
+    transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+    background: var(--glow-color-p-signup);
+    pointer-events: none;
+}
+
+.glowing-btn-signup::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -1;
+    background-color: var(--glow-color-p-signup);
+    box-shadow: 0 0 2em 0.2em var(--glow-color-p-signup);
+    transition: opacity 100ms linear;
+}
+
+/* .glowing-btn-signup {
+    position: relative;
+    left:120px;
+    color: var(--glow-color-p-signup);
+    cursor: pointer;
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--glow-color-p-signup);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 1.5em;
+    font-weight: 900;
+    letter-spacing: 1em;
+
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p-signup),
+        0px 0px 0.5em 0px var(--glow-color-p-signup);
+    animation: border-flicker 2s linear infinite;
+} */
+
+@keyframes faulty-flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    2% {
+        opacity: 0.1;
+    }
+
+    4% {
+        opacity: 0.5;
+    }
+
+    19% {
+        opacity: 0.5;
+    }
+
+    21% {
+        opacity: 0.1;
+    }
+
+    23% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    83% {
+        opacity: 0.4;
+    }
+
+    87% {
+        opacity: 1;
+    }
+}
+
+@keyframes text-flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    2% {
+        opacity: 1;
+    }
+
+    8% {
+        opacity: 0.1;
+    }
+
+    9% {
+        opacity: 1;
+    }
+
+    12% {
+        opacity: 0.1;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0.3;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    72% {
+        opacity: 0.2;
+    }
+
+    77% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0.9;
+    }
+}
+
+@keyframes border-flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    2% {
+        opacity: 1;
+    }
+
+    4% {
+        opacity: 0.1;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Start button */
+/* Choices Part */
+#topic {
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+#topic-text {
+    color: #b9f2ff;
+    font-size: 24px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(90deg, #0a1e58, #012385, #3eafcc, #012385, #0a1e58);
+    padding-bottom: 10px;
+    padding-top: 10px
+}
+
+.game-text {
+    color: azure;
+    position: relative;
+    padding: 30px 30px 30px 55px;
+    font-size: 20px;
+}
+
+.hr {
+    height: 2px;
+    background: linear-gradient(45deg, #001b6c, #014afc, #00195c);
+}
+
+.label {
+    width: 155px;
+    display: inline-block;
+    color: rgb(249, 154, 52);
+}
+
+.fa-thumbs-up {
+    color: rgb(10, 251, 10);
+}
+
+.fa-thumbs-down {
+    color: red;
+}
+
+.fa-handshake {
+    color: rgb(255, 183, 0);
+}
+
+/* Buttons Part */
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#btn-container {
+    margin-top: 60px;
+}
+
+/* Added some styles from the https://codepen.io/HighFlyer/pen/WNXRZBv */
+.btn-container button {
+    position: relative;
+    height: 100px;
+    padding: 25px;
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #081743;
+    color: #288cff;
+    font-weight: bold;
+    letter-spacing: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+@keyframes mymove {
+    50% {
+        box-shadow: none;
+    }
+}
+
+.btn-container #rock:focus,
+.btn-container #main-menu:focus,
+.btn-container button:hover {
+    background: #288cff;
+    color: #081743;
+    box-shadow: 0 0 5px #288cff,
+        0 0 25px #288cff,
+        0 0 50px #288cff,
+        0 0 200px #288cff;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+#paper {
+    color: rgb(97, 255, 83);
+}
+
+#paper:focus,
+#paper:hover {
+    background: rgb(97, 255, 83);
+    color: #081743;
+    box-shadow: 0 0 5px rgb(97, 255, 83),
+        0 0 25px rgb(97, 255, 83),
+        0 0 50px rgb(97, 255, 83),
+        0 0 200px rgb(97, 255, 83);
+}
+
+#scissors {
+    color: rgb(253, 80, 80);
+}
+
+#scissors:focus,
+#scissors:hover {
+    background: rgb(253, 80, 80);
+    color: #081743;
+    box-shadow: 0 0 5px rgb(253, 80, 80),
+        0 0 25px rgb(253, 80, 80),
+        0 0 50px rgb(253, 80, 80),
+        0 0 200px rgb(253, 80, 80);
+}
+
+.btn-container i {
+    font-size: 4em;
+}
+
+/* Disable buttons */
+#next-round {
+    position: absolute;
+    display: none;
+    left: 12%;
+    top: 94px;
+    z-index: 900;
+    color: red;
+    height: 80%;
+    width: 76%;
+    text-align: center;
+    margin: 0;
+    align-items: center;
+}
+
+/* gets the code from https://codepen.io/yochans/pen/wvJXvOg */
+#next-round-text {
+    font-style: italic;
+    font-weight: 900;
+    color: #ffba00;
+	font-size: 60px;
+	text-align: center;
+	margin: 0;
+	margin-left: 50%;
+	transform: translateX(-200%);
+	opacity: 0;
+	animation: slide-in-anim 1.5s ease-out forwards;
+}
+
+@keyframes slide-in-anim {
+	10% {
+		opacity: 0.1;
+	}
+	30% {
+		transform: translateX(-45%);
+	}
+	45% {
+		transform: translateX(-52%);
+	}
+	50% {
+		opacity: 1;
+		transform: translateX(-50%);
+	}
+	55% {
+		transform: translateX(-52%);
+	}
+	70% {
+		transform: translateX(0%);
+        opacity: 0.1;
+	}
+	100% {
+		transform: translateX(30%);
+	}
+}
+
+
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4 !important;
+}
+
+/* Result Part */
+.result-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    background: linear-gradient(90deg, #081743, #012385, #247488, #012385, #081743);
+    height: 48px;
+    align-items: center;
+}
+
+.game-result {
+    color: azure;
+    position: relative;
+    font-size: 13px;
+}
+
+.correct {
+    color: rgb(0, 255, 0);
+}
+
+.incorrect {
+    color: red;
+}
+
+.round {
+    color: rgb(210, 150, 30);
+}
+
+/* End page */
+#end-message {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0;
+}
+
+.tnx-message {
+    font-size: 29px;
+    text-align: center;
+    color: #ffba00;
+    padding: 15px 10px;
+}
+
+#gameresult {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#game-result-message {
+    font-size: 68px;
+    background: rgb(97, 255, 83);
+    border-radius: 10px;
+    align-self: center;
+    padding: 5px 25px;
+    color: #081743;
+}
+
+/* get the code from https://codepen.io/Ks145/pen/MWGxbYr and customize it respecting to the project needs. */
+.glowing-p {
+    position: relative;
+    color: var(--glow-color-p);
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--glow-color-p);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 1em;
+
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p),
+        0px 0px 0.5em 0px var(--glow-color-p);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p),
+        0px 0px 0.5em 0px var(--glow-color-p);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color-p),
+        0px 0px 0.5em 0px var(--glow-color-p);
+    animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt-p {
+    float: left;
+    margin-right: -0.8em;
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color-p);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color-p);
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color-p);
+    animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter-p {
+    opacity: 0.5;
+    animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-p::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    filter: blur(1em);
+    transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+    background: var(--glow-color-p);
+    pointer-events: none;
+}
+
+.glowing-p::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -1;
+    background-color: var(--glow-color-p);
+    box-shadow: 0 0 2em 0.2em var(--glow-color-p);
+    transition: opacity 100ms linear;
+}
+
+#defeat {
+    display: none;
+    font-size: 30px;
+}
+
+
+
+@keyframes faulty-flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    2% {
+        opacity: 0.1;
+    }
+
+    4% {
+        opacity: 0.5;
+    }
+
+    19% {
+        opacity: 0.5;
+    }
+
+    21% {
+        opacity: 0.1;
+    }
+
+    23% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    83% {
+        opacity: 0.4;
+    }
+
+    87% {
+        opacity: 1;
+    }
+}
+
+@keyframes text-flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    2% {
+        opacity: 1;
+    }
+
+    8% {
+        opacity: 0.1;
+    }
+
+    9% {
+        opacity: 1;
+    }
+
+    12% {
+        opacity: 0.1;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0.3;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    72% {
+        opacity: 0.2;
+    }
+
+    77% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0.9;
+    }
+}
+
+@keyframes border-flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    2% {
+        opacity: 1;
+    }
+
+    4% {
+        opacity: 0.1;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#end-btns {
+    margin-top: 90px;
+    padding: 0;
+}
+
+/* get the codes from https://codepen.io/HighFlyer/pen/WNXRZBv and customize it respecting to the project needs. */
+#rematch {
+    color: #ffba00;
+}
+
+#rematch:hover {
+    background: #ffba00;
+    color: #081743;
+    box-shadow: 0 0 5px #ffba00,
+        0 0 25px #ffba00,
+        0 0 50px #ffba00,
+        0 0 200px #ffba00;
+}
+
+#main-menu:hover {
+    background: #288cff;
+    color: #081743;
+    box-shadow: 0 0 5px #288cff,
+        0 0 25px #288cff,
+        0 0 50px #288cff,
+        0 0 200px #288cff;
+}
+
+@media only screen and (max-width: 480px) {
+    /* General styles */
+    .container {
+        width: 320px;
+    }
+
+    /* Starting view */
+    /* Input */
+    #username {
+        padding: 20px;
+        margin: 20px 30px;
+        font-size: 12px;
+    }
+
+    /* Option buttons */
+    .btn-container i {
+        font-size: 3em;
+    }
+
+    #bo1,
+    #bo3,
+    #bo5 {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(#0b1f5c, #0a1e59, #0a1d57);
+    }
+
+    /* Rules */
+    .rules-container {
+        font-size: 12px;
+        margin: 25px 40px;
+    }
+
+    /* Alert msg */
+    #alert-msg {
+        font-size: 10px;
+        padding: 0 30px 0 30px;
+    }
+
+    /* Start button */
+    .glowing-btn {
+        font-size: 22px;
+        left: 56px;
+    }
+
+
+
+    /* Matching view */
+    .btn-container button {
+        margin: 0;
+    }
+
+    .result-container {
+        margin-top: 85px;
+    }
+
+    .game-result {
+        font-size: 9px;
+    }
+
+    #next-round-text {
+        font-size: 35px;
+    }
+
+    /* Ending view */
+    /* Game result */
+    .glowing-btn-p {
+        font-size: 1em;
+    }
+
+    #victory {
+        font-size: 20px;
+    }
+
+    #defeat {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (max-height: 500px) and (orientation: landscape) {
+    body {
+        height: 100%;
+    }
+}
