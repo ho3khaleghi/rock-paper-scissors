@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using RockPaperScissors.Api.Extensions;
+using RockPaperScissors.Api.SignalR;
 using RockPaperScissors.Model;
 using Serilog;
 
@@ -45,6 +46,7 @@ builder.Services.AddSerilog();
 builder.Services.AddDbContext<RPSContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("RockPaperScissors")));
 
 builder.Services.AddJwtToServices();
+builder.Services.AddSignalR();
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterKernelDependencies()
@@ -75,5 +77,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<RpsHub>("/rpshub");
 
 app.Run();
