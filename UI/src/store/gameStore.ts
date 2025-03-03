@@ -7,6 +7,7 @@ interface GameState {
   signupUsername: string;
   signupPassword: string;
   signupConfirmPassword: string;
+  userEmail: string;
   gameUsername: string;
   alertMsg: string;
   // Game settings and scores
@@ -30,6 +31,7 @@ export const useGameStore = defineStore('game', {
     signupUsername: '',
     signupPassword: '',
     signupConfirmPassword: '',
+    userEmail: '',
     gameUsername: '',
     alertMsg: '',
     matchOption: 0,

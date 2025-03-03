@@ -12,7 +12,7 @@
         <input v-model="store.signupUsername" class="username user-pass" type="text" placeholder="Enter your username..." maxlength="10" required />
       </div>
       <div class="starting-view">
-        <input v-model="store.signupUsername" class="username user-pass" type="text" placeholder="Enter your email..." maxlength="10" required />
+        <input v-model="store.userEmail" class="username user-pass" type="text" placeholder="Enter your email..." maxlength="30" required />
       </div>
       <div class="starting-view">
         <input v-model="store.signupPassword" class="password user-pass" type="password" placeholder="Enter your password..." maxlength="20" required />
@@ -32,6 +32,9 @@
   import { defineComponent } from 'vue';
   import { useGameStore } from '../store/gameStore';
   import { useRouter } from 'vue-router';
+  import { hashPassword } from '../utils/hashHelper';
+  import api from '../services/api';
+
   
   export default defineComponent({
     name: 'SignupView',
@@ -39,7 +42,7 @@
       const store = useGameStore();
       const router = useRouter();
   
-      const handleSignup = (): void => {
+      const handleSignup = async (): Promise<void> => {
         if (!store.signupUsername || !store.signupPassword || !store.signupConfirmPassword) {
           store.alertMsg = 'Please fill in all fields.';
           return;
@@ -49,7 +52,13 @@
           return;
         }
         store.gameUsername = store.signupUsername;
-        router.push('/starting');
+
+        try{
+          const response = await api.get('/admin/');
+          router.push('/starting');
+        } catch (error) {
+          console.error(error);
+        }
       };
   
       return { store, handleSignup };
