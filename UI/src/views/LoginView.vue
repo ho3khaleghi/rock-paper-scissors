@@ -31,6 +31,8 @@
   import { defineComponent } from 'vue';
   import { useGameStore } from '../store/gameStore';
   import { useRouter } from 'vue-router';
+  import { hashPassword } from '../utils/hashHelper';
+  import api from '../services/api';
   
   export default defineComponent({
     name: 'LoginView',
@@ -38,10 +40,21 @@
       const store = useGameStore();
       const router = useRouter();
   
-      const handleLogin = (): void => {
+      const handleLogin = async (): Promise<void> => {
         if (store.loginUsername && store.loginPassword) {
           store.gameUsername = store.loginUsername;
-          router.push('/starting');
+          const hashedPassword = await hashPassword(store.loginPassword);
+
+          try {
+            const response = await api.post('/login', {
+              username: store.loginUsername,
+              password: hashedPassword,
+            });
+
+            router.push('/starting');
+          } catch (error) {
+            console.error(error);
+          }
         }
       };
   

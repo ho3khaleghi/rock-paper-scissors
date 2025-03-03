@@ -10,6 +10,8 @@ COPY Server/RockPaperScissorsServer.sln Server/
 
 # Copy the project files
 COPY Dependencies/ApplicationInfrastructure/Core/Kernel/Kernel.csproj Dependencies/ApplicationInfrastructure/Core/Kernel/
+COPY Server/JWTService/JWTService.csproj Server/JWTService/
+COPY Server/Common/Common.csproj Server/Common/
 COPY Server/Model/RockPaperScissors.Model.csproj Server/Model/
 COPY Server/Repository/RockPaperScissors.Repository.csproj Server/Repository/
 COPY Server/Service/RockPaperScissors.Service.csproj Server/Service/
