@@ -46,7 +46,7 @@
           const hashedPassword = await hashPassword(store.loginPassword);
 
           try {
-            const response = await api.post('/login', {
+            const response = await api.post('/user/login', {
               username: store.loginUsername,
               password: hashedPassword,
             });

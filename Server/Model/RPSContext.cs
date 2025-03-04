@@ -152,10 +152,10 @@ namespace RockPaperScissors.Model
             base.ChangeTracker.Entries().ToList().ForEach(e => e.State = EntityState.Unchanged);
         }
 
-        public new void Dispose()
-        {
-            base.Database.CurrentTransaction?.Dispose();
-            base.Dispose();
-        }
+        //public new void Dispose()
+        //{
+        //    base.Database.CurrentTransaction?.Dispose();
+        //    base.Dispose();
+        //}
     }
 }

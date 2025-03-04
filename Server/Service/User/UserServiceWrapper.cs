@@ -1,16 +1,17 @@
 ﻿using Core.Kernel.Service;
 using RockPaperScissors.Repository.Dtos;
+using RockPaperScissors.Service.User.Dto;
 
 namespace RockPaperScissors.Service.User
 {
     public class UserServiceWrapper : ServiceWrapper, IUserServiceWrapper
     {
-        private readonly IUserSignupService _signupService;
+        private readonly ISignupService _signupService;
         private readonly ILoginService _loginService;
         private readonly ILogoutService _logoutService;
 
         public UserServiceWrapper(IServiceHandler serviceHandler,
-                           IUserSignupService signupService,
+                           ISignupService signupService,
                            ILoginService loginService,
                            ILogoutService logoutService) : base(serviceHandler)
         {
@@ -21,9 +22,9 @@ namespace RockPaperScissors.Service.User
 
         public Task<bool> CheckUserNameAsync(string userName) => throw new NotImplementedException();
 
-        public async Task<ServiceResponse<UserDto>> SignupAsync(UserDto? userDto)
+        public async Task<ServiceResponse<UserDto>> SignupAsync(SignupDto signupDto)
         {
-            var result = await ServiceHandler.HandleAsync<UserDto>(async () => await _signupService.HandleAsync(userDto));
+            var result = await ServiceHandler.HandleAsync<UserDto>(async () => await _signupService.HandleAsync(signupDto));
 
             return new ServiceResponse<UserDto>
             {

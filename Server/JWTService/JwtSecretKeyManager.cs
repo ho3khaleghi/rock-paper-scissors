@@ -33,8 +33,8 @@ namespace JWTService
             {
                 Audience = settings.GetValue<string>("Audience") ?? string.Empty,
                 Issuer = settings.GetValue<string>("Issuer") ?? string.Empty,
-                AccessTokenExpiration = settings.GetValue<int>("AccessTokenExpiration"),
-                RefreshTokenExpiration = settings.GetValue<int>("RefreshTokenExpiration")
+                AccessTokenExpiration = settings.GetValue<int>("AccessTokenExpirationMinutes"),
+                RefreshTokenExpiration = settings.GetValue<int>("RefreshTokenExpirationDays")
             };
         }
 

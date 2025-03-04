@@ -1,6 +1,7 @@
 ﻿using Core.Kernel.Dependency;
 using Core.Kernel.Service;
 using RockPaperScissors.Repository.Dtos;
+using RockPaperScissors.Service.User.Dto;
 
 namespace RockPaperScissors.Service.User
 {
@@ -8,7 +9,7 @@ namespace RockPaperScissors.Service.User
     {
         Task<UserDto> GetAsync(int id);
         Task<UserDto> GetAsync(string userName);
-        Task<ServiceResponse<UserDto>> SignupAsync(UserDto? userDto);
+        Task<ServiceResponse<UserDto>> SignupAsync(SignupDto signupDto);
         Task<UserDto?> UpdateAsync(UserDto? userDto);
         Task<UserDto> DeleteAsync(int id);
         Task<ServiceResponse<UserDto>> LoginAsync(string? userName, byte[]? password);
