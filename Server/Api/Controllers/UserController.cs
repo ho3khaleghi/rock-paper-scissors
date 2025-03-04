@@ -17,21 +17,21 @@ namespace RockPaperScissors.Api.Controllers
         }
 
         [HttpPost("Signup")]
-        public async Task<ActionResult> Signup(UserModel user)
+        public async Task<ActionResult> Signup(SignupModel signup)
         {
-            var result = await _userService.SignupAsync(user.ToDto());
+            var result = await _userService.SignupAsync(signup.ToDto());
 
-            return Ok(result.Data.ToModel());
+            return result.Data is not null ? Ok() : Conflict();
         }
 
         [HttpPost("Login")]
-        public async Task<ActionResult> Login(UserModel user)
+        public async Task<ActionResult> Login(LoginRequestModel login)
         {
-            var result = await _userService.LoginAsync(user.UserName, user.Password.Decode());
+            var result = await _userService.LoginAsync(login.UserName, login.Password.Decode());
 
             if (result.Data is null) return Unauthorized("Invalid username or password.");
 
-            return Ok(result);
+            return Ok(result.Data.ToLoginResponseModel());
         }
 
         [HttpPost("Update")]

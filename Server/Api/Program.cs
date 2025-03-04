@@ -48,6 +48,17 @@ builder.Services.AddDbContext<RPSContext>(options => options.UseSqlServer(builde
 builder.Services.AddJwtToServices();
 builder.Services.AddSignalR();
 
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontendOrigin", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterKernelDependencies()
                                                                                       .RegisterJWTServiceDependencies()
@@ -75,6 +86,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors("AllowFrontendOrigin");
 
 app.MapControllers();
 app.MapHub<RpsHub>("/rpshub");
