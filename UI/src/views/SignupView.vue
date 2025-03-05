@@ -60,7 +60,7 @@ const handleSignup = async (): Promise<void> => {
       password: await hashPassword(password.value),
       email: email.value
     });
-    router.push('/starting');
+    router.push('/');
   } catch (error) {
     console.error(error);
   }
