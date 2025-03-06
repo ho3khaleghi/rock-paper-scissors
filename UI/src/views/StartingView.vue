@@ -6,9 +6,9 @@ import { useRouter } from 'vue-router';
 const store = useGameStore();
 const router = useRouter();
 // Icon definitions for match options:
-const bo1Icon = `<i class="fa-solid fa-dice-one dice"></i>`;
-const bo3Icon = `<i class="fa-solid fa-dice-three dice"></i>`;
-const bo5Icon = `<i class="fa-solid fa-dice-five dice"></i>`;
+const bo1Icon = `<i class="fa-solid fa-dice-one"></i>`;
+const bo3Icon = `<i class="fa-solid fa-dice-three"></i>`;
+const bo5Icon = `<i class="fa-solid fa-dice-five"></i>`;
 
 const setMatchOption = (option: number): void => {
   store.setMatchOption(option, bo1Icon, bo3Icon, bo5Icon);
@@ -34,13 +34,13 @@ const startGame = (): void => {
     </div>
     <div class="btn-container">
       <button id="bo1" :class="{ 'bo1-clicked': store.matchOption === 1 }" @click="setMatchOption(1)">
-        <i class="fa-solid fa-dice-one dice"></i>
+        <i class="fa-solid fa-dice-one"></i>
       </button>
       <button id="bo3" :class="{ 'bo3-clicked': store.matchOption === 3 }" @click="setMatchOption(3)">
-        <i class="fa-solid fa-dice-three dice"></i>
+        <i class="fa-solid fa-dice-three"></i>
       </button>
       <button id="bo5" :class="{ 'bo5-clicked': store.matchOption === 5 }" @click="setMatchOption(5)">
-        <i class="fa-solid fa-dice-five dice"></i>
+        <i class="fa-solid fa-dice-five"></i>
       </button>
     </div>
     <div class="rules-container">
@@ -67,9 +67,12 @@ const startGame = (): void => {
         {{ store.alertMsg }}
       </p>
     </div>
-    <button class="glowing-btn" @click="startGame">
-      <span class="glowing-txt">S<span class="faulty-letter">T</span>ART</span>
-    </button>
+    <div class="gap-filler"></div>
+    <div class="btn-container-start">
+      <button class="glowing-btn" @click="startGame">
+        <span class="glowing-txt">S<span class="faulty-letter">T</span>ART</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -95,6 +98,13 @@ const startGame = (): void => {
   width: 98%;
   text-align: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container-start {
+  display: flex;
+  text-align: center;
   justify-content: center;
   align-items: center;
 }
