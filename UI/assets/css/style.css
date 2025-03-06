@@ -240,7 +240,7 @@ ol li {
 }
 
 .glowing-btn {
-    position: relative;
+    
     left: 85px;
     color: var(--glow-color);
     cursor: pointer;
