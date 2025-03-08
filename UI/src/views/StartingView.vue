@@ -21,7 +21,7 @@ const startGame = (): void => {
   }
   store.alertMsg = '';
   store.resetGame();
-  router.push('/matching');
+  router.push('/pvp');
 };
 </script>
   
