@@ -2,9 +2,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Core.Kernel.Bootstrap;
 using JWTService.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using RockPaperScissors.Api.Extensions;
 using RockPaperScissors.Api.SignalR;
 using RockPaperScissors.Model;
@@ -55,7 +53,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:5173")
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
@@ -83,6 +82,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -91,5 +91,6 @@ app.UseCors("AllowFrontendOrigin");
 
 app.MapControllers();
 app.MapHub<RpsHub>("/rpshub");
+app.MapDefaultControllerRoute();
 
 app.Run();

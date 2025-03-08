@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue';
 import { useGameStore } from '../store/gameStore';
 import { useRouter } from 'vue-router';
 

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import type { MatchResult } from '../types/commonTypes';
 
 interface GameState {
   // Authentication & user info
@@ -20,6 +21,7 @@ interface GameState {
   playerDisplay: string;
   computerDisplay: string;
   resultDisplay: string;
+  matchResult: MatchResult;
   // Flag for showing a "Next Round!" announcer
   showNextRoundAnnouncer: boolean;
 }
@@ -42,6 +44,7 @@ export const useGameStore = defineStore('game', {
     playerDisplay: '',
     computerDisplay: '',
     resultDisplay: '',
+    matchResult: "none",
     showNextRoundAnnouncer: false,
   }),
   actions: {

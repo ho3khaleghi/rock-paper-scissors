@@ -11,13 +11,13 @@ const signalrService = new SignalrService();
 
 let playerChoice = ref<Choice | null>(null);
 let opponentChoice = ref<Choice | null>(null);
-let roundResult: Result | null = null;
+let roundResult = ref<Result>("none");
 let playerScore = ref<number>(0);
 let opponentScore = ref<number>(0);
 let roundCount = ref<number>(1);
 
 const checkWinner = (): Result => {
-  if (!playerChoice.value || !opponentChoice.value) return null as any;
+  if (!playerChoice.value || !opponentChoice.value) return "none";
 
   if (playerChoice.value === opponentChoice.value) return "draw";
   if (opponentChoice.value === "rock") {
@@ -33,6 +33,7 @@ const checkWinner = (): Result => {
 
 const checkRoundLimit = (): void => {
   if (playerScore.value === store.matchOption || opponentScore.value === store.matchOption) {
+    store.matchResult = (playerScore.value > opponentScore.value) ? "victory" : "defeat";
     setTimeout(() => {
       router.push("/end");
     }, 1500);
@@ -40,17 +41,24 @@ const checkRoundLimit = (): void => {
 };
 
 const calculateScore = (): void => {
-  roundResult = checkWinner();
-
-  if (roundResult === "win") {
+  roundResult.value = checkWinner();
+  
+  if (!roundResult.value || roundResult.value === "none") return;
+  
+  if (roundResult.value === "win") {
     playerScore.value++;
-  } else if (roundResult === "lose") {
+  } else if (roundResult.value === "lose") {
     opponentScore.value++;
   }
 
   checkRoundLimit();
 
   roundCount.value++;
+
+  setTimeout(() => {
+    playerChoice.value = null;
+    opponentChoice.value = null;    
+  }, 2000);
 };
 
 const makeChoice = (choice: Choice): void => {
@@ -66,7 +74,8 @@ onMounted(async () => {
 
   signalrService.connection?.invoke('JoinMatch', "FirstMatchId");
 
-  signalrService.connection?.on("OpponentChoice", (choice: Choice) => {
+  signalrService.connection?.on("OpponentChoice", (player: string, choice: Choice) => {
+    console.log(player, choice);
     opponentChoice.value = choice;
     calculateScore();
   });
@@ -96,7 +105,7 @@ onMounted(async () => {
       <p class="game-text">
         <span class="label">Result:</span>
         <i v-if="roundResult === 'win'" class="fa-solid fa-thumbs-up fa-2xl"></i>
-        <i v-if="roundResult === 'lose'" class="fa-solid fa-thumbs-down-2xl"></i>
+        <i v-if="roundResult === 'lose'" class="fa-solid fa-thumbs-down fa-2xl"></i>
         <i v-if="roundResult === 'draw'" class="fa-solid fa-handshake fa-2xl"></i>
       </p>
       <div class="hr"></div>

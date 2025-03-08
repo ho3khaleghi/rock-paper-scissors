@@ -9,12 +9,17 @@ export class SignalrService {
   }
 
   public async start() {
+
+    try {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl('https://localhost:5002/rpshub')
+      .withUrl('https://localhost:7081/rpshub')
       .withAutomaticReconnect()
       .build();
 
     await this.hubConnection.start();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   public async stop() {
