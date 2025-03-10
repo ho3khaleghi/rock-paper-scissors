@@ -1,13 +1,9 @@
-﻿using Core.Kernel.Dependency;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Kernel.Service;
+using RockPaperScissors.Service.Queue.Dto;
 
 namespace RockPaperScissors.Service.Queue
 {
-    public interface IMakeMatchService : IPerLifetimeScopeDependencyInjection
+    public interface IMakeMatchService : IService<MatchmakingDto, MatchmakingDto>
     {
     }
 }

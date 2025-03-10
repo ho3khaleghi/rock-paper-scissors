@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 
 namespace RockPaperScissors.Repository.Queue
 {
     public class BestOfFiveQueueRepository : MatchmakingQueueAbstraction, IBestOfFiveQueueRepository
     {
-        public BestOfFiveQueueRepository(ILogger<BestOfFiveQueueRepository> logger) : base(logger)
+        public BestOfFiveQueueRepository() : base()
         {
         }
 
