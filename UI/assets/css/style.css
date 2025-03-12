@@ -237,6 +237,7 @@ ol li {
     --glow-color: rgb(249, 154, 52);
     --glow-color-p: rgb(97, 255, 83);
     --glow-color-p-signup: rgb(83 241 255);
+    --glow-color-defeat: rgb(253, 80, 80);
 }
 
 .glowing-btn {

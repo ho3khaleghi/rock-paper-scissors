@@ -1,20 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useGameStore } from '../store/gameStore';
 import { useRouter } from 'vue-router';
+import { SignalrService } from '../services/signalrService';
 import type { Choice, Result} from "../types/commonTypes";
 
 const router = useRouter();
 const store = useGameStore();
+const signalrService = new SignalrService();
 
 let playerChoice = ref<Choice | null>(null);
 let opponentChoice = ref<Choice | null>(null);
-let roundResult: Result | null = null;
+let roundResult = ref<Result>("none");
 let playerScore = ref<number>(0);
 let opponentScore = ref<number>(0);
 let roundCount = ref<number>(1);
 
 const checkWinner = (): Result => {
+  if (!playerChoice.value || !opponentChoice.value) return "none";
+
   if (playerChoice.value === opponentChoice.value) return "draw";
   if (opponentChoice.value === "rock") {
     return playerChoice.value === "paper" ? "win" : "lose";
@@ -29,25 +33,53 @@ const checkWinner = (): Result => {
 
 const checkRoundLimit = (): void => {
   if (playerScore.value === store.matchOption || opponentScore.value === store.matchOption) {
+    store.matchResult = (playerScore.value > opponentScore.value) ? "victory" : "defeat";
     setTimeout(() => {
       router.push("/end");
     }, 1500);
   }
 };
 
-const makeChoice = (choice: Choice): void => {
-  playerChoice.value = choice;
-  roundResult = checkWinner();
-  if (roundResult === "win") {
+const calculateScore = (): void => {
+  roundResult.value = checkWinner();
+  
+  if (!roundResult.value || roundResult.value === "none") return;
+  
+  if (roundResult.value === "win") {
     playerScore.value++;
-  } else if (roundResult === "lose") {
+  } else if (roundResult.value === "lose") {
     opponentScore.value++;
   }
 
   checkRoundLimit();
 
   roundCount.value++;
+
+  setTimeout(() => {
+    playerChoice.value = null;
+    opponentChoice.value = null;    
+  }, 2000);
 };
+
+const makeChoice = (choice: Choice): void => {
+  playerChoice.value = choice;
+  calculateScore();
+  
+  // Uncomment the line below to send the choice to the server
+  signalrService.connection?.invoke("SendChoice", "FirstMatchId", store.gameUsername, choice);
+};
+
+onMounted(async () => {
+  await signalrService.start();
+
+  signalrService.connection?.invoke('JoinMatch', "FirstMatchId");
+
+  signalrService.connection?.on("OpponentChoice", (player: string, choice: Choice) => {
+    console.log(player, choice);
+    opponentChoice.value = choice;
+    calculateScore();
+  });
+});
 </script>
 
 <template>
@@ -73,7 +105,7 @@ const makeChoice = (choice: Choice): void => {
       <p class="game-text">
         <span class="label">Result:</span>
         <i v-if="roundResult === 'win'" class="fa-solid fa-thumbs-up fa-2xl"></i>
-        <i v-if="roundResult === 'lose'" class="fa-solid fa-thumbs-down-2xl"></i>
+        <i v-if="roundResult === 'lose'" class="fa-solid fa-thumbs-down fa-2xl"></i>
         <i v-if="roundResult === 'draw'" class="fa-solid fa-handshake fa-2xl"></i>
       </p>
       <div class="hr"></div>

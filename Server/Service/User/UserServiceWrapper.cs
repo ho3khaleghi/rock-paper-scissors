@@ -22,17 +22,8 @@ namespace RockPaperScissors.Service.User
 
         public Task<bool> CheckUserNameAsync(string userName) => throw new NotImplementedException();
 
-        public async Task<ServiceResponse<UserDto>> SignupAsync(SignupDto signupDto)
-        {
-            var result = await ServiceHandler.HandleAsync<UserDto>(async () => await _signupService.HandleAsync(signupDto));
-
-            return new ServiceResponse<UserDto>
-            {
-                Data = (UserDto?)result.Data,
-                Message = result.Message,
-                StatusCode = result.StatusCode
-            };
-        }
+        public async Task<IServiceResponse<UserDto?>> SignupAsync(SignupDto signupDto) =>
+            await ServiceHandler.HandleAsync(async () => await _signupService.HandleAsync(signupDto));
 
         public Task<UserDto> DeleteAsync(int id) => throw new NotImplementedException();
 
@@ -40,17 +31,8 @@ namespace RockPaperScissors.Service.User
 
         public Task<UserDto> GetAsync(string userName) => throw new NotImplementedException();
 
-        public async Task<ServiceResponse<UserDto>> LoginAsync(string? userName, byte[]? password)
-        {
-            var result = await ServiceHandler.HandleAsync<UserDto>(async () => await _loginService.HandleAsync(new UserDto { UserName = userName, Password = password }));
-
-            return new ServiceResponse<UserDto>
-            {
-                Data = (UserDto?)result.Data,
-                Message = result.Message,
-                StatusCode = result.StatusCode
-            };
-        }
+        public async Task<IServiceResponse<UserDto?>> LoginAsync(string? userName, byte[]? password) =>
+            await ServiceHandler.HandleAsync(async () => await _loginService.HandleAsync(new UserDto { UserName = userName, Password = password }));
 
         public async Task<UserDto> LogoutAsync(UserDto userDto) => await _logoutService.HandleAsync(userDto);
 

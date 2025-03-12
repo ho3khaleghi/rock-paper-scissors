@@ -4,9 +4,16 @@ namespace RockPaperScissors.Api.SignalR
 {
     public class RpsHub : Hub
     {
-        public async Task SendAsync(string message)
+        public async Task JoinMatch(string matchId)
         {
-            await Clients.All.SendAsync("Send", message);
+            await Groups.AddToGroupAsync(Context.ConnectionId, matchId);
+        }
+
+        public async Task SendChoice(string matchId, string player, string playerChoice)
+        {
+            // Sends the move to all clients in the group except the sender.
+            await Clients.GroupExcept(matchId, Context.ConnectionId)
+                         .SendAsync("OpponentChoice", player, playerChoice);
         }
     }
 }
