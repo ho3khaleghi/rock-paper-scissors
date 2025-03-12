@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useGameStore } from '../store/gameStore';
 import { useRouter } from 'vue-router';
+import { QueueService } from '../services/queueService';
+import { JoinQueueModel } from '../models/queue/joinQueueModel';
+import { LeaveQueueModel } from '../models/queue/leaveQueueModel';
 
 const store = useGameStore();
 const router = useRouter();
@@ -20,7 +23,20 @@ const startGame = (): void => {
   }
   store.alertMsg = '';
   store.resetGame();
-  router.push('/pvp');
+  router.push('/matching');
+};
+
+const leaveQueue = (): void => {
+  new QueueService().leaveQueue({ username: store.gameUsername, gameOption: store.matchOption } as LeaveQueueModel);
+};
+
+const joinQueue = (): void => {
+  if (!store.gameUsername || !store.matchOption) {
+    store.alertMsg = 'Enter your username and select a match option!';
+    return;
+  }
+
+  new QueueService().joinQueue({ username: store.gameUsername, gameOption: store.matchOption } as JoinQueueModel);
 };
 </script>
   
@@ -66,10 +82,15 @@ const startGame = (): void => {
         {{ store.alertMsg }}
       </p>
     </div>
-    <div class="gap-filler"></div>
-    <div class="btn-container-start">
-      <button class="glowing-btn" @click="startGame">
-        <span class="glowing-txt">S<span class="faulty-letter">T</span>ART</span>
+    <div class="btn-container">
+      <button id="joinQueue" class="join-queue" @click="joinQueue">
+        <i class="fa-solid fa-users fa-beat-fade"></i>
+      </button>
+      <button id="battleBot" @click="startGame">
+        <i class="fa-solid fa-robot fa-beat-fade"></i>
+      </button>
+      <button id="leaveQueue" class="leave-queue" @click="leaveQueue">
+        <i class="fa-solid fa-users-slash fa-beat-fade"></i>
       </button>
     </div>
   </div>
@@ -106,5 +127,13 @@ const startGame = (): void => {
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+
+.join-queue {
+  color: rgb(97, 255, 83);
+}
+
+.leave-queue {
+  color: rgb(255, 97, 97);
 }
 </style>
