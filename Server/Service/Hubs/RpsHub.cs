@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace RockPaperScissors.Api.SignalR
+namespace RockPaperScissors.Service.Hubs
 {
     public class RpsHub : Hub
     {

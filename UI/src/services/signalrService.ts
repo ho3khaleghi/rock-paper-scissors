@@ -22,6 +22,20 @@ export class SignalrService {
     }
   }
 
+  public async startUserSpesific(username: string) {
+
+    try {
+    this.hubConnection = new HubConnectionBuilder()
+      .withUrl('https://localhost:7081/rpshub', { accessTokenFactory: () => username })
+      .withAutomaticReconnect()
+      .build();
+
+    await this.hubConnection.start();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   public async stop() {
     if (this.hubConnection) {
       await this.hubConnection.stop();

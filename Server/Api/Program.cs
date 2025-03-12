@@ -4,8 +4,9 @@ using Core.Kernel.Bootstrap;
 using JWTService.Extensions;
 using Microsoft.EntityFrameworkCore;
 using RockPaperScissors.Api.Extensions;
-using RockPaperScissors.Api.SignalR;
 using RockPaperScissors.Model;
+using RockPaperScissors.Service.BackgroundJobs;
+using RockPaperScissors.Service.Hubs;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +46,7 @@ builder.Services.AddDbContext<RPSContext>(options => options.UseSqlServer(builde
 
 builder.Services.AddJwtToServices();
 builder.Services.AddSignalR();
+builder.Services.AddHostedService<MatchmakingBackgroundJob>();
 
 // Configure CORS
 builder.Services.AddCors(options =>

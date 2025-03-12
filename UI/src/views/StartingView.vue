@@ -1,12 +1,15 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import { useGameStore } from '../store/gameStore';
 import { useRouter } from 'vue-router';
 import { QueueService } from '../services/queueService';
 import { JoinQueueModel } from '../models/queue/joinQueueModel';
 import { LeaveQueueModel } from '../models/queue/leaveQueueModel';
+import { SignalrService } from '../services/signalrService';
 
 const store = useGameStore();
 const router = useRouter();
+const signalrService = new SignalrService();
 // Icon definitions for match options:
 const bo1Icon = `<i class="fa-solid fa-dice-one"></i>`;
 const bo3Icon = `<i class="fa-solid fa-dice-three"></i>`;
@@ -38,6 +41,18 @@ const joinQueue = (): void => {
 
   new QueueService().joinQueue({ username: store.gameUsername, gameOption: store.matchOption } as JoinQueueModel);
 };
+
+onMounted(async () => {
+  await signalrService.startUserSpesific(store.gameUsername);
+
+  signalrService.connection?.invoke('JoinMatch', "FirstMatchId");
+
+  signalrService.connection?.on("MatchFound", (match: any) => {
+    debugger;
+    console.log(match.opponentId, match.gameOption);
+    alert(`Match found with ${match.opponentId} for ${match.gameOption}`);
+  });
+});
 </script>
   
 <template>
