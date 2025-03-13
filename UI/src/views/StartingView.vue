@@ -15,6 +15,8 @@ const messageDialogTitle = ref("");
 const messageDialogMessage = ref("");
 const messageDialogSeverity = ref("" as "info" | "warning" | "error" | "matchFound");
 const openMessageDialog = ref(false);
+let opponentAccepted = ref(false);
+let youAccepted = ref(false);
 
 // Icon definitions for match options:
 const bo1Icon = `<i class="fa-solid fa-dice-one"></i>`;
@@ -50,20 +52,34 @@ const joinQueue = (): void => {
 
 const onMessageDialogConfirm = (): void => {
   openMessageDialog.value = false;
-  router.push('/pvp');
+  youAccepted.value = true;
+  
+  signalrService.connection?.invoke('AcceptChallenge', store.matchId, store.gameUsername);
+
+  if (opponentAccepted.value) router.push('/pvp');
 };
 
 onMounted(async () => {
   await signalrService.startUserSpesific(store.gameUsername);
 
-  signalrService.connection?.invoke('JoinMatch', "FirstMatchId");
-
   signalrService.connection?.on("MatchFound", (match: any) => {
-    console.log(match.opponentId, match.gameOption);
+    store.matchId = match.matchId;
+
+    signalrService.connection?.invoke('JoinMatch', store.matchId);
+    
+    console.log(match.opponentId, match.gameOption, store.matchId);
+
     openMessageDialog.value = true;
     messageDialogTitle.value = "Opponent Found";
     messageDialogMessage.value = `Someone challenges you to a battle. \nDo you dare to accept?`;
     messageDialogSeverity.value = "matchFound";
+  });
+
+  signalrService.connection?.on("ChallengeAccepted", (opponentId: string) => {
+    console.log(opponentId);
+    opponentAccepted.value = true;
+
+    if (youAccepted.value) router.push('/pvp');
   });
 });
 </script>

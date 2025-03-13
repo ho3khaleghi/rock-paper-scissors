@@ -28,6 +28,7 @@ namespace RockPaperScissors.Service.BackgroundJobs
 
             _matchmakingQueue = _queueFactory.CreateQueueRepository(GameOption.BestOfThree);
         }
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation("Matchmaking service started.");
@@ -56,8 +57,11 @@ namespace RockPaperScissors.Service.BackgroundJobs
 
         private async Task NotifyPlayers((string player1, string player2) match)
         {
-            var player1Data = new { OpponentId = match.player2, GameOption = GameOption.BestOfThree };
-            var player2Data = new { OpponentId = match.player1, GameOption = GameOption.BestOfThree };
+            var matchId = Guid.NewGuid().ToString();
+            var player1Data = new
+                { MatchId = matchId, OpponentId = match.player2, GameOption = GameOption.BestOfThree };
+            var player2Data = new
+                { MatchId = matchId, OpponentId = match.player1, GameOption = GameOption.BestOfThree };
 
             // Send opponent info to each player individually
             await _hubContext.Clients.User(match.player1).SendAsync("MatchFound", player1Data);

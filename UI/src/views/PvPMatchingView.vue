@@ -66,13 +66,13 @@ const makeChoice = (choice: Choice): void => {
   calculateScore();
   
   // Uncomment the line below to send the choice to the server
-  signalrService.connection?.invoke("SendChoice", "FirstMatchId", store.gameUsername, choice);
+  signalrService.connection?.invoke("SendChoice", store.matchId, store.gameUsername, choice);
 };
 
 onMounted(async () => {
   await signalrService.start();
 
-  signalrService.connection?.invoke('JoinMatch', "FirstMatchId");
+  signalrService.connection?.invoke('JoinMatch', store.matchId);
 
   signalrService.connection?.on("OpponentChoice", (player: string, choice: Choice) => {
     console.log(player, choice);

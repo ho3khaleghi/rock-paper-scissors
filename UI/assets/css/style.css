@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Zen Dots', sans-serif;
+    font-family: 'Zen Dots', sans-serif !important;
     background: #242424 url("../images/background-image.webp") no-repeat center/cover;
 }
 

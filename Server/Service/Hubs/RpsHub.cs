@@ -16,6 +16,12 @@ namespace RockPaperScissors.Service.Hubs
             await Clients.GroupExcept(matchId, Context.ConnectionId)
                          .SendAsync("OpponentChoice", player, playerChoice);
         }
+        
+        public async Task AcceptChallenge(string matchId, string player)
+        {
+            await Clients.GroupExcept(matchId, Context.ConnectionId)
+                .SendAsync("ChallengeAccepted", player);
+        }
     }
 
     // TODO: This should be removed!!! The userId should be provided by a JWT token.

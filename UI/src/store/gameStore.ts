@@ -12,6 +12,7 @@ interface GameState {
   gameUsername: string;
   alertMsg: string;
   // Game settings and scores
+  matchId: string;
   matchOption: number;
   topicText: string;
   userScore: number;
@@ -36,6 +37,7 @@ export const useGameStore = defineStore('game', {
     userEmail: '',
     gameUsername: '',
     alertMsg: '',
+    matchId: '',
     matchOption: 0,
     topicText: '',
     userScore: 0,
