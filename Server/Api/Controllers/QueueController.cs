@@ -1,26 +1,25 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using RockPaperScissors.Service.Queue;
+using RockPaperScissors.Service.Queue.Dto;
 
 namespace RockPaperScissors.Api.Controllers
 {
-    public class QueueController// : ApiControllerBase
+    public class QueueController(ILogger<QueueController> logger, IQueueServiceWrapper queueService)
+        : ApiControllerBase(logger)
     {
-        //private readonly IQueueService _queueService;
-        //public QueueController(ILogger<QueueController> logger, IQueueService queueService) : base(logger)
-        //{
-        //    _queueService = queueService;
-        //}
-        //[HttpPost("Join")]
-        //public async Task<ActionResult> JoinQueue(JoinQueueModel joinQueue)
-        //{
-        //    var result = await _queueService.JoinQueueAsync(joinQueue.ToDto());
-        //    return CreateResult(result);
-        //}
-        //[HttpPost("Leave")]
-        //public async Task<ActionResult> LeaveQueue(LeaveQueueModel leaveQueue)
-        //{
-        //    var result = await _queueService.LeaveQueueAsync(leaveQueue.ToDto());
-        //    return CreateResult(result);
-        //}
+        [HttpPost("Join")]
+        public async Task<ActionResult> JoinQueue(JoinQueueDto joinQueue)
+        {
+            var result = await queueService.JoinQueueAsync(joinQueue);
+            return Ok(result);
+        }
+        
+        [HttpPost("Leave")]
+        public async Task<ActionResult> LeaveQueue(LeaveQueueDto leaveQueue)
+        {
+            var result = await queueService.LeaveQueueAsync(leaveQueue);
+            return Ok(result);
+        }
     }
 }
