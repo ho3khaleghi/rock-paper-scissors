@@ -46,6 +46,7 @@ builder.Services.AddDbContext<RPSContext>(options => options.UseSqlServer(builde
 
 builder.Services.AddJwtToServices();
 builder.Services.AddSignalR();
+
 builder.Services.AddHostedService<MatchmakingBackgroundJob>();
 
 // Configure CORS

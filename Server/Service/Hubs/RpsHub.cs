@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Core.Kernel.Dependency;
+using Microsoft.AspNetCore.SignalR;
 
 namespace RockPaperScissors.Service.Hubs
 {
@@ -14,6 +15,18 @@ namespace RockPaperScissors.Service.Hubs
             // Sends the move to all clients in the group except the sender.
             await Clients.GroupExcept(matchId, Context.ConnectionId)
                          .SendAsync("OpponentChoice", player, playerChoice);
+        }
+    }
+
+    // TODO: This should be removed!!! The userId should be provided by a JWT token.
+    public class UsernameBasedUserIdProvider : IUserIdProvider, ISingletonDependencyInjection
+    {
+        public string GetUserId(HubConnectionContext connection)
+        {
+            // Assuming you pass username as a query parameter
+            var httpContext = connection.GetHttpContext() ?? throw new NullReferenceException();
+
+            return httpContext.Request.Query["username"]!;
         }
     }
 }

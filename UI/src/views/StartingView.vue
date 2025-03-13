@@ -6,10 +6,16 @@ import { QueueService } from '../services/queueService';
 import { JoinQueueModel } from '../models/queue/joinQueueModel';
 import { LeaveQueueModel } from '../models/queue/leaveQueueModel';
 import { SignalrService } from '../services/signalrService';
+import MessageDialog from './modals/MessageDialog.vue';
 
 const store = useGameStore();
 const router = useRouter();
 const signalrService = new SignalrService();
+const messageDialogTitle = ref("");
+const messageDialogMessage = ref("");
+const messageDialogSeverity = ref("" as "info" | "warning" | "error" | "matchFound");
+const openMessageDialog = ref(false);
+
 // Icon definitions for match options:
 const bo1Icon = `<i class="fa-solid fa-dice-one"></i>`;
 const bo3Icon = `<i class="fa-solid fa-dice-three"></i>`;
@@ -42,15 +48,22 @@ const joinQueue = (): void => {
   new QueueService().joinQueue({ username: store.gameUsername, gameOption: store.matchOption } as JoinQueueModel);
 };
 
+const onMessageDialogConfirm = (): void => {
+  openMessageDialog.value = false;
+  router.push('/pvp');
+};
+
 onMounted(async () => {
   await signalrService.startUserSpesific(store.gameUsername);
 
   signalrService.connection?.invoke('JoinMatch', "FirstMatchId");
 
   signalrService.connection?.on("MatchFound", (match: any) => {
-    debugger;
     console.log(match.opponentId, match.gameOption);
-    alert(`Match found with ${match.opponentId} for ${match.gameOption}`);
+    openMessageDialog.value = true;
+    messageDialogTitle.value = "Opponent Found";
+    messageDialogMessage.value = `Someone challenges you to a battle. \nDo you dare to accept?`;
+    messageDialogSeverity.value = "matchFound";
   });
 });
 </script>
@@ -109,6 +122,14 @@ onMounted(async () => {
       </button>
     </div>
   </div>
+  <MessageDialog
+    :title="messageDialogTitle"
+    :message="messageDialogMessage"
+    :type="messageDialogSeverity"
+    :isOpen="openMessageDialog"
+    @update:isOpen="(val: boolean) => (openMessageDialog = val)"
+    @confirm="onMessageDialogConfirm"
+  />
 </template>
 
 <style scoped>
