@@ -48,8 +48,8 @@ namespace RockPaperScissors.Repository.Queue
 
             if (Queue.Count < 2) return false; // Not enough players to form a match
 
-            bool gotFirst = TryDequeueUser(out var player1);
-            bool gotSecond = TryDequeueUser(out var player2);
+            var gotFirst = TryDequeueUser(out var player1);
+            var gotSecond = TryDequeueUser(out var player2);
 
             if (gotFirst && gotSecond)
             {
