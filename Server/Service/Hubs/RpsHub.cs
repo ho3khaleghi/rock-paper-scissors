@@ -1,9 +1,11 @@
 ﻿using Core.Kernel.Dependency;
 using Microsoft.AspNetCore.SignalR;
+using RockPaperScissors.Repository.Enums;
+using RockPaperScissors.Repository.Helpers;
 
 namespace RockPaperScissors.Service.Hubs
 {
-    public class RpsHub : Hub
+    public class RpsHub(IBattleFactory battleFactory) : Hub
     {
         public async Task JoinMatch(string matchId)
         {
@@ -12,11 +14,17 @@ namespace RockPaperScissors.Service.Hubs
 
         public async Task SendChoice(string matchId, string player, string playerChoice)
         {
+            var playerChoiceValue = Enum.Parse<PlayerChoice>(playerChoice, true);
+            var battleRepository = battleFactory.CreateBattleRepository(GameOption.BestOfThree);
+
+            if (!battleRepository.TryAddPlayerChoice(Guid.Parse(matchId), player, playerChoiceValue)) return;
+            battleRepository.TryCheckWinner(Guid.Parse(matchId), out var winnerId);
+
             // Sends the move to all clients in the group except the sender.
             await Clients.GroupExcept(matchId, Context.ConnectionId)
                          .SendAsync("OpponentChoice", player, playerChoice);
         }
-        
+
         public async Task AcceptChallenge(string matchId, string player)
         {
             await Clients.GroupExcept(matchId, Context.ConnectionId)

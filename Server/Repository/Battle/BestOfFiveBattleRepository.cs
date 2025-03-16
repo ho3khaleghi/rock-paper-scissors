@@ -9,15 +9,18 @@ namespace RockPaperScissors.Repository.Battle
         public BestOfFiveBattleRepository(ILogger<BestOfFiveBattleRepository> logger) : base(logger)
         {
             Battles = new ConcurrentDictionary<Guid, BattleDto>();
-            UsersBattles = new ConcurrentDictionary<long, ConcurrentStack<BattleDto>>();
+            PlayerBattles = new ConcurrentDictionary<string, ConcurrentStack<BattleDto>>();
         }
 
         protected override ConcurrentDictionary<Guid, BattleDto> Battles { get; }
-        protected override ConcurrentDictionary<long, ConcurrentStack<BattleDto>> UsersBattles { get; }
+        protected override ConcurrentDictionary<string, ConcurrentStack<BattleDto>> PlayerBattles { get; }
 
-        protected override void CheckWinner(BattleDto battle)
+        protected override bool CheckWinner(BattleDto battle)
         {
-            throw new NotImplementedException();
+            if (battle.PlayerOne.Score > 5) battle.WinnerId = battle.PlayerOneId;
+            else if (battle.PlayerTwo.Score > 5) battle.WinnerId = battle.PlayerTwoId;
+
+            return string.IsNullOrWhiteSpace(battle.WinnerId);
         }
     }
 }

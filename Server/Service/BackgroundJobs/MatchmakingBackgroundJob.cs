@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RockPaperScissors.Repository.Dtos;
 using RockPaperScissors.Repository.Enums;
 using RockPaperScissors.Repository.Helpers;
 using RockPaperScissors.Repository.Queue;
@@ -11,6 +12,7 @@ namespace RockPaperScissors.Service.BackgroundJobs
     public class MatchmakingBackgroundJob : BackgroundService
     {
         private readonly IQueueFactory _queueFactory;
+        private readonly IBattleFactory _battleFactory;
         private readonly ILogger<MatchmakingBackgroundJob> _logger;
         private readonly IHubContext<RpsHub> _hubContext;
         private readonly IMatchmakingQueueRepository _matchmakingQueue;
@@ -19,10 +21,12 @@ namespace RockPaperScissors.Service.BackgroundJobs
 
         public MatchmakingBackgroundJob(
             IQueueFactory queueFactory,
+            IBattleFactory battleFactory,
             ILogger<MatchmakingBackgroundJob> logger,
             IHubContext<RpsHub> hubContext)
         {
             _queueFactory = queueFactory;
+            _battleFactory = battleFactory;
             _logger = logger;
             _hubContext = hubContext;
 
@@ -57,7 +61,25 @@ namespace RockPaperScissors.Service.BackgroundJobs
 
         private async Task NotifyPlayers((string player1, string player2) match)
         {
-            var matchId = Guid.NewGuid().ToString();
+            var matchId = Guid.NewGuid();
+
+            if(_battleFactory.CreateBattleRepository(GameOption.BestOfThree)
+                .TryAddBattle(new BattleDto
+            {
+                BattleId = matchId,
+                GameOption = GameOption.BestOfThree,
+                PlayerOneId = match.player1,
+                PlayerTwoId = match.player2
+            }))
+            {
+                _logger.LogInformation($"Battle added: {matchId}");
+            }
+            else
+            {
+                _logger.LogError($"Couldn't add battle: {matchId}");
+                return;
+            }
+
             var player1Data = new
                 { MatchId = matchId, OpponentId = match.player2, GameOption = GameOption.BestOfThree };
             var player2Data = new

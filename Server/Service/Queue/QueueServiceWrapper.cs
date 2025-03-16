@@ -10,8 +10,8 @@ namespace RockPaperScissors.Service.Queue
         private readonly ILeaveQueueService _leaveQueueService;
 
         public QueueServiceWrapper(IServiceHandler serviceHandler,
-            IJoinQueueService joinQueueService,
-            ILeaveQueueService leaveQueueService) : base(serviceHandler)
+                                   IJoinQueueService joinQueueService,
+                                   ILeaveQueueService leaveQueueService) : base(serviceHandler)
         {
             _joinQueueService = joinQueueService;
             _leaveQueueService = leaveQueueService;
