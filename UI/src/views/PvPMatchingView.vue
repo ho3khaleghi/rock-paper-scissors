@@ -79,6 +79,11 @@ onMounted(async () => {
     opponentChoice.value = choice;
     calculateScore();
   });
+
+  signalrService.connection?.on("MatchWinner", (winnerId: string) => {
+    store.matchResult = winnerId === store.gameUsername ? "victory" : "defeat";
+    router.push("/end");
+  });
 });
 </script>
 

@@ -10,13 +10,16 @@ namespace RockPaperScissors.Repository.Battle
     {
         protected abstract ConcurrentDictionary<Guid, BattleDto> Battles { get; }
         protected abstract ConcurrentDictionary<string, ConcurrentStack<BattleDto>> PlayerBattles { get; }
-        
+        protected abstract ConcurrentDictionary<Guid, ConcurrentDictionary<string, PlayerChoiceDto>> PlayersLastChoice { get; }
+
         protected abstract bool CheckWinner(BattleDto battle);
 
         public bool TryAddBattle(BattleDto battle)
         {
             if (Battles.TryAdd(battle.BattleId, battle))
             {
+                PlayersLastChoice.TryAdd(battle.BattleId, []);
+
                 AddPlayerBattle(battle.PlayerOneId, battle);
                 AddPlayerBattle(battle.PlayerTwoId, battle);
 
@@ -48,6 +51,8 @@ namespace RockPaperScissors.Repository.Battle
 
             if (battle.PlayerOneId == playerId) battle.PlayerOne.PlayerChoices.Enqueue(playerChoice);
             else battle.PlayerTwo.PlayerChoices.Enqueue(playerChoice);
+
+            PlayersLastChoice.TryGetValue(battleId, out var playerChoices);
 
             return true;
         }
@@ -112,6 +117,33 @@ namespace RockPaperScissors.Repository.Battle
             }
 
             return false;
+        }
+
+        public IList<PlayerChoicesDto>? GetPlayersLastChoice(Guid battleId)
+        {
+            if (!Battles.TryGetValue(battleId, out var battle))
+            {
+                logger.LogWarning($"Battle {battleId} does not exist. Could not calculate score.");
+                return null;
+            }
+
+            if (!battle.PlayerOne.PlayerChoices.IsEmpty ||
+                !battle.PlayerTwo.PlayerChoices.IsEmpty ||
+                battle.PlayerOne.PlayerChoices.Count != battle.PlayerTwo.PlayerChoices.Count)
+            {
+                return null;
+            }
+
+            var playerOneChoices = battle.PlayerOne.PlayerChoices.ToArray();
+            var playerTwoChoices = battle.PlayerTwo.PlayerChoices.ToArray();
+
+            if (playerOneChoices.Count() != playerTwoChoices.Count()) return null;
+
+            return
+                [
+                    new(battleId, battle.PlayerOneId, playerOneChoices),
+                    new(battleId, battle.PlayerTwoId, playerTwoChoices)
+                ];
         }
     }
 }
