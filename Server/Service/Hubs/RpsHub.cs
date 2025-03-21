@@ -19,10 +19,6 @@ namespace RockPaperScissors.Service.Hubs
 
             if (!battleRepository.TryAddPlayerChoice(Guid.Parse(matchId), player, playerChoiceValue)) return;
 
-            // Sends the move to all clients in the group except the sender.
-            await Clients.GroupExcept(matchId, Context.ConnectionId)
-                         .SendAsync("OpponentChoice", player, playerChoice);
-
             if (battleRepository.TryCheckWinner(Guid.Parse(matchId), out var winnerId))
             {
                 await Clients.Group(matchId).SendAsync("MatchWinner", winnerId);

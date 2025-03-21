@@ -10,7 +10,8 @@ namespace RockPaperScissors.Repository.Battle
     {
         protected abstract ConcurrentDictionary<Guid, BattleDto> Battles { get; }
         protected abstract ConcurrentDictionary<string, ConcurrentStack<BattleDto>> PlayerBattles { get; }
-        protected abstract ConcurrentDictionary<Guid, ConcurrentDictionary<string, PlayerChoiceDto>> PlayersLastChoice { get; }
+        protected abstract ConcurrentDictionary<Guid, Dictionary<string, PlayerChoiceDto?>?> PlayersLastChoice { get; }
+        private ConcurrentQueue<BattleUpdateNotificationDto> NotificationQueue { get; } = new();
 
         protected abstract bool CheckWinner(BattleDto battle);
 
@@ -18,7 +19,7 @@ namespace RockPaperScissors.Repository.Battle
         {
             if (Battles.TryAdd(battle.BattleId, battle))
             {
-                PlayersLastChoice.TryAdd(battle.BattleId, []);
+                PlayersLastChoice.TryAdd(battle.BattleId, null);
 
                 AddPlayerBattle(battle.PlayerOneId, battle);
                 AddPlayerBattle(battle.PlayerTwoId, battle);
@@ -53,8 +54,32 @@ namespace RockPaperScissors.Repository.Battle
             else battle.PlayerTwo.PlayerChoices.Enqueue(playerChoice);
 
             PlayersLastChoice.TryGetValue(battleId, out var playerChoices);
+            if (playerChoices is null)
+            {
+                playerChoices = new()
+                {
+                    { playerId, new(playerId, playerChoice) }
+                };
+
+                PlayersLastChoice.TryUpdate(battleId, playerChoices, null);
+            }
+            else
+            {
+                playerChoices[playerId] = new(playerId, playerChoice);
+            }
+
+            if (playerChoices.Keys.Count() == 2)
+            {
+                NotificationQueue.Enqueue(new(battleId, playerChoices.Values.First()!, playerChoices.Values.Last()!));
+                PlayersLastChoice.AddOrUpdate(battleId, (a) => null, (b, c) => null);
+            }
 
             return true;
+        }
+
+        private void NotifyPlayers(Guid battleId, string winnerId)
+        {
+            
         }
 
         private void AddPlayerBattle(string playerId, BattleDto battle)
@@ -119,31 +144,9 @@ namespace RockPaperScissors.Repository.Battle
             return false;
         }
 
-        public IList<PlayerChoicesDto>? GetPlayersLastChoice(Guid battleId)
+        public IEnumerable<BattleUpdateNotificationDto?> GetPlayersLastChoice()
         {
-            if (!Battles.TryGetValue(battleId, out var battle))
-            {
-                logger.LogWarning($"Battle {battleId} does not exist. Could not calculate score.");
-                return null;
-            }
-
-            if (!battle.PlayerOne.PlayerChoices.IsEmpty ||
-                !battle.PlayerTwo.PlayerChoices.IsEmpty ||
-                battle.PlayerOne.PlayerChoices.Count != battle.PlayerTwo.PlayerChoices.Count)
-            {
-                return null;
-            }
-
-            var playerOneChoices = battle.PlayerOne.PlayerChoices.ToArray();
-            var playerTwoChoices = battle.PlayerTwo.PlayerChoices.ToArray();
-
-            if (playerOneChoices.Count() != playerTwoChoices.Count()) return null;
-
-            return
-                [
-                    new(battleId, battle.PlayerOneId, playerOneChoices),
-                    new(battleId, battle.PlayerTwoId, playerTwoChoices)
-                ];
+            yield return NotificationQueue.TryDequeue(out var notification) ? notification : null;
         }
     }
 }

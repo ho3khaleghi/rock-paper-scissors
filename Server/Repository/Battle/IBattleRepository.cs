@@ -8,5 +8,6 @@ namespace RockPaperScissors.Repository.Battle
         bool TryAddBattle(BattleDto battle);
         bool TryAddPlayerChoice(Guid battleId, string playerId, PlayerChoice playerChoice);
         bool TryCheckWinner(Guid battleId, out string? winnerId);
+        IEnumerable<BattleUpdateNotificationDto?> GetPlayersLastChoice();
     }
 }

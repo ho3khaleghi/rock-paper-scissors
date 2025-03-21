@@ -16,7 +16,7 @@ namespace RockPaperScissors.Repository.Battle
 
         protected override ConcurrentDictionary<Guid, BattleDto> Battles { get; }
         protected override ConcurrentDictionary<string, ConcurrentStack<BattleDto>> PlayerBattles { get; }
-        protected override ConcurrentDictionary<Guid, ConcurrentDictionary<string, PlayerChoiceDto>> PlayersLastChoice { get; }
+        protected override ConcurrentDictionary<Guid, Dictionary<string, PlayerChoiceDto?>?> PlayersLastChoice { get; }
 
         protected override bool CheckWinner(BattleDto battle)
         {

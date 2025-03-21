@@ -74,9 +74,14 @@ onMounted(async () => {
 
   signalrService.connection?.invoke('JoinMatch', store.matchId);
 
-  signalrService.connection?.on("OpponentChoice", (player: string, choice: Choice) => {
-    console.log(player, choice);
-    opponentChoice.value = choice;
+  signalrService.connection?.on("PlayersChoice", (data: any) => {
+    console.log(data);
+    if(data.player1 == store.gameUsername){
+      opponentChoice.value = data.player2Choice;
+    } else {
+      opponentChoice.value = data.player1Choice;
+    }
+
     calculateScore();
   });
 

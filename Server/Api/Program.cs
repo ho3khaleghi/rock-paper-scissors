@@ -48,6 +48,7 @@ builder.Services.AddJwtToServices();
 builder.Services.AddSignalR();
 
 builder.Services.AddHostedService<MatchmakingBackgroundJob>();
+builder.Services.AddHostedService<PlayerChoiceBackgroundJob>();
 
 // Configure CORS
 builder.Services.AddCors(options =>
