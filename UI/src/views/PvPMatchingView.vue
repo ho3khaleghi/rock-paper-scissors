@@ -15,6 +15,7 @@ let roundResult = ref<Result>("none");
 let playerScore = ref<number>(0);
 let opponentScore = ref<number>(0);
 let roundCount = ref<number>(1);
+let lockButtons = ref<boolean>(false);
 
 const checkWinner = (): Result => {
   if (!playerChoice.value || !opponentChoice.value) return "none";
@@ -57,11 +58,21 @@ const calculateScore = (): void => {
 
   setTimeout(() => {
     playerChoice.value = null;
-    opponentChoice.value = null;    
+    opponentChoice.value = null;
+    roundResult.value = "none";
+    lockButtons.value = false;
   }, 2000);
 };
 
 const makeChoice = (choice: Choice): void => {
+  
+  if(lockButtons.value) {
+    alert("Please wait for the opponent to make a choice.");
+    return;
+  }
+  
+  lockButtons.value = true;
+
   playerChoice.value = choice;
   calculateScore();
   
@@ -74,10 +85,20 @@ onMounted(async () => {
 
   signalrService.connection?.invoke('JoinMatch', store.matchId);
 
-  signalrService.connection?.on("OpponentChoice", (player: string, choice: Choice) => {
-    console.log(player, choice);
-    opponentChoice.value = choice;
+  signalrService.connection?.on("PlayersChoice", (data: any) => {
+    console.log(data);
+    if(data.player1 == store.gameUsername){
+      opponentChoice.value = data.player2Choice;
+    } else {
+      opponentChoice.value = data.player1Choice;
+    }
+
     calculateScore();
+  });
+
+  signalrService.connection?.on("MatchWinner", (winnerId: string) => {
+    store.matchResult = winnerId === store.gameUsername ? "victory" : "defeat";
+    router.push("/end");
   });
 });
 </script>
@@ -111,13 +132,13 @@ onMounted(async () => {
       <div class="hr"></div>
     </div>
     <div class="btn-container" id="btn-container">
-      <button class="choice-btn" @click="makeChoice('rock')">
+      <button :disabled="lockButtons" class="choice-btn" @click="makeChoice('rock')">
         <i class="fa-solid fa-hand-back-fist fa-2xl"></i>
       </button>
-      <button class="choice-btn" @click="makeChoice('paper')">
+      <button :disabled="lockButtons" class="choice-btn" @click="makeChoice('paper')">
         <i class="fa-solid fa-hand fa-2xl"></i>
       </button>
-      <button class="choice-btn" @click="makeChoice('scissors')">
+      <button :disabled="lockButtons" class="choice-btn" @click="makeChoice('scissors')">
         <i class="fa-solid fa-hand-scissors fa-rotate-90 fa-2xl"></i>
       </button>
     </div>
