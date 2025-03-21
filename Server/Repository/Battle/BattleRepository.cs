@@ -1,19 +1,17 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Collections.Concurrent;
+using Microsoft.Extensions.Logging;
 using RockPaperScissors.Repository.Dtos;
 using RockPaperScissors.Repository.Enums;
 using RockPaperScissors.Repository.Extensions;
-using System.Collections.Concurrent;
 
 namespace RockPaperScissors.Repository.Battle
 {
-    public abstract class BattleAbstraction(ILogger<BattleAbstraction> logger) : IBattleRepository
+    public class BattleRepository(ILogger<BattleRepository> logger) : IBattleRepository
     {
-        protected abstract ConcurrentDictionary<Guid, BattleDto> Battles { get; }
-        protected abstract ConcurrentDictionary<string, ConcurrentStack<BattleDto>> PlayerBattles { get; }
-        protected abstract ConcurrentDictionary<Guid, Dictionary<string, PlayerChoiceDto?>?> PlayersLastChoice { get; }
+        private ConcurrentDictionary<Guid, BattleDto> Battles { get; } = new();
+        private ConcurrentDictionary<string, ConcurrentStack<BattleDto>> PlayerBattles { get; } = new();
+        private ConcurrentDictionary<Guid, Dictionary<string, PlayerChoiceDto?>?> PlayersLastChoice { get; } = new();
         private ConcurrentQueue<BattleUpdateNotificationDto> NotificationQueue { get; } = new();
-
-        protected abstract bool CheckWinner(BattleDto battle);
 
         public bool TryAddBattle(BattleDto battle)
         {
@@ -77,31 +75,6 @@ namespace RockPaperScissors.Repository.Battle
             return true;
         }
 
-        private void NotifyPlayers(Guid battleId, string winnerId)
-        {
-            
-        }
-
-        private void AddPlayerBattle(string playerId, BattleDto battle)
-        {
-            PlayerBattles.AddOrUpdate(playerId,
-                         (id) =>
-                         {
-                             var battles = new ConcurrentStack<BattleDto>();
-
-                             battles.Push(battle);
-
-                             return battles;
-                         },
-                         (key, value) =>
-                         {
-                             // Although concurrency is not guaranteed here, a user cannot join many battles at the same time.
-                             // Therefore, concurrency can be ignored.
-                             value.Push(battle);
-                             return value;
-                         });
-        }
-
         public bool TryCheckWinner(Guid battleId, out string? winnerId)
         {
             winnerId = null;
@@ -147,6 +120,34 @@ namespace RockPaperScissors.Repository.Battle
         public IEnumerable<BattleUpdateNotificationDto?> GetPlayersLastChoice()
         {
             yield return NotificationQueue.TryDequeue(out var notification) ? notification : null;
+        }
+
+        private void AddPlayerBattle(string playerId, BattleDto battle)
+        {
+            PlayerBattles.AddOrUpdate(playerId,
+                         (id) =>
+                         {
+                             var battles = new ConcurrentStack<BattleDto>();
+
+                             battles.Push(battle);
+
+                             return battles;
+                         },
+                         (key, value) =>
+                         {
+                             // Although concurrency is not guaranteed here, a user cannot join many battles at the same time.
+                             // Therefore, concurrency can be ignored.
+                             value.Push(battle);
+                             return value;
+                         });
+        }
+
+        private static bool CheckWinner(BattleDto battle)
+        {
+            if (battle.PlayerOne.Score > (int)battle.GameOption) battle.WinnerId = battle.PlayerOneId;
+            else if (battle.PlayerTwo.Score > (int)battle.GameOption) battle.WinnerId = battle.PlayerTwoId;
+
+            return string.IsNullOrWhiteSpace(battle.WinnerId);
         }
     }
 }

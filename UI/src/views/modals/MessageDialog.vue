@@ -50,7 +50,7 @@ const closeDialog = () => {
 </script>
 
 <template>
-  <QDialog v-model="isDialogOpen">
+  <QDialog v-model="isDialogOpen" persistent>
     <QCard style="min-width: 300px">
       <div
         class="row items-center q-pl-sm q-pb-sm q-pt-md bg-primary text-white"

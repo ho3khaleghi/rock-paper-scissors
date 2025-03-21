@@ -1,14 +1,12 @@
-﻿using RockPaperScissors.Repository.Helpers;
+﻿using RockPaperScissors.Repository.Battle;
 using RockPaperScissors.Service.Battle.Dto;
 
 namespace RockPaperScissors.Service.Battle
 {
-    public class AddPlayerChoiceService(IBattleFactory battleFactory) : IAddPlayerChoiceService
+    public class AddPlayerChoiceService(IBattleRepository battleRepository) : IAddPlayerChoiceService
     {
         public Task<AddPlayerChoiceDto> HandleAsync(AddPlayerChoiceDto request)
         {
-            var battleRepository = battleFactory.CreateBattleRepository(request.GameOption);
-
             if(battleRepository.TryAddPlayerChoice(request.BattleId, request.PlayerId, request.PlayerChoice))
             {
                 return Task.FromResult(request);

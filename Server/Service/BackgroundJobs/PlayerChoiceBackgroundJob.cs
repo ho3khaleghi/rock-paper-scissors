@@ -18,14 +18,13 @@ namespace RockPaperScissors.Service.BackgroundJobs
         private readonly TimeSpan _interval = TimeSpan.FromSeconds(1);
 
         public PlayerChoiceBackgroundJob(
-            IBattleFactory battleFactory,
+            IBattleRepository battleRepository,
             ILogger<PlayerChoiceBackgroundJob> logger,
             IHubContext<RpsHub> hubContext)
         {
             _logger = logger;
             _hubContext = hubContext;
-
-            _battleRepository = battleFactory.CreateBattleRepository(GameOption.BestOfThree);
+            _battleRepository = battleRepository;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

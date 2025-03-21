@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RockPaperScissors.Repository.Battle;
 using RockPaperScissors.Repository.Dtos;
 using RockPaperScissors.Repository.Enums;
 using RockPaperScissors.Repository.Helpers;
@@ -12,7 +13,7 @@ namespace RockPaperScissors.Service.BackgroundJobs
     public class MatchmakingBackgroundJob : BackgroundService
     {
         private readonly IQueueFactory _queueFactory;
-        private readonly IBattleFactory _battleFactory;
+        private readonly IBattleRepository _battleRepository;
         private readonly ILogger<MatchmakingBackgroundJob> _logger;
         private readonly IHubContext<RpsHub> _hubContext;
         private readonly IMatchmakingQueueRepository _matchmakingQueue;
@@ -21,12 +22,12 @@ namespace RockPaperScissors.Service.BackgroundJobs
 
         public MatchmakingBackgroundJob(
             IQueueFactory queueFactory,
-            IBattleFactory battleFactory,
+            IBattleRepository battleRepository,
             ILogger<MatchmakingBackgroundJob> logger,
             IHubContext<RpsHub> hubContext)
         {
             _queueFactory = queueFactory;
-            _battleFactory = battleFactory;
+            _battleRepository = battleRepository;
             _logger = logger;
             _hubContext = hubContext;
 
@@ -63,8 +64,7 @@ namespace RockPaperScissors.Service.BackgroundJobs
         {
             var matchId = Guid.NewGuid();
 
-            if(_battleFactory.CreateBattleRepository(GameOption.BestOfThree)
-                .TryAddBattle(new BattleDto
+            if(_battleRepository.TryAddBattle(new BattleDto
             {
                 BattleId = matchId,
                 GameOption = GameOption.BestOfThree,
