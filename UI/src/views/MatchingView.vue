@@ -71,6 +71,7 @@ const checkRoundLimit = (): void => {
   else if (store.matchOption === 5) winCondition = 3;
 
   if (store.userScore === winCondition || store.computerScore === winCondition) {
+    store.matchResult = (store.userScore > store.computerScore) ? "victory" : "defeat";
     setTimeout(() => {
       router.push('/end');
     }, 1500);
