@@ -13,6 +13,7 @@ namespace RockPaperScissors.Service.User
         Task<UserDto?> UpdateAsync(UserDto? userDto);
         Task<UserDto> DeleteAsync(int id);
         Task<IServiceResponse<UserDto>> LoginAsync(string? userName, byte[]? password);
+        Task<IServiceResponse<UserDto>> ValidateRefreshTokenAsync(string refreshToken);
         Task<UserDto> LogoutAsync(UserDto userDto);
         Task<bool> CheckUserNameAsync(string userName);
     }

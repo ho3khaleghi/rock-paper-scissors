@@ -31,6 +31,13 @@ body {
     display: block;
 }
 
+.content-center {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
 .login-title {
     color: rgb(83 241 255);
     text-align: center;
@@ -41,25 +48,13 @@ body {
     margin: 20px 40px 0px 40px !important;
 }
 
-.login-btn {
-    margin-top: 10px;
-    margin-bottom: 80px;
-    left: 115px !important;
-}
-
 .signup-btn {
     align-self: center;
-    left: 100px !important;
     font-size: 1.5em !important;
 }
 
 .login-p {
     padding: 10px 40px 0px;
-    color: #ffba00;
-}
-
-.signup-p {
-    padding: 0 40px 30px;
     color: #ffba00;
 }
 
@@ -241,8 +236,6 @@ ol li {
 }
 
 .glowing-btn {
-    
-    left: 85px;
     color: var(--glow-color);
     cursor: pointer;
     padding: 0.35em 1em;
@@ -1041,7 +1034,6 @@ ol li {
     /* Start button */
     .glowing-btn {
         font-size: 22px;
-        left: 56px;
     }
 
 

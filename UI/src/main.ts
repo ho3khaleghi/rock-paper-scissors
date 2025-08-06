@@ -5,8 +5,6 @@ import { createPinia } from 'pinia';
 import { Quasar } from 'quasar';
 
 import '../assets/css/style.css';
-// Import icon libraries
-import "@quasar/extras/material-icons/material-icons.css";
 // Import Quasar css
 import 'quasar/dist/quasar.css';
 

@@ -10,10 +10,12 @@ namespace RockPaperScissors.Api.Controllers
     public class UserController : ApiControllerBase
     {
         private readonly IUserServiceWrapper _userService;
+        private readonly IConfiguration _configuration;
 
-        public UserController(ILogger<AdminController> logger, IUserServiceWrapper userService) : base(logger)
+        public UserController(ILogger<AdminController> logger, IUserServiceWrapper userService, IConfiguration configuration) : base(logger)
         {
             _userService = userService;
+            _configuration = configuration;
         }
 
         [HttpPost("Signup")]
@@ -29,7 +31,44 @@ namespace RockPaperScissors.Api.Controllers
         {
             var result = await _userService.LoginAsync(login.UserName, login.Password.Decode());
 
-            if (result.Data is null) return Unauthorized("Invalid username or password.");
+            if (result.Data is null || result.Data.AccessToken is null) return Unauthorized("Invalid username or password.");
+
+            if (result.Data.RefreshToken is not null)
+            {
+                HttpContext.Response.Cookies.Append("refresh_token",
+                result.Data.RefreshToken!,
+                new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.UtcNow.AddDays(int.Parse(_configuration["JwtSettings:RefreshTokenExpirationDays"]!))
+                });
+            }
+
+            return Ok(result.Data.ToLoginResponseModel());
+        }
+
+        [HttpPost("Refresh")]
+        public async Task<ActionResult> Refresh()
+        {
+            var refreshToken = HttpContext.Request.Cookies["refresh_token"];
+            if (refreshToken is null) return Unauthorized("Refresh token is required.");
+
+            var result = await _userService.ValidateRefreshTokenAsync(refreshToken);
+            if (result.Data is null || result.Data.AccessToken is null) return Unauthorized("Invalid refresh token.");
+            if (result.Data.RefreshToken is not null)
+            {
+                HttpContext.Response.Cookies.Append("refresh_token",
+                result.Data.RefreshToken!,
+                new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.UtcNow.AddDays(int.Parse(_configuration["JwtSettings:RefreshTokenExpirationDays"]!))
+                });
+            }
 
             return Ok(result.Data.ToLoginResponseModel());
         }

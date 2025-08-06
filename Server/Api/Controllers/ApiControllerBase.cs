@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JWTService.Model;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RockPaperScissors.Api.Controllers
 {

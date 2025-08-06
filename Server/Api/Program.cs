@@ -16,8 +16,6 @@ if (Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true")
     var certPath = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Path");
     var certPassword = Environment.GetEnvironmentVariable("ASPNETCORE_Kestrel__Certificates__Default__Password");
 
-    Console.WriteLine($"Using certificate at {certPath} with password: {certPassword}");
-
     builder.WebHost.ConfigureKestrel(options =>
     {
         options.ListenAnyIP(8080); // HTTP inside Docker
@@ -65,7 +63,8 @@ builder.Services.AddCors(options =>
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterKernelDependencies()
                                                                                       .RegisterJWTServiceDependencies()
-                                                                                      .RegisterRPSDependencies());
+                                                                                      .RegisterRPSDependencies()
+                                                                                      );
 
 var app = builder.Build();
 

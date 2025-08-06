@@ -58,9 +58,11 @@ const handleSignup = async (): Promise<void> => {
       <input v-model="confirmPassword" class="password user-pass" type="password" placeholder="Re-enter your password..." maxlength="20" required />
     </div>
     <div class="gap-filler"></div>
-    <button class="glowing-btn glowing-btn-signup signup-btn" @click="handleSignup">
-      <span class="glowing-txt-signup">SI<span class="faulty-letter-signup">G</span>NUP</span>
-    </button>
+    <div class="content-center">
+      <button class="glowing-btn glowing-btn-signup signup-btn" @click="handleSignup">
+        <span class="glowing-txt-signup">SI<span class="faulty-letter-signup">G</span>NUP</span>
+      </button>
+    </div>
     <div class="starting-view">
       <p v-if="validationMessage" class="alert-msg" style="color: red;">{{ validationMessage }}</p>
     </div>

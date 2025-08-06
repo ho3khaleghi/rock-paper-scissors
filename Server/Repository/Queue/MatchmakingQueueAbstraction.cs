@@ -6,7 +6,6 @@ namespace RockPaperScissors.Repository.Queue
     {
         protected abstract ConcurrentQueue<string> Queue { get; }
         protected abstract ConcurrentDictionary<string, DateTime> QueuedUsers { get; }
-        protected abstract string Instance { get; }
 
         public bool EnqueueUser(string username)
         {

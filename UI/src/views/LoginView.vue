@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue';
 import { useGameStore } from '../store/gameStore';
 import { useRouter } from 'vue-router';
 import { hashPassword } from '../utils/hashHelper';
@@ -48,14 +47,30 @@ const goToSignup = (): void => {
       <input v-model="store.loginPassword" class="password user-pass" type="password" placeholder="Enter your password..." maxlength="20" required />
     </div>
     <div class="gap-filler"></div>
-    <button class="glowing-btn glowing-p login-btn" @click="handleLogin">
-      <span class="glowing-txt-p">LO<span class="faulty-letter-p">G</span>IN</span>
-    </button>
+    <div class="content-center">
+      <button class="glowing-btn glowing-p login-btn" @click="handleLogin">
+        <span class="glowing-txt-p">LO<span class="faulty-letter-p">G</span>IN</span>
+      </button>
+    </div>
     <p class="signup-p">
       Click on the sign up button if you don't have any account.
     </p>
-    <button class="glowing-btn glowing-btn-signup signup-btn" @click="goToSignup">
-      <span class="glowing-txt-signup">SI<span class="faulty-letter-signup">G</span>NUP</span>
-    </button>
+    <div class="content-center">
+      <button class="glowing-btn glowing-btn-signup signup-btn" @click="goToSignup">
+        <span class="glowing-txt-signup">SI<span class="faulty-letter-signup">G</span>NUP</span>
+      </button>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.login-btn {
+    margin-top: 10px;
+    margin-bottom: 80px;
+}
+
+.signup-p {
+    padding: 0 40px 0px;
+    color: #ffba00;
+}
+</style>

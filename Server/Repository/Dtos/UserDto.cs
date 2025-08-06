@@ -13,6 +13,7 @@ namespace RockPaperScissors.Repository.Dtos
         public DateTime? LastLoginDateTime { get; set; }
         public DateTime? CreationDateTime { get; set; }
         public string? AccessToken { get; set; }
+        public string? RefreshToken { get; set; }
     }
 
     public static class UserMapper

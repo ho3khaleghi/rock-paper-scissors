@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Zen Dots', sans-serif;
+    font-family: 'Zen Dots', sans-serif !important;
     background: #242424 url("../images/background-image.webp") no-repeat center/cover;
 }
 
@@ -24,12 +24,19 @@ body {
 
 /* Login and Signup page */
 #login {
-    display: flex;
+    display: block;
 }
 
 #signup { 
-    display: flex;
+    display: block;
 }
+
+.content-center {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
 
 .login-title {
     color: rgb(83 241 255);
@@ -38,18 +45,11 @@ body {
 }
 
 .user-pass {
-    margin: 20px 40px !important;
-}
-
-.login-btn {
-    margin-top: 10px;
-    margin-bottom: 80px;
-    left: 115px !important;
+    margin: 20px 40px 0px 40px !important;
 }
 
 .signup-btn {
     align-self: center;
-    left: 100px !important;
     font-size: 1.5em !important;
 }
 
@@ -58,13 +58,8 @@ body {
     color: #ffba00;
 }
 
-.signup-p {
-    padding: 0 40px 30px;
-    color: #ffba00;
-}
-
 .signup-view-p {
-    padding: 15px 40px 30px;
+    padding: 15px 40px 0px;
     color: #ffba00;
 }
 
@@ -87,7 +82,6 @@ body {
 .password {
     width: 100%;
     padding: 20px;
-    margin: 35px 40px;
     border-radius: 30px;
     border: none;
     outline: none;
@@ -238,11 +232,10 @@ ol li {
     --glow-color: rgb(249, 154, 52);
     --glow-color-p: rgb(97, 255, 83);
     --glow-color-p-signup: rgb(83 241 255);
+    --glow-color-defeat: rgb(253, 80, 80);
 }
 
 .glowing-btn {
-    position: relative;
-    left: 85px;
     color: var(--glow-color);
     cursor: pointer;
     padding: 0.35em 1em;
@@ -1041,7 +1034,6 @@ ol li {
     /* Start button */
     .glowing-btn {
         font-size: 22px;
-        left: 56px;
     }
 
 
