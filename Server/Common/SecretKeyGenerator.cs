@@ -2,7 +2,7 @@
 
 namespace Common
 {
-    public class SecretKeyGenerator
+    public static class SecretKeyGenerator
     {
         public static string Generate()
         {
