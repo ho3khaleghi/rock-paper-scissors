@@ -10,6 +10,8 @@ cloudinary_python.txt
 .env
 *.pfx
 UI/.idea
+.idea/
 .patches
 *.patch
 .patches/
+.vs/

@@ -7,19 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{AE89C1DF-5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kernel", "Kernel", "{E2E48283-7CF5-421D-9D99-31DA6AE3A423}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Service", "Service\RockPaperScissors.Service.csproj", "{74E536BF-5B7E-4818-8614-7C6CE074A5DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Service", "Server\Service\RockPaperScissors.Service.csproj", "{74E536BF-5B7E-4818-8614-7C6CE074A5DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Model", "Model\RockPaperScissors.Model.csproj", "{D72CCB30-422F-4571-A05F-5D29FC712681}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Model", "Server\Model\RockPaperScissors.Model.csproj", "{D72CCB30-422F-4571-A05F-5D29FC712681}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Api", "Api\RockPaperScissors.Api.csproj", "{B1257B3D-E8CC-420A-9B7A-2356C48CBF58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Api", "Server\Api\RockPaperScissors.Api.csproj", "{B1257B3D-E8CC-420A-9B7A-2356C48CBF58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Repository", "Repository\RockPaperScissors.Repository.csproj", "{1291E0FA-2FEF-4E38-B62D-110E2E185B82}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RockPaperScissors.Repository", "Server\Repository\RockPaperScissors.Repository.csproj", "{1291E0FA-2FEF-4E38-B62D-110E2E185B82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel", "..\Dependencies\ApplicationInfrastructure\Core\Kernel\Kernel.csproj", "{66F5DED3-A24A-48E7-86D4-D4A4B6F06C10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel", "Dependencies\ApplicationInfrastructure\Core\Kernel\Kernel.csproj", "{66F5DED3-A24A-48E7-86D4-D4A4B6F06C10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{334CBD4C-48B9-47C2-8B6E-3F68596A5752}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Server\Common\Common.csproj", "{334CBD4C-48B9-47C2-8B6E-3F68596A5752}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTService", "JWTService\JWTService.csproj", "{FAD9508E-7CD6-4109-A5CF-2AD3C056F43B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTService", "Server\JWTService\JWTService.csproj", "{FAD9508E-7CD6-4109-A5CF-2AD3C056F43B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
