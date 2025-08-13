@@ -1,10 +1,14 @@
 // src/stores/auth.ts
 import { defineStore } from 'pinia'
+import { useRouter } from 'vue-router';
 import api from '../services/api'
+
+const router = useRouter();
 
 interface User {
   id: number
   username: string
+  avatarUrl: string
 }
 
 interface AuthState {
@@ -48,10 +52,19 @@ export const useAuthStore = defineStore('auth', {
         this.logout();
       }
     },
-    logout(): void {
+    async logout(): Promise<void> {
       this.accessToken = null;
       this.user = null;
       this.isAuthenticated = false;
+
+      try {
+        // The refresh token is sent automatically via the HttpOnly cookie.
+        //const response = await api.post('/auth/logout');
+      } catch (error) {
+        console.error('Logout failed:', error);
+      }
+
+      router.push('/');
     }
   }
 })

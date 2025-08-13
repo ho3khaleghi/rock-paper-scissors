@@ -32,11 +32,6 @@ const goToSignup = (): void => {
 
 <template>
   <div class="login" id="login" style="display: block;">
-    <p class="login-title">
-      <i class="fa-solid fa-dice-five dice"></i>
-      Rock Paper Scissors
-      <i class="fa-solid fa-dice-five dice"></i>
-    </p>
     <p class="login-p">
       Fill your username and password to be able to play the game
     </p>

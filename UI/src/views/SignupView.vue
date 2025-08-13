@@ -37,11 +37,6 @@ const handleSignup = async (): Promise<void> => {
 
 <template>
   <div class="signup" id="signup">
-    <p class="login-title">
-      <i class="fa-solid fa-dice-five dice"></i>
-      Rock Paper Scissors
-      <i class="fa-solid fa-dice-five dice"></i>
-    </p>
     <p class="signup-view-p">
       Please enter your username (max 10 characters) and password (max 20 characters)
     </p>

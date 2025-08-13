@@ -7,11 +7,11 @@ import PvPMatchingView from '../views/PvPMatchingView.vue';
 import EndView from '../views/EndView.vue';
 
 const routes: Array<RouteRecordRaw> = [
-  { path: '/', name: 'Login', component: LoginView },
-  { path: '/signup', name: 'Signup', component: SignupView },
-  { path: '/starting', name: 'Starting', component: StartingView },
-  { path: '/matching', name: 'Matching', component: MatchingView },
-  { path: '/pvp', name: 'PvPMatching', component: PvPMatchingView },
+  { path: '/', name: 'Login', component: LoginView, meta: { hideProfileMenu: true } },
+  { path: '/signup', name: 'Signup', component: SignupView, meta: { hideProfileMenu: true } },
+  { path: '/starting', name: 'Starting', component: StartingView, meta: { hideProfileMenu: false } },
+  { path: '/matching', name: 'Matching', component: MatchingView, meta: { hideProfileMenu: false } },
+  { path: '/pvp', name: 'PvPMatching', component: PvPMatchingView, meta: { hideProfileMenu: false } },
   { path: '/end', name: 'End', component: EndView },
 ];
 

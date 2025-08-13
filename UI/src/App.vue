@@ -1,9 +1,14 @@
+<script setup lang="ts">
+import AppHeader from './components/AppHeader.vue'
+</script>
+
 <template>
-  <router-view />
+  <AppHeader />
+  <router-view/>
 </template>
-  
+
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {defineComponent} from 'vue';
 
 export default defineComponent({
   name: 'App',

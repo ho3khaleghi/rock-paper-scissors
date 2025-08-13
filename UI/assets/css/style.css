@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-    height: 650px;
+    height: 850px;
     width: 480px;
     background: linear-gradient(#0c2264, #081743, #081743);
     border-radius: 20px;
@@ -37,12 +37,6 @@ body {
     justify-content: center;
     align-items: center;
   }
-
-.login-title {
-    color: rgb(83 241 255);
-    text-align: center;
-    padding: 10px 0;
-}
 
 .user-pass {
     margin: 20px 40px 0px 40px !important;
