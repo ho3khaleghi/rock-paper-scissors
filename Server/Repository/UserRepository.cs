@@ -34,6 +34,19 @@ namespace RockPaperScissors.Repository
             return entity.ToDto()!;
         }
 
+        public async Task<UserDto> ChangePasswordAsync(UserDto user)
+        {
+            var entity = await repository.GetAsync<User>(user.Id);
+
+            entity.Password = user.Password;
+            entity.Salt = user.Salt;
+            entity.LastLoginDateTime = null;
+
+            await repository.UpdateAsync(entity);
+
+            return entity.ToDto()!;
+        }
+        
         public async Task<bool> CheckUserNameAsync(string username) => await repository.ToQueryable<User>().AnyAsync(u => u.UserName == username);
     }
 }

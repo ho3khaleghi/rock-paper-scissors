@@ -86,11 +86,6 @@ onMounted(async () => {
   
 <template>
   <div class="starting" id="starting">
-    <div class="starting-view username-banner-container">
-      <div class="username-banner">
-        <div class="">{{ store.gameUsername }}</div>
-      </div>
-    </div>
     <div class="btn-container">
       <button id="bo1" :class="{ 'bo1-clicked': store.matchOption === 1 }" @click="setMatchOption(1)">
         <i class="fa-solid fa-dice-one"></i>
@@ -149,38 +144,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.username-banner-container {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.username-banner {
-  color: rgb(249, 154, 52);
-  font-size: x-large;
-  border-top-width: 1px;
-  border-bottom-width: 1px;
-  border-left-width: 0px;
-  border-right-width: 0px;
-  border-style: double;
-  border-color: rgb(249, 154, 52);
-  width: 98%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn-container-start {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
 .join-queue {
   color: rgb(97, 255, 83);
 }

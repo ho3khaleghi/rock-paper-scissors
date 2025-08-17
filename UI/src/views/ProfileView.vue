@@ -3,9 +3,15 @@ import {useAuthStore} from '../store/auth'
 import {onMounted} from 'vue';
 import {useGameStore} from '../store/gameStore';
 import api from '../services/api';
+import {useRouter} from 'vue-router';
 
 const auth = useAuthStore();
 const store = useGameStore();
+const router = useRouter();
+
+const showChangePassword = () => {
+  router.push('/change-password');
+}
 
 onMounted(() => {
   api.get('/user/getUserProfile/?id=' + auth.state.user?.id, {
@@ -33,13 +39,20 @@ onMounted(() => {
     </div>
     <div class="gap-filler"></div>
     <div class="content-center">
-      <button class="glowing-btn glowing-btn-signup signup-btn">
+      <a class="link-button" @click="showChangePassword">
         <span class="glowing-txt-signup">Change Password</span>
-      </button>
+      </a>
     </div>
   </div>
 </template>
 
 <style scoped>
+
+.link-button {
+  color: var(--glow-color);
+  text-decoration: none;
+  font-size: 18px;
+  cursor: pointer;
+}
 
 </style>

@@ -9,6 +9,7 @@ namespace RockPaperScissors.Repository
         Task<UserDto?> GetAsync(string userName);
         Task<UserDto?> CreateAsync(UserDto user);
         Task<UserDto> UpdateAsync(UserDto user);
+        Task<UserDto> ChangePasswordAsync(UserDto user);
         Task<bool> CheckUserNameAsync(string username);
     }
 }

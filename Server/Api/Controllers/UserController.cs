@@ -1,4 +1,5 @@
 ﻿using Core.Kernel.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RockPaperScissors.Api.Models;
 using RockPaperScissors.Repository.Dtos;
@@ -82,14 +83,15 @@ namespace RockPaperScissors.Api.Controllers
             return Ok(result.Data.ToLoginResponseModel());
         }
 
-        [HttpPost("Update")]
-        public async Task<ActionResult> Update(UserModel user)
+        [HttpPost("ChangePassword")]
+        public async Task<ActionResult> ChangePassword(ChangePasswordModel request)
         {
-            await _userService.LoginAsync(user.UserName, user.Password.Decode());
+            var result = await _userService.ChangePasswordAsync(request.ToDto());
 
-            return Ok(user);
+            return Ok(result);
         }
 
+        [Authorize]
         [HttpGet("GetUserProfile")]
         public async Task<ActionResult> GetUserProfile(long id)
         {
