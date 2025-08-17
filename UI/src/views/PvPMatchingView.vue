@@ -104,7 +104,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="container" id="pvpmatching">
+  <div id="pvpmatching">
     <div id="topic">
       <span id="topic-text" v-html="store.topicText"></span>
     </div>

@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { useAuthStore } from '../store/auth'
 import { useGameStore } from '../store/gameStore';
 import { useRouter } from 'vue-router';
 import { hashPassword } from '../utils/hashHelper';
 import api from '../services/api';
 
+const auth = useAuthStore();
 const store = useGameStore();
 const router = useRouter();
 
@@ -13,10 +15,11 @@ const handleLogin = async (): Promise<void> => {
     const hashedPassword = await hashPassword(store.loginPassword);
 
     try {
-      const response = await api.post('/user/login', {
-        username: store.loginUsername,
-        password: hashedPassword,
-      });
+      await auth.login(store.loginUsername, hashedPassword);
+      // const response = await api.post('/user/login', {
+      //   username: store.loginUsername,
+      //   password: hashedPassword,
+      // });
 
       router.push('/starting');
     } catch (error) {

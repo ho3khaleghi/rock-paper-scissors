@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {onMounted, onBeforeUnmount, ref, computed} from 'vue'
+import { useRouter } from 'vue-router';
 
 type Props = {
   avatarUrl?: string | null
@@ -14,6 +15,7 @@ const emit = defineEmits<{
   (e: 'signout'): void
 }>()
 
+const router = useRouter();
 const open = ref(false)
 const btnRef = ref<HTMLButtonElement | null>(null)
 const menuRef = ref<HTMLDivElement | null>(null)
@@ -42,9 +44,14 @@ function onGlobalClick(e: MouseEvent) {
     open.value = false
   }
 }
-
+  
 function signOut() {
   emit('signout')
+  open.value = false
+}
+
+function showProfile() {
+  router.push('/profile');
   open.value = false
 }
 
@@ -92,7 +99,7 @@ const DEFAULT_AVATAR =
           role="menu"
           aria-label="Profile menu"
       >
-        <a class="dropdown-item" :href="profileHref" role="menuitem">Profile</a>
+        <a class="dropdown-item" @click="showProfile" role="menuitem">Profile</a>
         <button class="dropdown-item danger" type="button" role="menuitem" @click="signOut">
           Sign out
         </button>

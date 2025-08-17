@@ -80,7 +80,7 @@ const checkRoundLimit = (): void => {
 </script>
 
 <template>
-  <div class="container" id="matching">
+  <div id="matching">
     <div id="topic">
       <span id="topic-text" v-html="store.topicText"></span>
     </div>

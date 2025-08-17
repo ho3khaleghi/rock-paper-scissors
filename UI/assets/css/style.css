@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-    height: 850px;
+    height: 770px;
     width: 480px;
     background: linear-gradient(#0c2264, #081743, #081743);
     border-radius: 20px;
@@ -721,6 +721,7 @@ ol li {
     background: linear-gradient(90deg, #081743, #012385, #247488, #012385, #081743);
     height: 48px;
     align-items: center;
+    border-radius: 20px;
 }
 
 .game-result {
@@ -1037,9 +1038,9 @@ ol li {
         margin: 0;
     }
 
-    .result-container {
-        margin-top: 85px;
-    }
+    /*.result-container {*/
+    /*    margin-top: 85px;*/
+    /*}*/
 
     .game-result {
         font-size: 9px;

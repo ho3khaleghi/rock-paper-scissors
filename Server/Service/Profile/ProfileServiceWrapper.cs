@@ -6,10 +6,14 @@ namespace RockPaperScissors.Service.Profile
     public class ProfileServiceWrapper : ServiceWrapper, IProfileServiceWrapper
     {
         private readonly IUpdateProfile _updateProfile;
+        private readonly IGetUserProfileService _getUserProfileService;
 
-        public ProfileServiceWrapper(IServiceHandler serviceHandler, IUpdateProfile updateProfile) : base(serviceHandler)
+        public ProfileServiceWrapper(IServiceHandler serviceHandler,
+            IUpdateProfile updateProfile,
+            IGetUserProfileService getUserProfileService) : base(serviceHandler)
         {
             _updateProfile = updateProfile;
+            _getUserProfileService = getUserProfileService;
         }
 
         public async Task<ServiceResponse<ProfileDto?>> UpdateAsync(ProfileDto profileDto)
@@ -23,5 +27,9 @@ namespace RockPaperScissors.Service.Profile
                 StatusCode = result.StatusCode
             };
         }
+
+        public async Task<IServiceResponse<ProfileDto?>> GetUserProfileAsync(ProfileDto profileDto) =>
+            await ServiceHandler.HandleAsync(async () => await _getUserProfileService.HandleAsync(profileDto));
+
     }
 }

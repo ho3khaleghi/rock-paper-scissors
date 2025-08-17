@@ -1,15 +1,22 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useAuthStore } from '../store/auth'
+import {computed, onMounted} from 'vue'
+import {useRoute} from 'vue-router'
+import {useAuthStore} from '../store/auth'
 import ProfileMenu from './ProfileMenu.vue'
+import router from "../router";
 
 const route = useRoute()
 const auth = useAuthStore()
 
 const showProfileMenu = computed(() =>
-    !route.meta?.hideProfileMenu// && !!auth.isAuthenticated
+    !route.meta?.hideProfileMenu && !!auth.state.isAuthenticated
 )
+
+onMounted(() => {
+  if (!auth.state.isAuthenticated || !auth.state.user) {
+    auth.logout();
+  }
+})
 </script>
 
 <template>
@@ -25,11 +32,12 @@ const showProfileMenu = computed(() =>
     <div class="right">
       <ProfileMenu
           v-if="showProfileMenu"
-          :avatarUrl="auth.user?.avatarUrl || null"
+          :avatarUrl="auth.state.user?.avatarUrl || null"
           @signout="auth.logout"
       />
     </div>
   </header>
+  <div class="hr hr-header"></div>
 </template>
 
 <style scoped>
@@ -40,7 +48,7 @@ const showProfileMenu = computed(() =>
 
   height: 56px;
   padding: 0 12px;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .title {
@@ -59,5 +67,10 @@ const showProfileMenu = computed(() =>
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.hr-header {
+  height: 5px;
+  margin-top: 10px;
 }
 </style>

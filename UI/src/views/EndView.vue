@@ -17,7 +17,7 @@ const handleMainMenu = (): void => {
 };
 </script>
 <template>
-  <div class="container" id="end">
+  <div id="end">
     <div id="end-message">
       <p class="tnx-message">Thank you for playing!</p>
       <br />
